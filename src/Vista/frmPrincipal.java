@@ -1,20 +1,25 @@
 package Vista;
 
 import Metodos.Metodos_User;
+import java.awt.Graphics;
+import java.awt.Image;
 import java.util.*;
 import java.util.GregorianCalendar;
+import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
-public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
+public class frmPrincipal extends javax.swing.JFrame implements Runnable {
 
     String hora, minutos, segundos;
     Thread hilo;
+
     private void cerrar() {
         String botones[] = {"Cerrar", "Cancelar"};
         int eleccion = JOptionPane.showOptionDialog(this, "¿Desea cerrar la aplicación?", "Salir de la aplicación!", 0, 0, null, botones, this);
-        
+
         if (eleccion == JOptionPane.YES_OPTION) {
             System.exit(0);
 
@@ -25,36 +30,43 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     }
 
     public frmPrincipal() {
-
+        FondoPanel fondo = new FondoPanel();
+        
         initComponents();
+        this.add(fondo);
+//        fondo.add(kGradientPanel2);
+//        fondo.add(kGradientPanel1);
+//        kGradientPanel1.setAlignmentY(BOTTOM_ALIGNMENT);
+//        kGradientPanel2.setAlignmentY(kGradientPanel2.getAlignmentX());
+        
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         hilo = new Thread(this);
         hilo.start();
-        
-        
-    
+
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
     }
     Metodos_User metodos = new Metodos_User();
-    
-    public void hora(){
-        
+
+    public void hora() {
+
         Calendar calendario = new GregorianCalendar();
         Date horaActual = new Date();
         calendario.setTime(horaActual);
-        hora=calendario.get(Calendar.HOUR_OF_DAY)>9?""+calendario.get(Calendar.HOUR_OF_DAY):"0"+calendario.get(Calendar.HOUR_OF_DAY);
-        minutos=calendario.get(Calendar.MINUTE)>9?""+calendario.get(Calendar.MINUTE):"0"+calendario.get(Calendar.MINUTE);
-        segundos=calendario.get(Calendar.SECOND)>9?""+calendario.get(Calendar.SECOND):"0"+calendario.get(Calendar.SECOND);
+        hora = calendario.get(Calendar.HOUR_OF_DAY) > 9 ? "" + calendario.get(Calendar.HOUR_OF_DAY) : "0" + calendario.get(Calendar.HOUR_OF_DAY);
+        minutos = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
+        segundos = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND) : "0" + calendario.get(Calendar.SECOND);
     }
-    public void run(){
-        Thread current=Thread.currentThread();
-        
-        while(current==hilo){
-        hora();
-        lblHora.setText(hora+":"+minutos+":"+segundos);
+
+    public void run() {
+        Thread current = Thread.currentThread();
+
+        while (current == hilo) {
+            hora();
+            lblHora.setText(hora + ":" + minutos + ":" + segundos);
+        }
     }
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -74,16 +86,13 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
         lblRol = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
-        jButton2 = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
         kGradientPanel2 = new keeptoo.KGradientPanel();
         btnNuevo = new javax.swing.JButton();
         btnCliente = new javax.swing.JButton();
         btnCaja = new javax.swing.JButton();
         btnVenta1 = new javax.swing.JButton();
         lblHora = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
+        cont = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -176,7 +185,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(767, Short.MAX_VALUE))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -191,39 +200,6 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
                     .addComponent(jLabel1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/config-botton.png"))); // NOI18N
-        jButton2.setBorder(null);
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton2.setFocusPainted(false);
-        jButton2.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cofig-botton.png"))); // NOI18N
-        jButton2.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/cofig-botton.png"))); // NOI18N
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 40, -1, -1));
-
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/perfil-botton_off.png"))); // NOI18N
-        jButton1.setBorder(null);
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        jButton1.setFocusPainted(false);
-        jButton1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/perfil-botton.png"))); // NOI18N
-        jButton1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/perfil-botton.png"))); // NOI18N
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
 
         kGradientPanel2.setBackground(new java.awt.Color(204, 204, 204));
         kGradientPanel2.setkEndColor(new java.awt.Color(240, 240, 240));
@@ -338,39 +314,41 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/fondoMat (3).jpg"))); // NOI18N
+        javax.swing.GroupLayout contLayout = new javax.swing.GroupLayout(cont);
+        cont.setLayout(contLayout);
+        contLayout.setHorizontalGroup(
+            contLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        contLayout.setVerticalGroup(
+            contLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 644, Short.MAX_VALUE)
+        );
 
         tbn_escritorio.setLayer(kGradientPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        tbn_escritorio.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         tbn_escritorio.setLayer(kGradientPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        tbn_escritorio.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        tbn_escritorio.setLayer(cont, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout tbn_escritorioLayout = new javax.swing.GroupLayout(tbn_escritorio);
         tbn_escritorio.setLayout(tbn_escritorioLayout);
         tbn_escritorioLayout.setHorizontalGroup(
             tbn_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(tbn_escritorioLayout.createSequentialGroup()
-                .addGap(0, 16, Short.MAX_VALUE)
-                .addComponent(jLabel5)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(tbn_escritorioLayout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(tbn_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(tbn_escritorioLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(cont, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         tbn_escritorioLayout.setVerticalGroup(
             tbn_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tbn_escritorioLayout.createSequentialGroup()
                 .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(tbn_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tbn_escritorioLayout.createSequentialGroup()
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(120, 120, 120))
-                    .addComponent(jLabel5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(cont, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -726,7 +704,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         frmProductos neww = new frmProductos();
-       CentrarVentanas(neww);
+        CentrarVentanas(neww);
         frmProductos.txtIdPresentacion.setVisible(false);
         frmProductos.txtIdLaboratorio.setVisible(false);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -750,7 +728,9 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
             internalFrame.setLocation(x, y);
             internalFrame.show();
         }
-    }        public void CentrarVentanaFactura(JInternalFrame internalFrame) {
+    }
+
+    public void CentrarVentanaFactura(JInternalFrame internalFrame) {
         int x = (tbn_escritorio.getWidth() / 2) - internalFrame.getWidth() / 2;
         int y = (tbn_escritorio.getHeight() / 2) - internalFrame.getHeight() / 2;
         if (internalFrame.isShowing()) {
@@ -780,9 +760,9 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         frmUsuarios ventana = new frmUsuarios();
         CentrarVentanaUsuario(ventana);
-                frmUsuarios.lblImagen.setVisible(false);
-                frmUsuarios.txtImagen.setVisible(false);
-                frmUsuarios.btnImagen.setVisible(false);
+        frmUsuarios.lblImagen.setVisible(false);
+        frmUsuarios.txtImagen.setVisible(false);
+        frmUsuarios.btnImagen.setVisible(false);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
     public void CentrarVentanaUsuario(JInternalFrame internalFrame) {
         int x = (tbn_escritorio.getWidth() / 2) - internalFrame.getWidth() / 2;
@@ -809,63 +789,62 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
             internalFrame.setLocation(x, y);
             internalFrame.show();
         }
-    }    
+    }
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         ConsultasProductos ventana = new ConsultasProductos();
         CentrarVentanas(ventana);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-         ReportesCliente reporte = new ReportesCliente();
-        CentrarVentanas(reporte);   
+        ReportesCliente reporte = new ReportesCliente();
+        CentrarVentanas(reporte);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void mnuAdminPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAdminPerfilActionPerformed
         AdministrarPerfil ventana = new AdministrarPerfil();
         CentrarVentanas(ventana);
-        
+
         String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
         ventana.txtId.setText(busqueda_Id);
-        
+
         String busqueda_Dni = metodos.buscarDni(frmLogin.txtUsuario.getText());
         ventana.txtDni.setText(busqueda_Dni);
-        
+
         String busqueda_apellidos = metodos.buscarApellidos(frmLogin.txtUsuario.getText());
         ventana.txtApellidos.setText(busqueda_apellidos);
-        
+
         String busqueda_nombre = metodos.buscarNombre(frmLogin.txtUsuario.getText());
         ventana.txtNombres.setText(busqueda_nombre);
-        
+
         String busqueda_Email = metodos.buscarEmail(frmLogin.txtUsuario.getText());
         ventana.txtEmail.setText(busqueda_Email);
-        
+
         String busqueda_Usuario = metodos.buscarUsuario(frmLogin.txtUsuario.getText());
         ventana.txtNomUsuario.setText(busqueda_Usuario);
-        
+
         String busqueda_Contraseña = metodos.buscarContraseña(frmLogin.txtUsuario.getText());
         ventana.txtClave.setText(busqueda_Contraseña);
-        
+
         String busqueda_TipoUsuario = metodos.buscarTipoUsuario(frmLogin.txtUsuario.getText());
         ventana.txtTipoUser.setText(busqueda_TipoUsuario);
-        
+
         String busqueda_Estado = metodos.buscarEstado(frmLogin.txtUsuario.getText());
         ventana.txtEstado.setText(busqueda_Estado);
-        
+
         /*String busqueda_Foto = metodos.buscarFoto(frmLogin.txtUsuario.getText());
         ventana.txtImagen.setText(busqueda_Foto);*/
-
         int x = Integer.valueOf(lblId.getText());
-        if( x == 1){
-        AdministrarPerfil.jpInvitado.setVisible(false);
-    }else{
+        if (x == 1) {
+            AdministrarPerfil.jpInvitado.setVisible(false);
+        } else {
             AdministrarPerfil.jpAdmin.setVisible(false);
             AdministrarPerfil.jpInvitado.setVisible(true);
         }
-        
+
     }//GEN-LAST:event_mnuAdminPerfilActionPerformed
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
-       ConsultaVentas ventana = new ConsultaVentas();
+        ConsultaVentas ventana = new ConsultaVentas();
         CentrarVentanas(ventana);
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
@@ -876,13 +855,13 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     private void mniEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniEmpleadoActionPerformed
         frmEmpleados ventana = new frmEmpleados();
         CentrarVentanas(ventana);
-        
+
         String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
         ventana.txtIdUsuario.setText(busqueda_Id);
     }//GEN-LAST:event_mniEmpleadoActionPerformed
 
     private void jmuEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmuEmpleadosActionPerformed
-       ConsultasEmpleados ventana = new ConsultasEmpleados();
+        ConsultasEmpleados ventana = new ConsultasEmpleados();
         CentrarVentanas(ventana);
     }//GEN-LAST:event_jmuEmpleadosActionPerformed
 
@@ -915,7 +894,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     }//GEN-LAST:event_mniEmpleado1ActionPerformed
 
     private void mnuCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCompraActionPerformed
-       frmCompras ventana = new frmCompras();
+        frmCompras ventana = new frmCompras();
         CentrarVentanas(ventana);
         String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
         ventana.txtIdEmpleado.setText(busqueda_Id);
@@ -939,33 +918,33 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
-         frmCaja ventana = new frmCaja();
+        frmCaja ventana = new frmCaja();
         CentrarVentanas(ventana);
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-      cerrar();
+        cerrar();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         frmProductos neww = new frmProductos();
-       CentrarVentanas(neww);
+        CentrarVentanas(neww);
         frmProductos.txtIdPresentacion.setVisible(false);
         frmProductos.txtIdLaboratorio.setVisible(false);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
-         frmClientes ventana = new frmClientes();
+        frmClientes ventana = new frmClientes();
         CentrarVentanaInterna(ventana);
     }//GEN-LAST:event_btnClienteActionPerformed
 
     private void btnCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCajaActionPerformed
-       frmCaja caja = new frmCaja();
-       CentrarVentanas(caja);
+        frmCaja caja = new frmCaja();
+        CentrarVentanas(caja);
     }//GEN-LAST:event_btnCajaActionPerformed
 
     private void btnVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenta1ActionPerformed
-      Ventas ventana = new Ventas();
+        Ventas ventana = new Ventas();
         CentrarVentanaFactura(ventana);
         Ventas.btnNuevo.requestFocus();
         Ventas.txtCosto.setVisible(false);
@@ -980,7 +959,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     }//GEN-LAST:event_jmuEmpleados1ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-         ReportesProveedor ventanasss = new ReportesProveedor();
+        ReportesProveedor ventanasss = new ReportesProveedor();
         CentrarVentanaConsultaCliente(ventanasss);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
@@ -990,7 +969,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-       frmLaboratorio ventana = new frmLaboratorio();
+        frmLaboratorio ventana = new frmLaboratorio();
         CentrarVentanas(ventana);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
@@ -998,55 +977,6 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
         frmComprobante ventana = new frmComprobante();
         CentrarVentanas(ventana);
     }//GEN-LAST:event_mnuComprobanteActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        AdministrarPerfil ventana = new AdministrarPerfil();
-        CentrarVentanas(ventana);
-
-        String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
-        ventana.txtId.setText(busqueda_Id);
-
-        String busqueda_Dni = metodos.buscarDni(frmLogin.txtUsuario.getText());
-        ventana.txtDni.setText(busqueda_Dni);
-
-        String busqueda_apellidos = metodos.buscarApellidos(frmLogin.txtUsuario.getText());
-        ventana.txtApellidos.setText(busqueda_apellidos);
-
-        String busqueda_nombre = metodos.buscarNombre(frmLogin.txtUsuario.getText());
-        ventana.txtNombres.setText(busqueda_nombre);
-
-        String busqueda_Email = metodos.buscarEmail(frmLogin.txtUsuario.getText());
-        ventana.txtEmail.setText(busqueda_Email);
-
-        String busqueda_Usuario = metodos.buscarUsuario(frmLogin.txtUsuario.getText());
-        ventana.txtNomUsuario.setText(busqueda_Usuario);
-
-        String busqueda_Contraseña = metodos.buscarContraseña(frmLogin.txtUsuario.getText());
-        ventana.txtClave.setText(busqueda_Contraseña);
-
-        String busqueda_TipoUsuario = metodos.buscarTipoUsuario(frmLogin.txtUsuario.getText());
-        ventana.txtTipoUser.setText(busqueda_TipoUsuario);
-
-        String busqueda_Estado = metodos.buscarEstado(frmLogin.txtUsuario.getText());
-        ventana.txtEstado.setText(busqueda_Estado);
-
-        /*String busqueda_Foto = metodos.buscarFoto(frmLogin.txtUsuario.getText());
-        ventana.cbxPrueva.setText(busqueda_Foto);*/
-
-        int x = Integer.valueOf(lblId.getText());
-        if( x == 1){
-            AdministrarPerfil.jpInvitado.setVisible(false);
-        }else{
-            AdministrarPerfil.jpAdmin.setVisible(false);
-            AdministrarPerfil.jpInvitado.setVisible(true);
-        }
-
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        AcercaDe ventana = new AcercaDe();
-        CentrarVentanas(ventana);
-    }//GEN-LAST:event_jButton2ActionPerformed
     public void CentrarVentanas(JInternalFrame internalFrame) {
         int x = (tbn_escritorio.getWidth() / 2) - internalFrame.getWidth() / 2;
         int y = (tbn_escritorio.getHeight() / 2) - internalFrame.getHeight() / 2;
@@ -1103,12 +1033,10 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnVenta1;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JPanel cont;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
@@ -1132,7 +1060,6 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem8;
     private javax.swing.JMenuItem jMenuItem9;
-    private javax.swing.JPanel jPanel1;
     private javax.swing.JToggleButton jToggleButton1;
     public static javax.swing.JMenuItem jmuEmpleados;
     public static javax.swing.JMenuItem jmuEmpleados1;
@@ -1151,5 +1078,17 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     public static javax.swing.JMenu mnuPerfil;
     public static javax.swing.JDesktopPane tbn_escritorio;
     // End of variables declaration//GEN-END:variables
+class FondoPanel extends JPanel {
+
+        private Image imagen;
+
+        @Override
+        public void paint(Graphics g) {
+            imagen = new ImageIcon(getClass().getResource("/Imagenes/fondoMA.jpg")).getImage();
+            g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
+            setOpaque(false);
+            super.paint(g);
+        }
+    }
 
 }
