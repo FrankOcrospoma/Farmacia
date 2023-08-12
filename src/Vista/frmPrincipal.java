@@ -2,6 +2,7 @@ package Vista;
 
 import Metodos.Metodos_User;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.*;
@@ -31,13 +32,14 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         }
     }
 
-    public frmPrincipal() {
+    public frmPrincipal() { 
 
         initComponents();
         FondoPanel fondo = new FondoPanel();
         this.setContentPane(contenedor);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
+        
+     
         hilo = new Thread(this);
         hilo.start();
 
@@ -86,11 +88,11 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         jLabel3 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
         jPanel1 = new FondoPanel();
-        btnNuevo = new javax.swing.JButton();
         btnCliente = new javax.swing.JButton();
         btnCaja = new javax.swing.JButton();
         btnVenta1 = new javax.swing.JButton();
         lblHora = new javax.swing.JLabel();
+        btnNuevo = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
@@ -217,24 +219,6 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        btnNuevo.setForeground(new java.awt.Color(0, 51, 51));
-        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/pa6.png"))); // NOI18N
-        btnNuevo.setMnemonic('k');
-        btnNuevo.setText("Productos");
-        btnNuevo.setContentAreaFilled(false);
-        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnNuevo.setFocusPainted(false);
-        btnNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        btnNuevo.setIconTextGap(0);
-        btnNuevo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/pa7.png"))); // NOI18N
-        btnNuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNuevoActionPerformed(evt);
-            }
-        });
-
         btnCliente.setBackground(new java.awt.Color(204, 255, 204));
         btnCliente.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnCliente.setForeground(new java.awt.Color(0, 51, 51));
@@ -296,6 +280,24 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         lblHora.setForeground(new java.awt.Color(0, 102, 102));
         lblHora.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/clock3.png"))); // NOI18N
         lblHora.setText("00:00:00");
+
+        btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        btnNuevo.setForeground(new java.awt.Color(0, 51, 51));
+        btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/pa6.png"))); // NOI18N
+        btnNuevo.setMnemonic('k');
+        btnNuevo.setText("Productos");
+        btnNuevo.setContentAreaFilled(false);
+        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNuevo.setFocusPainted(false);
+        btnNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnNuevo.setIconTextGap(0);
+        btnNuevo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/pa7.png"))); // NOI18N
+        btnNuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        btnNuevo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNuevoActionPerformed(evt);
+            }
+        });
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/perfil-botton_off.png"))); // NOI18N
         jButton1.setBorder(null);
@@ -365,11 +367,11 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
                     .addGroup(contenedorLayout.createSequentialGroup()
                         .addComponent(lblHora)
                         .addGap(9, 9, 9)))
-                .addGap(200, 200, 200)
+                .addGap(209, 209, 209)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 150, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(96, 96, 96)
                 .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -714,15 +716,21 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGap(0, 984, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addGap(0, 636, Short.MAX_VALUE)
+            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup()
+                    .addContainerGap()
+                    .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addContainerGap()))
         );
 
         pack();
@@ -1160,7 +1168,7 @@ class FondoPanel extends JPanel {
 
         @Override
         public void paint(Graphics g) {
-            imagen = new ImageIcon(getClass().getResource("/Imagenes/maternatal-fondo.png")).getImage();
+            imagen = new ImageIcon(getClass().getResource("/Imagenes/maternatal-fondo2.png")).getImage();
             g.drawImage(imagen, 0, 0, getWidth(), getHeight(), this);
             setOpaque(false);
             super.paint(g);

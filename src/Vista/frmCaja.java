@@ -2,6 +2,7 @@
 package Vista;
 
 import Metodos.Metodos_Ventas;
+import static Vista.frmPrincipal.contenedor;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.ResultSet;
@@ -243,6 +244,7 @@ public class frmCaja extends javax.swing.JInternalFrame {
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
        TotalVentasRealizadas ventas=new Vista.TotalVentasRealizadas();
         frmPrincipal.contenedor.add(ventas);
+        contenedor.setComponentZOrder(ventas, 0);
         ventas.show();
     }//GEN-LAST:event_btnVentasActionPerformed
 

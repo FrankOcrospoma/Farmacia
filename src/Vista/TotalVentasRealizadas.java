@@ -4,6 +4,7 @@ package Vista;
 
 import Conexion.ConexionBD;
 import Metodos.Metodos_Ventas;
+import static Vista.frmPrincipal.contenedor;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.Connection;
@@ -33,6 +34,7 @@ public class TotalVentasRealizadas extends javax.swing.JInternalFrame {
     
     public TotalVentasRealizadas() {
         initComponents();
+        
 
         //---------------------ANCHO Y ALTO DEL FORM----------------------
         this.setSize(660, 448);
