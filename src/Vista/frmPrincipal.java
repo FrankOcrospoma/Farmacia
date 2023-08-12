@@ -13,14 +13,15 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
-public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
+public class frmPrincipal extends javax.swing.JFrame implements Runnable {
 
     String hora, minutos, segundos;
     Thread hilo;
+
     private void cerrar() {
         String botones[] = {"Cerrar", "Cancelar"};
         int eleccion = JOptionPane.showOptionDialog(this, "¿Desea cerrar la aplicación?", "Salir de la aplicación!", 0, 0, null, botones, this);
-        
+
         if (eleccion == JOptionPane.YES_OPTION) {
             System.exit(0);
 
@@ -32,69 +33,38 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
 
     public frmPrincipal() {
 
-          initComponents();
-          this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-
-//        contenedor.setLayout(new BorderLayout());
-//
-//       // Carga la imagen desde el recurso (asegúrate de tener la imagen en la ubicación correcta)
-//        ImageIcon imagenIcono = new ImageIcon(getClass().getResource("/Imagenes/maternatal-fondo.png"));
-//        Image imagenOriginal = imagenIcono.getImage();
-//
-//        // Calcula el nuevo tamaño de la imagen para que se ajuste al tamaño del panel
-//        int anchoPanel = contenedor.getWidth();
-//        int altoPanel = contenedor.getHeight();
-//        Image imagenEscalada = imagenOriginal.getScaledInstance(anchoPanel, altoPanel, Image.SCALE_SMOOTH);
-//
-//        // Crea una etiqueta con la imagen escalada
-//        JLabel labelImagen = new JLabel(new ImageIcon(imagenEscalada));
-//
-//        // Agrega la etiqueta al panel
-//        contenedor.add(labelImagen);
-        
-//        FondoPanel fondo = new FondoPanel();
-//        contenedor.add(fondo);
-//        fondo.setBounds(0, 0, contenedor.getWidth(), contenedor.getHeight());
-//        
- 
-        
-        // Crea y agrega el FondoPanel
+        initComponents();
         FondoPanel fondo = new FondoPanel();
-        contenedor.add(fondo);
-        fondo.setBounds(0, 0, contenedor.getWidth(), contenedor.getHeight());
+        this.setContentPane(contenedor);
+        this.setExtendedState(JFrame.MAXIMIZED_BOTH);
 
-        // Establece el LayoutManager del contentPane para que el JDesktopPane se ajuste
-        setLayout(new BorderLayout());
-
-        // Agrega el JDesktopPane al contentPane con restricciones para que se estire
-        add(contenedor, BorderLayout.CENTER);
         hilo = new Thread(this);
         hilo.start();
-        
-        
-    
+
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
     }
     Metodos_User metodos = new Metodos_User();
-    
-    public void hora(){
-        
+
+    public void hora() {
+
         Calendar calendario = new GregorianCalendar();
         Date horaActual = new Date();
         calendario.setTime(horaActual);
-        hora=calendario.get(Calendar.HOUR_OF_DAY)>9?""+calendario.get(Calendar.HOUR_OF_DAY):"0"+calendario.get(Calendar.HOUR_OF_DAY);
-        minutos=calendario.get(Calendar.MINUTE)>9?""+calendario.get(Calendar.MINUTE):"0"+calendario.get(Calendar.MINUTE);
-        segundos=calendario.get(Calendar.SECOND)>9?""+calendario.get(Calendar.SECOND):"0"+calendario.get(Calendar.SECOND);
+        hora = calendario.get(Calendar.HOUR_OF_DAY) > 9 ? "" + calendario.get(Calendar.HOUR_OF_DAY) : "0" + calendario.get(Calendar.HOUR_OF_DAY);
+        minutos = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
+        segundos = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND) : "0" + calendario.get(Calendar.SECOND);
     }
-    public void run(){
-        Thread current=Thread.currentThread();
-        
-        while(current==hilo){
-        hora();
-        lblHora.setText(hora+":"+minutos+":"+segundos);
+
+    public void run() {
+        Thread current = Thread.currentThread();
+
+        while (current == hilo) {
+            hora();
+            lblHora.setText(hora + ":" + minutos + ":" + segundos);
+        }
     }
-    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -106,7 +76,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
 
         jMenuItem5 = new javax.swing.JMenuItem();
         jToggleButton1 = new javax.swing.JToggleButton();
-        contenedor = new javax.swing.JDesktopPane();
+        contenedor = new FondoPanel();
         kGradientPanel1 = new keeptoo.KGradientPanel();
         jLabel1 = new javax.swing.JLabel();
         lblNombreUsuario = new javax.swing.JLabel();
@@ -114,7 +84,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
         lblRol = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         lblId = new javax.swing.JLabel();
-        jPanel1 = new javax.swing.JPanel();
+        jPanel1 = new FondoPanel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         kGradientPanel2 = new keeptoo.KGradientPanel();
@@ -169,8 +139,6 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
             }
         });
 
-        contenedor.setBackground(new java.awt.Color(0, 102, 102));
-
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 153, 153));
         kGradientPanel1.setkStartColor(new java.awt.Color(0, 102, 204));
 
@@ -215,7 +183,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(816, Short.MAX_VALUE))
+                .addContainerGap(811, Short.MAX_VALUE))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -247,7 +215,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
                 jButton2ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 120, -1, -1));
+        jPanel1.add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 60, -1, -1));
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/perfil-botton_off.png"))); // NOI18N
         jButton1.setBorder(null);
@@ -262,7 +230,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
                 jButton1ActionPerformed(evt);
             }
         });
-        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 80, -1, -1));
+        jPanel1.add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 10, -1, -1));
 
         kGradientPanel2.setBackground(new java.awt.Color(204, 204, 204));
         kGradientPanel2.setkEndColor(new java.awt.Color(240, 240, 240));
@@ -363,41 +331,45 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
                 .addComponent(btnVenta1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(33, 33, 33))
         );
         kGradientPanel2Layout.setVerticalGroup(
             kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(btnNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnCaja, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(btnVenta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(kGradientPanel2Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(kGradientPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnCliente, javax.swing.GroupLayout.DEFAULT_SIZE, 59, Short.MAX_VALUE)
+                    .addComponent(btnNuevo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnCaja, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnVenta1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(kGradientPanel2Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
                 .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(18, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-
-        contenedor.setLayer(kGradientPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        contenedor.setLayer(jPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        contenedor.setLayer(kGradientPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
         contenedor.setLayout(contenedorLayout);
         contenedorLayout.setHorizontalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(contenedorLayout.createSequentialGroup()
-                .addContainerGap(1481, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap()
+                .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
             .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         contenedorLayout.setVerticalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
+            .addGroup(contenedorLayout.createSequentialGroup()
                 .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 298, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 323, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(120, 120, 120)
+                .addGap(123, 123, 123)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 502, Short.MAX_VALUE)
                 .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
@@ -740,11 +712,16 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenedor)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contenedor)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(contenedor, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         pack();
@@ -752,7 +729,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
         frmProductos neww = new frmProductos();
-       CentrarVentanas(neww);
+        CentrarVentanas(neww);
         frmProductos.txtIdPresentacion.setVisible(false);
         frmProductos.txtIdLaboratorio.setVisible(false);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
@@ -776,7 +753,9 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
             internalFrame.setLocation(x, y);
             internalFrame.show();
         }
-    }        public void CentrarVentanaFactura(JInternalFrame internalFrame) {
+    }
+
+    public void CentrarVentanaFactura(JInternalFrame internalFrame) {
         int x = (contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;
         int y = (contenedor.getHeight() / 2) - internalFrame.getHeight() / 2;
         if (internalFrame.isShowing()) {
@@ -806,9 +785,9 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         frmUsuarios ventana = new frmUsuarios();
         CentrarVentanaUsuario(ventana);
-                frmUsuarios.lblImagen.setVisible(false);
-                frmUsuarios.txtImagen.setVisible(false);
-                frmUsuarios.btnImagen.setVisible(false);
+        frmUsuarios.lblImagen.setVisible(false);
+        frmUsuarios.txtImagen.setVisible(false);
+        frmUsuarios.btnImagen.setVisible(false);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
     public void CentrarVentanaUsuario(JInternalFrame internalFrame) {
         int x = (contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;
@@ -835,63 +814,62 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
             internalFrame.setLocation(x, y);
             internalFrame.show();
         }
-    }    
+    }
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         ConsultasProductos ventana = new ConsultasProductos();
         CentrarVentanas(ventana);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
-         ReportesCliente reporte = new ReportesCliente();
-        CentrarVentanas(reporte);   
+        ReportesCliente reporte = new ReportesCliente();
+        CentrarVentanas(reporte);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void mnuAdminPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAdminPerfilActionPerformed
         AdministrarPerfil ventana = new AdministrarPerfil();
         CentrarVentanas(ventana);
-        
+
         String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
         ventana.txtId.setText(busqueda_Id);
-        
+
         String busqueda_Dni = metodos.buscarDni(frmLogin.txtUsuario.getText());
         ventana.txtDni.setText(busqueda_Dni);
-        
+
         String busqueda_apellidos = metodos.buscarApellidos(frmLogin.txtUsuario.getText());
         ventana.txtApellidos.setText(busqueda_apellidos);
-        
+
         String busqueda_nombre = metodos.buscarNombre(frmLogin.txtUsuario.getText());
         ventana.txtNombres.setText(busqueda_nombre);
-        
+
         String busqueda_Email = metodos.buscarEmail(frmLogin.txtUsuario.getText());
         ventana.txtEmail.setText(busqueda_Email);
-        
+
         String busqueda_Usuario = metodos.buscarUsuario(frmLogin.txtUsuario.getText());
         ventana.txtNomUsuario.setText(busqueda_Usuario);
-        
+
         String busqueda_Contraseña = metodos.buscarContraseña(frmLogin.txtUsuario.getText());
         ventana.txtClave.setText(busqueda_Contraseña);
-        
+
         String busqueda_TipoUsuario = metodos.buscarTipoUsuario(frmLogin.txtUsuario.getText());
         ventana.txtTipoUser.setText(busqueda_TipoUsuario);
-        
+
         String busqueda_Estado = metodos.buscarEstado(frmLogin.txtUsuario.getText());
         ventana.txtEstado.setText(busqueda_Estado);
-        
+
         /*String busqueda_Foto = metodos.buscarFoto(frmLogin.txtUsuario.getText());
         ventana.txtImagen.setText(busqueda_Foto);*/
-
         int x = Integer.valueOf(lblId.getText());
-        if( x == 1){
-        AdministrarPerfil.jpInvitado.setVisible(false);
-    }else{
+        if (x == 1) {
+            AdministrarPerfil.jpInvitado.setVisible(false);
+        } else {
             AdministrarPerfil.jpAdmin.setVisible(false);
             AdministrarPerfil.jpInvitado.setVisible(true);
         }
-        
+
     }//GEN-LAST:event_mnuAdminPerfilActionPerformed
 
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
-       ConsultaVentas ventana = new ConsultaVentas();
+        ConsultaVentas ventana = new ConsultaVentas();
         CentrarVentanas(ventana);
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
@@ -902,7 +880,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     private void mniEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniEmpleadoActionPerformed
         frmEmpleados ventana = new frmEmpleados();
         CentrarVentanas(ventana);
-        
+
         String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
         ventana.txtIdUsuario.setText(busqueda_Id);
     }//GEN-LAST:event_mniEmpleadoActionPerformed
@@ -910,49 +888,48 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         AdministrarPerfil ventana = new AdministrarPerfil();
         CentrarVentanas(ventana);
-        
+
         String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
         ventana.txtId.setText(busqueda_Id);
-        
+
         String busqueda_Dni = metodos.buscarDni(frmLogin.txtUsuario.getText());
         ventana.txtDni.setText(busqueda_Dni);
-        
+
         String busqueda_apellidos = metodos.buscarApellidos(frmLogin.txtUsuario.getText());
         ventana.txtApellidos.setText(busqueda_apellidos);
-        
+
         String busqueda_nombre = metodos.buscarNombre(frmLogin.txtUsuario.getText());
         ventana.txtNombres.setText(busqueda_nombre);
-        
+
         String busqueda_Email = metodos.buscarEmail(frmLogin.txtUsuario.getText());
         ventana.txtEmail.setText(busqueda_Email);
-        
+
         String busqueda_Usuario = metodos.buscarUsuario(frmLogin.txtUsuario.getText());
         ventana.txtNomUsuario.setText(busqueda_Usuario);
-        
+
         String busqueda_Contraseña = metodos.buscarContraseña(frmLogin.txtUsuario.getText());
         ventana.txtClave.setText(busqueda_Contraseña);
-        
+
         String busqueda_TipoUsuario = metodos.buscarTipoUsuario(frmLogin.txtUsuario.getText());
         ventana.txtTipoUser.setText(busqueda_TipoUsuario);
-        
+
         String busqueda_Estado = metodos.buscarEstado(frmLogin.txtUsuario.getText());
         ventana.txtEstado.setText(busqueda_Estado);
-        
+
         /*String busqueda_Foto = metodos.buscarFoto(frmLogin.txtUsuario.getText());
         ventana.cbxPrueva.setText(busqueda_Foto);*/
-
         int x = Integer.valueOf(lblId.getText());
-        if( x == 1){
-        AdministrarPerfil.jpInvitado.setVisible(false);
-    }else{
+        if (x == 1) {
+            AdministrarPerfil.jpInvitado.setVisible(false);
+        } else {
             AdministrarPerfil.jpAdmin.setVisible(false);
             AdministrarPerfil.jpInvitado.setVisible(true);
         }
-        
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jmuEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmuEmpleadosActionPerformed
-       ConsultasEmpleados ventana = new ConsultasEmpleados();
+        ConsultasEmpleados ventana = new ConsultasEmpleados();
         CentrarVentanas(ventana);
     }//GEN-LAST:event_jmuEmpleadosActionPerformed
 
@@ -985,7 +962,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     }//GEN-LAST:event_mniEmpleado1ActionPerformed
 
     private void mnuCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCompraActionPerformed
-       frmCompras ventana = new frmCompras();
+        frmCompras ventana = new frmCompras();
         CentrarVentanas(ventana);
         String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
         ventana.txtIdEmpleado.setText(busqueda_Id);
@@ -1009,7 +986,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
-         frmCaja ventana = new frmCaja();
+        frmCaja ventana = new frmCaja();
         CentrarVentanas(ventana);
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
@@ -1019,28 +996,28 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
-      cerrar();
+        cerrar();
     }//GEN-LAST:event_jMenuItem3ActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         frmProductos neww = new frmProductos();
-       CentrarVentanas(neww);
+        CentrarVentanas(neww);
         frmProductos.txtIdPresentacion.setVisible(false);
         frmProductos.txtIdLaboratorio.setVisible(false);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
-         frmClientes ventana = new frmClientes();
+        frmClientes ventana = new frmClientes();
         CentrarVentanaInterna(ventana);
     }//GEN-LAST:event_btnClienteActionPerformed
 
     private void btnCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCajaActionPerformed
-       frmCaja caja = new frmCaja();
-       CentrarVentanas(caja);
+        frmCaja caja = new frmCaja();
+        CentrarVentanas(caja);
     }//GEN-LAST:event_btnCajaActionPerformed
 
     private void btnVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenta1ActionPerformed
-      Ventas ventana = new Ventas();
+        Ventas ventana = new Ventas();
         CentrarVentanaFactura(ventana);
         Ventas.btnNuevo.requestFocus();
         Ventas.txtCosto.setVisible(false);
@@ -1055,7 +1032,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     }//GEN-LAST:event_jmuEmpleados1ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
-         ReportesProveedor ventanasss = new ReportesProveedor();
+        ReportesProveedor ventanasss = new ReportesProveedor();
         CentrarVentanaConsultaCliente(ventanasss);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
@@ -1065,7 +1042,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-       frmLaboratorio ventana = new frmLaboratorio();
+        frmLaboratorio ventana = new frmLaboratorio();
         CentrarVentanas(ventana);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
@@ -1129,7 +1106,7 @@ public class frmPrincipal extends javax.swing.JFrame  implements Runnable{
     private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnVenta1;
-    public static javax.swing.JDesktopPane contenedor;
+    private javax.swing.JPanel contenedor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
