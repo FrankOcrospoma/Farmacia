@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import Vista.*;
 
 public class frmPresentacion extends javax.swing.JInternalFrame {
 
@@ -539,6 +540,7 @@ public class frmPresentacion extends javax.swing.JInternalFrame {
         int y = (frmPrincipal.contenedor.getHeight() / 2) - internalFrame.getHeight() / 2;
         if (internalFrame.isShowing()) {
             internalFrame.setLocation(x, y);
+            
         } else {
             frmPrincipal.contenedor.add(internalFrame);
             internalFrame.setLocation(x, y);
