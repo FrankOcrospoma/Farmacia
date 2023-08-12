@@ -1,15 +1,20 @@
 package Vista;
 
 import Metodos.Metodos_User;
+import java.awt.BorderLayout;
 import java.awt.Graphics;
 import java.awt.Image;
 import java.util.*;
 import java.util.GregorianCalendar;
+import javax.swing.BorderFactory;
+import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
 public class frmPrincipal extends javax.swing.JFrame implements Runnable {
 
@@ -30,15 +35,10 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     }
 
     public frmPrincipal() {
-        FondoPanel fondo = new FondoPanel();
-        
+     
         initComponents();
-        this.add(fondo);
-//        fondo.add(kGradientPanel2);
-//        fondo.add(kGradientPanel1);
-//        kGradientPanel1.setAlignmentY(BOTTOM_ALIGNMENT);
-//        kGradientPanel2.setAlignmentY(kGradientPanel2.getAlignmentX());
-        
+        redimesionar();
+
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
         hilo = new Thread(this);
         hilo.start();
@@ -46,8 +46,25 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
     }
-    Metodos_User metodos = new Metodos_User();
+        Metodos_User metodos = new Metodos_User();
+        public void redimesionar() {
+        contenedor.setLayout(new BorderLayout());
 
+       // Carga la imagen desde el recurso (asegúrate de tener la imagen en la ubicación correcta)
+        ImageIcon imagenIcono = new ImageIcon(getClass().getResource("/Imagenes/fondoMA.jpg"));
+        Image imagenOriginal = imagenIcono.getImage();
+
+        // Calcula el nuevo tamaño de la imagen para que se ajuste al tamaño del panel
+        int anchoPanel = contenedor.getWidth();
+        int altoPanel = contenedor.getHeight();
+        Image imagenEscalada = imagenOriginal.getScaledInstance(anchoPanel, altoPanel, Image.SCALE_SMOOTH);
+        
+        // Crea una etiqueta con la imagen escalada
+        JLabel labelImagen = new JLabel(new ImageIcon(imagenEscalada));
+
+        // Agrega la etiqueta al panel
+        contenedor.add(labelImagen);
+    }
     public void hora() {
 
         Calendar calendario = new GregorianCalendar();
@@ -57,7 +74,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         minutos = calendario.get(Calendar.MINUTE) > 9 ? "" + calendario.get(Calendar.MINUTE) : "0" + calendario.get(Calendar.MINUTE);
         segundos = calendario.get(Calendar.SECOND) > 9 ? "" + calendario.get(Calendar.SECOND) : "0" + calendario.get(Calendar.SECOND);
     }
-
+   
     public void run() {
         Thread current = Thread.currentThread();
 
@@ -92,7 +109,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         btnCaja = new javax.swing.JButton();
         btnVenta1 = new javax.swing.JButton();
         lblHora = new javax.swing.JLabel();
-        cont = new javax.swing.JPanel();
+        contenedor = new javax.swing.JPanel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -139,7 +156,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        tbn_escritorio.setBackground(new java.awt.Color(0, 102, 102));
+        tbn_escritorio.setBackground(new java.awt.Color(10, 158, 221));
 
         kGradientPanel1.setkEndColor(new java.awt.Color(0, 153, 153));
         kGradientPanel1.setkStartColor(new java.awt.Color(0, 102, 204));
@@ -185,7 +202,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(767, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -298,7 +315,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
                 .addComponent(btnCaja)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnVenta1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 1003, Short.MAX_VALUE)
                 .addComponent(lblHora, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -314,43 +331,39 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        javax.swing.GroupLayout contLayout = new javax.swing.GroupLayout(cont);
-        cont.setLayout(contLayout);
-        contLayout.setHorizontalGroup(
-            contLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        contenedor.setBackground(new java.awt.Color(10, 158, 221));
+
+        javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
+        contenedor.setLayout(contenedorLayout);
+        contenedorLayout.setHorizontalGroup(
+            contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 0, Short.MAX_VALUE)
         );
-        contLayout.setVerticalGroup(
-            contLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 644, Short.MAX_VALUE)
+        contenedorLayout.setVerticalGroup(
+            contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 584, Short.MAX_VALUE)
         );
 
         tbn_escritorio.setLayer(kGradientPanel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
         tbn_escritorio.setLayer(kGradientPanel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        tbn_escritorio.setLayer(cont, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        tbn_escritorio.setLayer(contenedor, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout tbn_escritorioLayout = new javax.swing.GroupLayout(tbn_escritorio);
         tbn_escritorio.setLayout(tbn_escritorioLayout);
         tbn_escritorioLayout.setHorizontalGroup(
             tbn_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(kGradientPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(tbn_escritorioLayout.createSequentialGroup()
-                .addGroup(tbn_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(tbn_escritorioLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addComponent(cont, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(contenedor, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         tbn_escritorioLayout.setVerticalGroup(
             tbn_escritorioLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, tbn_escritorioLayout.createSequentialGroup()
                 .addComponent(kGradientPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(cont, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(43, 43, 43)
+                .addComponent(contenedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         jMenuBar1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -1033,7 +1046,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnVenta1;
-    private javax.swing.JPanel cont;
+    public javax.swing.JPanel contenedor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -1090,5 +1103,6 @@ class FondoPanel extends JPanel {
             super.paint(g);
         }
     }
+
 
 }

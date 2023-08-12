@@ -5,7 +5,7 @@ import java.sql.*;
 
 public class ConexionBD {
 
-    public static String url = "jdbc:mysql://localhost:3307/dbfarmacia?serverTimezone=UTC";
+    public static String url = "jdbc:mysql://localhost/farmacia?serverTimezone=UTC";
     public static String usuario = "root";
     public static String clave = "";
     public static String clase = "com.mysql.cj.jdbc.Driver";
