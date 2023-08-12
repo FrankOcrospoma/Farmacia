@@ -311,6 +311,7 @@ public class Ventas extends javax.swing.JInternalFrame {
 
         setClosable(true);
         setIconifiable(true);
+        setResizable(true);
         setPreferredSize(new java.awt.Dimension(860, 723));
         getContentPane().setLayout(null);
 
@@ -327,7 +328,7 @@ public class Ventas extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        tblDetalleProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        tblDetalleProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         tblDetalleProducto.setRowHeight(22);
         jScrollPane3.setViewportView(tblDetalleProducto);
 
@@ -341,7 +342,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         btnNuevo.setForeground(new java.awt.Color(0, 102, 102));
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/mas.png"))); // NOI18N
         btnNuevo.setText("Nuevo");
-        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNuevo.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnNuevo.setIconTextGap(0);
         btnNuevo.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -355,7 +356,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         btnGuardar.setForeground(new java.awt.Color(0, 102, 102));
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Pguar.png"))); // NOI18N
         btnGuardar.setText("Guardar");
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnGuardar.setIconTextGap(0);
         btnGuardar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -369,7 +370,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         btnCancelar.setForeground(new java.awt.Color(0, 102, 102));
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/can.png"))); // NOI18N
         btnCancelar.setText("Cancelar");
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCancelar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnCancelar.setIconTextGap(0);
         btnCancelar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
@@ -383,7 +384,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         btnImprimir.setForeground(new java.awt.Color(0, 102, 102));
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/print_2.png"))); // NOI18N
         btnImprimir.setText("Imprimir");
-        btnImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnImprimir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnImprimir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
@@ -423,7 +424,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel4);
-        jPanel4.setBounds(690, 60, 139, 270);
+        jPanel4.setBounds(690, 60, 135, 270);
 
         jPanel6.setBackground(new java.awt.Color(251, 248, 248));
         jPanel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -597,7 +598,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         btnImporte.setForeground(new java.awt.Color(0, 102, 102));
         btnImporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/vuelto.png"))); // NOI18N
         btnImporte.setText("Importe");
-        btnImporte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnImporte.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnImporte.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         btnImporte.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         btnImporte.addActionListener(new java.awt.event.ActionListener() {
@@ -606,7 +607,7 @@ public class Ventas extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(btnImporte);
-        btnImporte.setBounds(10, 356, 71, 66);
+        btnImporte.setBounds(10, 356, 72, 66);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setForeground(new java.awt.Color(0, 102, 102));
@@ -633,7 +634,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 850, 51);
+        jPanel1.setBounds(0, 0, 850, 41);
 
         jPanel10.setBackground(new java.awt.Color(251, 248, 248));
         jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Datos del Cliente:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 3, 11), new java.awt.Color(0, 102, 102))); // NOI18N
@@ -645,7 +646,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         btnclientes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnclientes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/VCli.png"))); // NOI18N
         btnclientes.setText("...");
-        btnclientes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnclientes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnclientes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnclientesActionPerformed(evt);
@@ -708,7 +709,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         btnBuscarProducto.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnBuscarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/VBus.png"))); // NOI18N
         btnBuscarProducto.setText("Buscar");
-        btnBuscarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnBuscarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnBuscarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnBuscarProductoActionPerformed(evt);
@@ -765,7 +766,6 @@ public class Ventas extends javax.swing.JInternalFrame {
 
         txtCosto.setEditable(false);
         txtCosto.setBorder(null);
-        txtCosto.setOpaque(false);
 
         txtDescripcionProducto.setEditable(false);
         txtDescripcionProducto.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -853,12 +853,12 @@ public class Ventas extends javax.swing.JInternalFrame {
         txtIdCliente.setEditable(false);
         txtIdCliente.setBorder(null);
         getContentPane().add(txtIdCliente);
-        txtIdCliente.setBounds(848, 65, 0, 70);
+        txtIdCliente.setBounds(848, 65, 64, 70);
 
         txtDni.setEditable(false);
         txtDni.setBorder(null);
         getContentPane().add(txtDni);
-        txtDni.setBounds(854, 103, 35, 14);
+        txtDni.setBounds(854, 103, 35, 16);
 
         jPanel2.setBackground(new java.awt.Color(251, 248, 248));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Comprobante", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 3, 11), new java.awt.Color(0, 102, 102))); // NOI18N
@@ -872,7 +872,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         btnComprobante.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnComprobante.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/VBus.png"))); // NOI18N
         btnComprobante.setText("...");
-        btnComprobante.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnComprobante.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnComprobante.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnComprobanteActionPerformed(evt);
@@ -931,7 +931,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         btnAgregarProducto.setForeground(new java.awt.Color(0, 102, 102));
         btnAgregarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/add.png"))); // NOI18N
         btnAgregarProducto.setText("Agregar");
-        btnAgregarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnAgregarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnAgregarProducto.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnAgregarProductoMouseClicked(evt);
@@ -952,7 +952,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         btnLimpiarTabla.setForeground(new java.awt.Color(0, 102, 102));
         btnLimpiarTabla.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Pnew.png"))); // NOI18N
         btnLimpiarTabla.setText("Limpiar");
-        btnLimpiarTabla.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnLimpiarTabla.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnLimpiarTabla.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnLimpiarTablaActionPerformed(evt);
@@ -963,7 +963,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         btnEliminarProducto.setForeground(new java.awt.Color(0, 102, 102));
         btnEliminarProducto.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/del.png"))); // NOI18N
         btnEliminarProducto.setText("Eliminar");
-        btnEliminarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminarProducto.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminarProducto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnEliminarProductoActionPerformed(evt);
@@ -974,7 +974,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         btnSalir.setForeground(new java.awt.Color(0, 102, 102));
         btnSalir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/Pvolv.png"))); // NOI18N
         btnSalir.setText("Salir");
-        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnSalirActionPerformed(evt);
@@ -1009,12 +1009,12 @@ public class Ventas extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel5);
-        jPanel5.setBounds(380, 360, 450, 66);
+        jPanel5.setBounds(380, 360, 450, 56);
 
         txtFecha.setEditable(false);
         txtFecha.setForeground(new java.awt.Color(51, 0, 0));
         getContentPane().add(txtFecha);
-        txtFecha.setBounds(570, 90, 86, 20);
+        txtFecha.setBounds(570, 90, 86, 22);
 
         jLabel37.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel37.setForeground(new java.awt.Color(0, 102, 102));
@@ -1034,7 +1034,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         getContentPane().add(jLabel26);
         jLabel26.setBounds(550, 220, 20, 20);
         getContentPane().add(txtNumero);
-        txtNumero.setBounds(570, 220, 86, 20);
+        txtNumero.setBounds(570, 220, 86, 22);
 
         jLabel27.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel27.setForeground(new java.awt.Color(0, 102, 102));
@@ -1051,15 +1051,14 @@ public class Ventas extends javax.swing.JInternalFrame {
         txtSerie.setBounds(580, 150, 59, 20);
 
         chkCambiarSerie.setText("Cambiar");
-        chkCambiarSerie.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        chkCambiarSerie.setOpaque(false);
+        chkCambiarSerie.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         chkCambiarSerie.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 chkCambiarSerieStateChanged(evt);
             }
         });
         getContentPane().add(chkCambiarSerie);
-        chkCambiarSerie.setBounds(580, 170, 74, 23);
+        chkCambiarSerie.setBounds(580, 170, 74, 20);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
