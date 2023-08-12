@@ -113,13 +113,13 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
         jLabel1.setForeground(new java.awt.Color(0, 51, 51));
         jLabel1.setText("Id:");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(80, 30, 18, 16);
+        jLabel1.setBounds(61, 31, 18, 16);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(0, 51, 51));
         jLabel2.setText("Email:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(57, 180, 50, 16);
+        jLabel2.setBounds(50, 180, 37, 16);
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(0, 51, 51));
@@ -131,10 +131,10 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
         jLabel4.setForeground(new java.awt.Color(0, 51, 51));
         jLabel4.setText("Tipo Usuario:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(13, 300, 90, 16);
+        jLabel4.setBounds(20, 300, 83, 16);
 
-        cboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "⠀⠀⠀⠀⠀⠀⠀⠀", "Administrador", "Vendedor", "" }));
-        cboTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        cboTipo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "⠀⠀⠀⠀⠀⠀⠀⠀", "Administrador", "Vendedor", " " }));
+        cboTipo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         cboTipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cboTipoActionPerformed(evt);
@@ -152,41 +152,42 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
         jLabel5.setForeground(new java.awt.Color(0, 51, 51));
         jLabel5.setText("DNI:");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(69, 67, 30, 16);
+        jLabel5.setBounds(52, 67, 27, 16);
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(0, 51, 51));
         jLabel6.setText("Usuario:");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(43, 220, 60, 16);
+        jLabel6.setBounds(40, 220, 53, 16);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(0, 51, 51));
         jLabel8.setText("Apellidos:");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(33, 100, 70, 16);
+        jLabel8.setBounds(40, 100, 63, 16);
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(0, 51, 51));
         jLabel9.setText("Nombres:");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(30, 140, 80, 16);
+        jLabel9.setBounds(40, 140, 61, 16);
 
         jLabel10.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(0, 51, 51));
         jLabel10.setText("Estado:");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(50, 340, 49, 16);
+        jLabel10.setBounds(40, 340, 49, 16);
 
         chbEstado.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         chbEstado.setForeground(new java.awt.Color(0, 102, 102));
         chbEstado.setText("Activo");
         chbEstado.setContentAreaFilled(false);
-        chbEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        chbEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         chbEstado.setFocusPainted(false);
         jPanel1.add(chbEstado);
-        chbEstado.setBounds(120, 340, 59, 19);
+        chbEstado.setBounds(120, 340, 61, 22);
 
+        txtID.setEditable(false);
         txtID.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtIDKeyPressed(evt);
@@ -255,7 +256,7 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
         btnPresentacion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/btn46.png"))); // NOI18N
         btnPresentacion.setBorderPainted(false);
         btnPresentacion.setContentAreaFilled(false);
-        btnPresentacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnPresentacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnPresentacion.setFocusPainted(false);
         btnPresentacion.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/btn47.png"))); // NOI18N
         btnPresentacion.addActionListener(new java.awt.event.ActionListener() {
@@ -282,7 +283,7 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
 
             }
         ));
-        tbUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        tbUsuario.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         tbUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 tbUsuarioMouseClicked(evt);
@@ -297,7 +298,7 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
         btnaceptar.setForeground(new java.awt.Color(0, 153, 102));
         btnaceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/btn17.png"))); // NOI18N
         btnaceptar.setContentAreaFilled(false);
-        btnaceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnaceptar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnaceptar.setFocusPainted(false);
         btnaceptar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/btn19.png"))); // NOI18N
         btnaceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -306,7 +307,7 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(btnaceptar);
-        btnaceptar.setBounds(640, 270, 176, 50);
+        btnaceptar.setBounds(630, 270, 202, 50);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 1, 13)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(0, 51, 51));
@@ -316,19 +317,19 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
 
         lblImagen.setText("Imagen:");
         getContentPane().add(lblImagen);
-        lblImagen.setBounds(380, 350, 43, 16);
+        lblImagen.setBounds(380, 360, 40, 14);
         getContentPane().add(txtImagen);
-        txtImagen.setBounds(430, 350, 220, 22);
+        txtImagen.setBounds(430, 350, 220, 20);
 
         btnImagen.setText("Agregar");
-        btnImagen.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnImagen.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnImagen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnImagenActionPerformed(evt);
             }
         });
         getContentPane().add(btnImagen);
-        btnImagen.setBounds(660, 350, 72, 23);
+        btnImagen.setBounds(660, 350, 71, 23);
         getContentPane().add(lblfoto);
         lblfoto.setBounds(804, 280, 170, 141);
 
@@ -356,7 +357,7 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(0, 0, 1010, 41);
+        jPanel2.setBounds(0, 0, 1010, 51);
 
         jPanel3.setBackground(new java.awt.Color(0, 51, 51));
         jPanel3.setLayout(null);
@@ -365,7 +366,7 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
         btnregistrar.setForeground(new java.awt.Color(0, 153, 102));
         btnregistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/btn12_1.png"))); // NOI18N
         btnregistrar.setContentAreaFilled(false);
-        btnregistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnregistrar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnregistrar.setFocusPainted(false);
         btnregistrar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/btn22.png"))); // NOI18N
         btnregistrar.addActionListener(new java.awt.event.ActionListener() {
@@ -385,7 +386,7 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
         btnNuevo.setForeground(new java.awt.Color(0, 153, 102));
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/btn11_1.png"))); // NOI18N
         btnNuevo.setContentAreaFilled(false);
-        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnNuevo.setFocusPainted(false);
         btnNuevo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/btn23.png"))); // NOI18N
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -400,7 +401,7 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
         btnEliminar.setForeground(new java.awt.Color(0, 153, 102));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/btn13.png"))); // NOI18N
         btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnEliminar.setFocusPainted(false);
         btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/btn21.png"))); // NOI18N
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -415,7 +416,7 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
         btnImprimir.setForeground(new java.awt.Color(0, 153, 102));
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/btn16.png"))); // NOI18N
         btnImprimir.setContentAreaFilled(false);
-        btnImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         btnImprimir.setFocusPainted(false);
         btnImprimir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/btn18.png"))); // NOI18N
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {
@@ -430,7 +431,7 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
         jButton3.setForeground(new java.awt.Color(0, 153, 102));
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/btn15.png"))); // NOI18N
         jButton3.setContentAreaFilled(false);
-        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        jButton3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         jButton3.setFocusPainted(false);
         jButton3.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/btn20.png"))); // NOI18N
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -439,7 +440,7 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
             }
         });
         jPanel3.add(jButton3);
-        jButton3.setBounds(400, 0, 148, 60);
+        jButton3.setBounds(400, 0, 174, 60);
 
         getContentPane().add(jPanel3);
         jPanel3.setBounds(0, 450, 1000, 70);
@@ -721,7 +722,7 @@ private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     private void btnPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPresentacionActionPerformed
 
         BuscarEmpleados Presentacion = new BuscarEmpleados();
-        frmPrincipal.tbn_escritorio.add(Presentacion);
+        frmPrincipal.contenedor.add(Presentacion);
         Presentacion.toFront();
         Presentacion.setVisible(true);
     }//GEN-LAST:event_btnPresentacionActionPerformed

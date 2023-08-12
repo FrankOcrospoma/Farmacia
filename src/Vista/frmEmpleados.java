@@ -733,7 +733,6 @@ private void mnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
 }//GEN-LAST:event_mnmodificarActionPerformed
 
     private void jtb_EmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jtb_EmpleadosMouseClicked
-       nuevo();
         int row = jtb_Empleados.getSelectedRow();
         txtId.setText(jtb_Empleados.getValueAt(row, 0).toString());
         txtNombre.setText(jtb_Empleados.getValueAt(row, 1).toString());
@@ -753,7 +752,7 @@ private void mnmodificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         } else {
             chbEstado.setSelected(false);
         }
-        
+
         nums = 1;
     }//GEN-LAST:event_jtb_EmpleadosMouseClicked
 

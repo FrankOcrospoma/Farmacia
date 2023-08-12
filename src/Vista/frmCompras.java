@@ -887,7 +887,7 @@ public class frmCompras extends javax.swing.JInternalFrame {
     }
     private void btnBuscarProveedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProveedorActionPerformed
         BuscarProveedor proveedor = new BuscarProveedor();
-        frmPrincipal.tbn_escritorio.add(proveedor);
+        frmPrincipal.contenedor.add(proveedor);
         proveedor.toFront();
         proveedor.setVisible(true);
     }//GEN-LAST:event_btnBuscarProveedorActionPerformed
@@ -910,7 +910,7 @@ public class frmCompras extends javax.swing.JInternalFrame {
     private void btnBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductoActionPerformed
         accion = "ProductoCompra";
         BuscarProductosCompras producto= new BuscarProductosCompras();
-        frmPrincipal.tbn_escritorio.add(producto);
+        frmPrincipal.contenedor.add(producto);
         producto.toFront();
         producto.setVisible(true);
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
@@ -1070,12 +1070,12 @@ public class frmCompras extends javax.swing.JInternalFrame {
         CentrarVentana(Comprobante);
     }//GEN-LAST:event_btnBuscarComprobanteActionPerformed
         public void CentrarVentana(JInternalFrame internalFrame) {
-        int x = (frmPrincipal.tbn_escritorio.getWidth() / 2) - internalFrame.getWidth() / 2;
-        int y = (frmPrincipal.tbn_escritorio.getHeight() / 2) - internalFrame.getHeight() / 2;
+        int x = (frmPrincipal.contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;
+        int y = (frmPrincipal.contenedor.getHeight() / 2) - internalFrame.getHeight() / 2;
         if (internalFrame.isShowing()) {
             internalFrame.setLocation(x, y);
         } else {
-            frmPrincipal.tbn_escritorio.add(internalFrame);
+            frmPrincipal.contenedor.add(internalFrame);
             internalFrame.setLocation(x, y);
             internalFrame.show();
         }

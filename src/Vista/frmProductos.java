@@ -717,14 +717,14 @@ public class frmProductos extends javax.swing.JInternalFrame {
     private void btnPresentacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPresentacionActionPerformed
 
         BuscarPresentacion Presentacion = new BuscarPresentacion();
-        frmPrincipal.tbn_escritorio.add(Presentacion);
+        frmPrincipal.contenedor.add(Presentacion);
         Presentacion.toFront();
         Presentacion.setVisible(true);
     }//GEN-LAST:event_btnPresentacionActionPerformed
 
     private void btnLaboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaboratorioActionPerformed
         BuscarLaboratorio Laboratorio = new BuscarLaboratorio();
-        frmPrincipal.tbn_escritorio.add(Laboratorio);
+        frmPrincipal.contenedor.add(Laboratorio);
         Laboratorio.toFront();
         Laboratorio.setVisible(true);
     }//GEN-LAST:event_btnLaboratorioActionPerformed
@@ -845,12 +845,12 @@ public class frmProductos extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_txtStockKeyTyped
 
      public void CentrarVentanaUsuario(JInternalFrame internalFrame) {
-        int x = (frmPrincipal.tbn_escritorio.getWidth() / 2) - internalFrame.getWidth() / 2;
-        int y = (frmPrincipal.tbn_escritorio.getHeight() / 2) - internalFrame.getHeight() / 2;
+        int x = (frmPrincipal.contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;
+        int y = (frmPrincipal.contenedor.getHeight() / 2) - internalFrame.getHeight() / 2;
         if (internalFrame.isShowing()) {
             internalFrame.setLocation(x, y);
         } else {
-            frmPrincipal.tbn_escritorio.add(internalFrame);
+            frmPrincipal.contenedor.add(internalFrame);
             internalFrame.setLocation(x, y);
             internalFrame.show();
         }

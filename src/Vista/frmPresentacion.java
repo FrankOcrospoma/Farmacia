@@ -535,12 +535,12 @@ public class frmPresentacion extends javax.swing.JInternalFrame {
         txtEstado.requestFocus();
     }//GEN-LAST:event_jrdEstadoActionPerformed
     public void CentrarVentana(JInternalFrame internalFrame) {
-        int x = (frmPrincipal.tbn_escritorio.getWidth() / 2) - internalFrame.getWidth() / 2;
-        int y = (frmPrincipal.tbn_escritorio.getHeight() / 2) - internalFrame.getHeight() / 2;
+        int x = (frmPrincipal.contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;
+        int y = (frmPrincipal.contenedor.getHeight() / 2) - internalFrame.getHeight() / 2;
         if (internalFrame.isShowing()) {
             internalFrame.setLocation(x, y);
         } else {
-            frmPrincipal.tbn_escritorio.add(internalFrame);
+            frmPrincipal.contenedor.add(internalFrame);
             internalFrame.setLocation(x, y);
             internalFrame.show();
         }

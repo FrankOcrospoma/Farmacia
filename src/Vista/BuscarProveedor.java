@@ -228,7 +228,7 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
         frmProveedor cli = new frmProveedor();
-    frmPrincipal.tbn_escritorio.add(cli);
+    frmPrincipal.contenedor.add(cli);
     cli.toFront();
     cli.setVisible(true);
     }//GEN-LAST:event_btnAgregarActionPerformed

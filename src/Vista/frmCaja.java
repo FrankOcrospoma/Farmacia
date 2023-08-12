@@ -242,7 +242,7 @@ public class frmCaja extends javax.swing.JInternalFrame {
 
     private void btnVentasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVentasActionPerformed
        TotalVentasRealizadas ventas=new Vista.TotalVentasRealizadas();
-        frmPrincipal.tbn_escritorio.add(ventas);
+        frmPrincipal.contenedor.add(ventas);
         ventas.show();
     }//GEN-LAST:event_btnVentasActionPerformed
 

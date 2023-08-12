@@ -1405,7 +1405,6 @@ public class Ventas extends javax.swing.JInternalFrame {
     btnImprimir.setEnabled(true);
     btnNuevo.setEnabled(true);
     btnCancelar.setEnabled(false);
-    btnLimpiarTabla.doClick();
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
@@ -1468,7 +1467,7 @@ public class Ventas extends javax.swing.JInternalFrame {
     private void btnBuscarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarProductoActionPerformed
         accion = "Buscar";
         BuscarProductosVentas Pro = new BuscarProductosVentas();
-        frmPrincipal.tbn_escritorio.add(Pro);
+        frmPrincipal.contenedor.add(Pro);
         Pro.toFront();
         Pro.setVisible(true);
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
@@ -1476,7 +1475,7 @@ public class Ventas extends javax.swing.JInternalFrame {
     private void btnclientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclientesActionPerformed
         // TODO add your handling code here:
         BuscarClientes cli = new BuscarClientes();
-        frmPrincipal.tbn_escritorio.add(cli);
+        frmPrincipal.contenedor.add(cli);
         cli.toFront();
         cli.setVisible(true);
     }//GEN-LAST:event_btnclientesActionPerformed
@@ -1485,12 +1484,12 @@ public class Ventas extends javax.swing.JInternalFrame {
        this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
     public void CentrarVentana(JInternalFrame internalFrame) {
-        int x = (frmPrincipal.tbn_escritorio.getWidth() / 2) - internalFrame.getWidth() / 2;
-        int y = (frmPrincipal.tbn_escritorio.getHeight() / 2) - internalFrame.getHeight() / 2;
+        int x = (frmPrincipal.contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;
+        int y = (frmPrincipal.contenedor.getHeight() / 2) - internalFrame.getHeight() / 2;
         if (internalFrame.isShowing()) {
             internalFrame.setLocation(x, y);
         } else {
-            frmPrincipal.tbn_escritorio.add(internalFrame);
+            frmPrincipal.contenedor.add(internalFrame);
             internalFrame.setLocation(x, y);
             internalFrame.show();
         }
