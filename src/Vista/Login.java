@@ -9,7 +9,7 @@ import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 //Conexión a la BD
 import Metodos.Metodos_sql;
-import static Vista.Login.txtUsuario;
+import static Vista.Login.*;
 //import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
@@ -25,7 +25,7 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 public class Login extends javax.swing.JFrame {
-    
+
     private Animator animatorLogin;
     private Animator animatorBody;
     private boolean signIn;
@@ -51,7 +51,7 @@ public class Login extends javax.swing.JFrame {
                     background1.setAnimate(1f - fraction);
                 }
             }
-            
+
             @Override
             public void end() {
                 if (signIn) {
@@ -75,7 +75,7 @@ public class Login extends javax.swing.JFrame {
                     panelBody.setAlpha(1f - fraction);
                 }
             }
-            
+
             @Override
             public void end() {
                 if (signIn == false) {
@@ -87,21 +87,21 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         };
-        
+
         animatorLogin = new Animator(1500, targetLogin);
         animatorBody = new Animator(500, targetBody);
         animatorLogin.setResolution(0);
         animatorBody.setResolution(0);
         jScrollPane1.getViewport().setOpaque(false);
         jScrollPane1.setViewportBorder(null);
-        
+
     }
 
     private void listar() {
         tbUsuario.setModel(CP.getDatos());
     }
     Metodos_sql metodos = new Metodos_sql();
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -254,6 +254,11 @@ public class Login extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        tbUsuario.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbUsuarioMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(tbUsuario);
 
         jButton1.setLabel("Regresar");
@@ -309,22 +314,22 @@ public class Login extends javax.swing.JFrame {
         if (txtUsuario.getText().isEmpty() || txtContraseña.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos");
         } else {
-            
+
             String busqueda_usuario = metodos.buscarUsuarioRegistrado(txtUsuario.getText(), txtContraseña.getText());
             String buscarUsuario = metodos.UsuarioInvitado(txtUsuario.getText(), txtContraseña.getText());
-            
+
             if (busqueda_usuario.equals("USUARIO ENCONTRADO")) {
                 String busqueda_nombre = metodos.buscarNombre(txtUsuario.getText());
                 JOptionPane.showMessageDialog(this, "Bienvenido(a): \n" + busqueda_nombre + "\nRol: Administrador", "Ingreso Exitoso",
                         JOptionPane.PLAIN_MESSAGE, icono("/Iconos/usss1.png", 60, 60));
                 frmPrincipal ventana = new frmPrincipal();
-                
+
                 String busquedaUsuario = metodos.buscarUsuario(txtUsuario.getText());
                 ventana.lblNombreUsuario.setText(busquedaUsuario);
-                
+
                 String busqueda_Rol = metodos.buscarTipoUsuario(txtUsuario.getText());
                 ventana.lblRol.setText(busqueda_Rol);
-                
+
                 String busqueda_Id = metodos.buscarId(txtUsuario.getText());
                 ventana.lblId.setText(busqueda_Id);
                 ventana.setVisible(true);
@@ -336,16 +341,16 @@ public class Login extends javax.swing.JFrame {
                 JOptionPane.showMessageDialog(this, "Bienvenido(a): \n" + busqueda_nombre + "\nRol: Vendedor", "Ingreso Exitoso",
                         JOptionPane.PLAIN_MESSAGE, icono("/Iconos/Vend1.png", 60, 60));
                 frmPrincipal ventana = new frmPrincipal();
-                
+
                 String busquedaUsuario = metodos.buscarUsuario(txtUsuario.getText());
                 ventana.lblNombreUsuario.setText(busquedaUsuario);
-                
+
                 String busqueda_Rol = metodos.buscarTipoUsuario(txtUsuario.getText());
                 ventana.lblRol.setText(busqueda_Rol);
-                
+
                 String busqueda_Id = metodos.buscarId(txtUsuario.getText());
                 ventana.lblId.setText(busqueda_Id);
-                
+
                 ventana.setVisible(true);
 //                frmProductos.btnReporte.setVisible(false);
 //                frmClientes.btnImprimir.setVisible(false);
@@ -356,7 +361,7 @@ public class Login extends javax.swing.JFrame {
                 frmPrincipal.jmuEmpleados.setVisible(false);
                 frmPrincipal.mnuComprobante.setVisible(false);
                 frmPrincipal.mnuCompra.setVisible(false);
-                
+
                 this.dispose();
                 //AdministrarPerfil.jpAdmin.setVisible(false);
             } else {
@@ -387,8 +392,8 @@ public class Login extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         signIn = false;
-        clearLogin();
         animatorBody.start();
+        clearLogin();
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
@@ -405,7 +410,7 @@ public class Login extends javax.swing.JFrame {
         //Pasar al siguiente campo al pulsar Enter
         if (evt.getKeyCode() == evt.VK_ENTER) {
             txtContraseña.requestFocus();
-            
+
         }
     }//GEN-LAST:event_txtUsuarioKeyPressed
 
@@ -413,47 +418,58 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (evt.getKeyCode() == evt.VK_ENTER) {
             btnIngresar.requestFocus();
-            
+
         }
     }//GEN-LAST:event_txtContraseñaKeyPressed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         //Animación
-        
+
         if (!animatorLogin.isRunning()) {
             signIn = true;
             boolean action = true;
             if (action = true) {
                 animatorLogin.start();
                 listar();
-                enableLogin(false);                
+                enableLogin(false);
             }
-            
+
         }
         //Fin de la Animación
 
     }//GEN-LAST:event_jButton2ActionPerformed
-    
+
+    private void tbUsuarioMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbUsuarioMouseClicked
+        // TODO add your handling code here:
+        int row = tbUsuario.getSelectedRow();
+//        Id=(tbUsuario.getValueAt(row, 0).toString());
+        txtUsuario.setText(tbUsuario.getValueAt(row, 5).toString());
+        txtContraseña.setText(tbUsuario.getValueAt(row, 6).toString());
+        String est = tbUsuario.getValueAt(row, 8).toString();
+        signIn = false;
+        animatorBody.start();
+    }//GEN-LAST:event_tbUsuarioMouseClicked
+
     private void enableLogin(boolean action) {
         txtUsuario.setEditable(action);
         txtContraseña.setEditable(action);
         btnIngresar.setEnabled(action);
     }
-    
+
     public void clearLogin() {
         txtUsuario.setText("");
         txtContraseña.setText("");
         txtUsuario.setHelperText("");
         txtContraseña.setHelperText("");
     }
-    
+
     public Icon icono(String path, int width, int heigth) {
         Icon img = new ImageIcon(new ImageIcon(getClass().getResource(path)).getImage()
                 .getScaledInstance(width, heigth, java.awt.Image.SCALE_SMOOTH));
         return img;
     }
-    
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -486,13 +502,13 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
-    
+
     void cargar(String valor) {
         String mostrar = "SELECT * FROM usuario WHERE CONCAT(Nombres, Apellidos, Dni,Usuario, Contraseña, TipoUsuario, Estado) LIKE '%" + valor + "%'";
         String[] titulos = {"ID", "Nombres", "Apellidos", "Dni", "Email", "Usuario", "Contraseña", "Tipo Usuario", "Estado"};
         String[] Registros = new String[9];
         model = new DefaultTableModel(null, titulos);
-        
+
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(mostrar);
@@ -512,7 +528,7 @@ public class Login extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(frmClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
     }
     ConexionBD cc = new ConexionBD();
     Connection cn = cc.conectar();
