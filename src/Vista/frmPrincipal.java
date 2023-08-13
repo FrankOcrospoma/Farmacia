@@ -741,6 +741,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         CentrarVentanas(neww);
         frmProductos.txtIdPresentacion.setVisible(false);
         frmProductos.txtIdLaboratorio.setVisible(false);
+        contenedor.setComponentZOrder(neww, 0);
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
@@ -778,6 +779,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     private void jMenuItem9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem9ActionPerformed
         frmClientes ventana = new frmClientes();
         CentrarVentanaInterna(ventana);
+        contenedor.setComponentZOrder(ventana, 0);
     }//GEN-LAST:event_jMenuItem9ActionPerformed
     //CENTRAR LA VENTANA INTERNA
     public void CentrarVentanaInterna(JInternalFrame internalFrame) {
@@ -794,6 +796,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
         frmUsuarios ventana = new frmUsuarios();
         CentrarVentanaUsuario(ventana);
+        contenedor.setComponentZOrder(ventana, 0);
         frmUsuarios.lblImagen.setVisible(false);
         frmUsuarios.txtImagen.setVisible(false);
         frmUsuarios.btnImagen.setVisible(false);
@@ -812,6 +815,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     private void jMenuItem15ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem15ActionPerformed
         ConsultasClientes ventanasss = new ConsultasClientes();
         CentrarVentanaConsultaCliente(ventanasss);
+        contenedor.setComponentZOrder(ventanasss, 0);
     }//GEN-LAST:event_jMenuItem15ActionPerformed
     public void CentrarVentanaConsultaCliente(JInternalFrame internalFrame) {
         int x = (contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;
@@ -827,17 +831,19 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     private void jMenuItem16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem16ActionPerformed
         ConsultasProductos ventana = new ConsultasProductos();
         CentrarVentanas(ventana);
+        contenedor.setComponentZOrder(ventana, 0);
     }//GEN-LAST:event_jMenuItem16ActionPerformed
 
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         ReportesCliente reporte = new ReportesCliente();
         CentrarVentanas(reporte);
+        contenedor.setComponentZOrder(reporte, 0);
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
     private void mnuAdminPerfilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuAdminPerfilActionPerformed
         AdministrarPerfil ventana = new AdministrarPerfil();
         CentrarVentanas(ventana);
-
+        contenedor.setComponentZOrder(ventana, 0);
         String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
         ventana.txtId.setText(busqueda_Id);
 
@@ -880,6 +886,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     private void jMenuItem22ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem22ActionPerformed
         ConsultaVentas ventana = new ConsultaVentas();
         CentrarVentanas(ventana);
+        contenedor.setComponentZOrder(ventana, 0);
     }//GEN-LAST:event_jMenuItem22ActionPerformed
 
     private void mnuAdminPerfilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mnuAdminPerfilMouseClicked
@@ -889,7 +896,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     private void mniEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniEmpleadoActionPerformed
         frmEmpleados ventana = new frmEmpleados();
         CentrarVentanas(ventana);
-
+        contenedor.setComponentZOrder(ventana, 0);
         String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
         ventana.txtIdUsuario.setText(busqueda_Id);
     }//GEN-LAST:event_mniEmpleadoActionPerformed
@@ -940,6 +947,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     private void jmuEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmuEmpleadosActionPerformed
         ConsultasEmpleados ventana = new ConsultasEmpleados();
         CentrarVentanas(ventana);
+        contenedor.setComponentZOrder(ventana, 0);
     }//GEN-LAST:event_jmuEmpleadosActionPerformed
 
     private void jMenuItem19ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem19ActionPerformed
@@ -951,6 +959,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         Ventas.txtIdComprobante.setVisible(false);
         String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
         ventana.txtIdEmpleado.setText(busqueda_Id);
+        contenedor.setComponentZOrder(ventana, 0);
 //        frmVentas.txtCant.setVisible(false);
 //        frmVentas.txtImporte.setVisible(false);
 //        frmVentas.txtIgvTotal.setVisible(false);
@@ -968,6 +977,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     private void mniEmpleado1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniEmpleado1ActionPerformed
         frmProveedor ventana = new frmProveedor();
         CentrarVentanas(ventana);
+        contenedor.setComponentZOrder(ventana, 0);
     }//GEN-LAST:event_mniEmpleado1ActionPerformed
 
     private void mnuCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCompraActionPerformed
@@ -977,26 +987,31 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         ventana.txtIdEmpleado.setText(busqueda_Id);
         frmCompras.txtUltimoId.setVisible(false);
         frmCompras.txtIdProveedor.setVisible(false);
+        contenedor.setComponentZOrder(ventana, 0);
     }//GEN-LAST:event_mnuCompraActionPerformed
 
     private void jMenuItem21ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem21ActionPerformed
         ReportesEmpleados ventanasss = new ReportesEmpleados();
         CentrarVentanaConsultaCliente(ventanasss);
+        contenedor.setComponentZOrder(ventanasss, 0);
     }//GEN-LAST:event_jMenuItem21ActionPerformed
 
     private void jMenuItem12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem12ActionPerformed
         ReportesProductos ventanasss = new ReportesProductos();
         CentrarVentanaConsultaCliente(ventanasss);
+        contenedor.setComponentZOrder(ventanasss, 0);
     }//GEN-LAST:event_jMenuItem12ActionPerformed
 
     private void jMenuItem23ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem23ActionPerformed
         ConsultaCompras ventana = new ConsultaCompras();
         CentrarVentanas(ventana);
+        contenedor.setComponentZOrder(ventana, 0);
     }//GEN-LAST:event_jMenuItem23ActionPerformed
 
     private void jMenuItem24ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem24ActionPerformed
         frmCaja ventana = new frmCaja();
         CentrarVentanas(ventana);
+        contenedor.setComponentZOrder(ventana, 0);
     }//GEN-LAST:event_jMenuItem24ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -1013,16 +1028,19 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         CentrarVentanas(neww);
         frmProductos.txtIdPresentacion.setVisible(false);
         frmProductos.txtIdLaboratorio.setVisible(false);
+        contenedor.setComponentZOrder(neww, 0);
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClienteActionPerformed
         frmClientes ventana = new frmClientes();
         CentrarVentanaInterna(ventana);
+        contenedor.setComponentZOrder(ventana, 0);
     }//GEN-LAST:event_btnClienteActionPerformed
 
     private void btnCajaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCajaActionPerformed
         frmCaja caja = new frmCaja();
         CentrarVentanas(caja);
+        contenedor.setComponentZOrder(caja, 0);
     }//GEN-LAST:event_btnCajaActionPerformed
 
     private void btnVenta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVenta1ActionPerformed
@@ -1033,31 +1051,37 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         Ventas.txtIdComprobante.setVisible(false);
         String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
         ventana.txtIdEmpleado.setText(busqueda_Id);
+        contenedor.setComponentZOrder(ventana, 0);
     }//GEN-LAST:event_btnVenta1ActionPerformed
 
     private void jmuEmpleados1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jmuEmpleados1ActionPerformed
         ConsultasProveedores ventana = new ConsultasProveedores();
         CentrarVentanas(ventana);
+        contenedor.setComponentZOrder(ventana, 0);
     }//GEN-LAST:event_jmuEmpleados1ActionPerformed
 
     private void jMenuItem13ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem13ActionPerformed
         ReportesProveedor ventanasss = new ReportesProveedor();
         CentrarVentanaConsultaCliente(ventanasss);
+        contenedor.setComponentZOrder(ventanasss, 0);
     }//GEN-LAST:event_jMenuItem13ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         frmPresentacion ventana = new frmPresentacion();
         CentrarVentanas(ventana);
+        contenedor.setComponentZOrder(ventana, 0);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
         frmLaboratorio ventana = new frmLaboratorio();
         CentrarVentanas(ventana);
+        contenedor.setComponentZOrder(ventana, 0);
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void mnuComprobanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuComprobanteActionPerformed
         frmComprobante ventana = new frmComprobante();
         CentrarVentanas(ventana);
+        contenedor.setComponentZOrder(ventana, 0);
     }//GEN-LAST:event_mnuComprobanteActionPerformed
     public void CentrarVentanas(JInternalFrame internalFrame) {
         int x = (contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;
