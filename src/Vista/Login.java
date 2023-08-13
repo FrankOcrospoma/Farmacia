@@ -1,5 +1,8 @@
 package Vista;
 //Diseño y Animación
+
+import Conexion.ConexionBD;
+import Metodos.Metodos_User;
 import java.awt.Color;
 import org.jdesktop.animation.timing.Animator;
 import org.jdesktop.animation.timing.TimingTarget;
@@ -10,24 +13,33 @@ import static Vista.frmLogin.txtUsuario;
 //import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 public class Login extends javax.swing.JFrame {
-
+    
     private Animator animatorLogin;
     private Animator animatorBody;
     private boolean signIn;
+    DefaultTableModel model;
+    private final Metodos_User CP = new Metodos_User();
 
     public Login() {
         //Da aspecto a botones, tablas y submenus segun la version de Windows instalada en el equipo
-         try {
+        try {
             javax.swing.UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-         //
+        //
         initComponents();
         getContentPane().setBackground(new Color(245, 245, 245));
         TimingTarget targetLogin = new TimingTargetAdapter() {
@@ -39,7 +51,7 @@ public class Login extends javax.swing.JFrame {
                     background1.setAnimate(1f - fraction);
                 }
             }
-
+            
             @Override
             public void end() {
                 if (signIn) {
@@ -63,7 +75,7 @@ public class Login extends javax.swing.JFrame {
                     panelBody.setAlpha(1f - fraction);
                 }
             }
-
+            
             @Override
             public void end() {
                 if (signIn == false) {
@@ -84,7 +96,12 @@ public class Login extends javax.swing.JFrame {
         jScrollPane1.setViewportBorder(null);
         
     }
+
+    private void listar() {
+        tbUsuario.setModel(CP.getDatos());
+    }
     Metodos_sql metodos = new Metodos_sql();
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -97,9 +114,10 @@ public class Login extends javax.swing.JFrame {
         txtUsuario = new com.raven.swing.TextField();
         txtContraseña = new com.raven.swing.PasswordField();
         jLabel2 = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
         panelBody = new com.raven.swing.PanelTransparent();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tbUsuario = new javax.swing.JTable();
         jButton1 = new javax.swing.JButton();
         header1 = new com.raven.component.Header();
 
@@ -134,11 +152,21 @@ public class Login extends javax.swing.JFrame {
                 txtUsuarioActionPerformed(evt);
             }
         });
+        txtUsuario.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtUsuarioKeyPressed(evt);
+            }
+        });
 
         txtContraseña.setBackground(new java.awt.Color(245, 245, 245));
         txtContraseña.setLabelText("Contraseña");
         txtContraseña.setLineColor(new java.awt.Color(131, 126, 253));
         txtContraseña.setSelectionColor(new java.awt.Color(157, 153, 255));
+        txtContraseña.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtContraseñaKeyPressed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -175,14 +203,23 @@ public class Login extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("jButton2");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout panelLoginLayout = new javax.swing.GroupLayout(panelLogin);
         panelLogin.setLayout(panelLoginLayout);
         panelLoginLayout.setHorizontalGroup(
             panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelLoginLayout.createSequentialGroup()
-                .addContainerGap(427, Short.MAX_VALUE)
+                .addContainerGap(418, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(428, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton2)
+                .addContainerGap(356, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelLoginLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel2)
@@ -193,14 +230,20 @@ public class Login extends javax.swing.JFrame {
             .addGroup(panelLoginLayout.createSequentialGroup()
                 .addGap(14, 14, 14)
                 .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(229, Short.MAX_VALUE))
+                .addGroup(panelLoginLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(panelLoginLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(229, Short.MAX_VALUE))
+                    .addGroup(panelLoginLayout.createSequentialGroup()
+                        .addGap(136, 136, 136)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 46, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         background1.add(panelLogin, "card2");
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tbUsuario.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -211,7 +254,7 @@ public class Login extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tbUsuario);
 
         jButton1.setLabel("Regresar");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -266,22 +309,22 @@ public class Login extends javax.swing.JFrame {
         if (txtUsuario.getText().isEmpty() || txtContraseña.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos");
         } else {
-
+            
             String busqueda_usuario = metodos.buscarUsuarioRegistrado(txtUsuario.getText(), txtContraseña.getText());
             String buscarUsuario = metodos.UsuarioInvitado(txtUsuario.getText(), txtContraseña.getText());
-
+            
             if (busqueda_usuario.equals("USUARIO ENCONTRADO")) {
                 String busqueda_nombre = metodos.buscarNombre(txtUsuario.getText());
-                JOptionPane.showMessageDialog(this, "Bienvenido(a): \n"    + busqueda_nombre + "\nRol: Administrador","Ingreso Exitoso",
+                JOptionPane.showMessageDialog(this, "Bienvenido(a): \n" + busqueda_nombre + "\nRol: Administrador", "Ingreso Exitoso",
                         JOptionPane.PLAIN_MESSAGE, icono("/Iconos/usss1.png", 60, 60));
                 frmPrincipal ventana = new frmPrincipal();
-
+                
                 String busquedaUsuario = metodos.buscarUsuario(txtUsuario.getText());
                 ventana.lblNombreUsuario.setText(busquedaUsuario);
-
+                
                 String busqueda_Rol = metodos.buscarTipoUsuario(txtUsuario.getText());
                 ventana.lblRol.setText(busqueda_Rol);
-
+                
                 String busqueda_Id = metodos.buscarId(txtUsuario.getText());
                 ventana.lblId.setText(busqueda_Id);
                 ventana.setVisible(true);
@@ -290,30 +333,29 @@ public class Login extends javax.swing.JFrame {
                 //AdministrarPerfil.jpInvitado.setVisible(false);
             } else if (buscarUsuario.equals("USUARIO ENCONTRADO")) {
                 String busqueda_nombre = metodos.buscarNombre(txtUsuario.getText());
-                JOptionPane.showMessageDialog(this, "Bienvenido(a): \n"+ busqueda_nombre + "\nRol: Vendedor","Ingreso Exitoso",
+                JOptionPane.showMessageDialog(this, "Bienvenido(a): \n" + busqueda_nombre + "\nRol: Vendedor", "Ingreso Exitoso",
                         JOptionPane.PLAIN_MESSAGE, icono("/Iconos/Vend1.png", 60, 60));
                 frmPrincipal ventana = new frmPrincipal();
-
+                
                 String busquedaUsuario = metodos.buscarUsuario(txtUsuario.getText());
                 ventana.lblNombreUsuario.setText(busquedaUsuario);
-
+                
                 String busqueda_Rol = metodos.buscarTipoUsuario(txtUsuario.getText());
                 ventana.lblRol.setText(busqueda_Rol);
-
+                
                 String busqueda_Id = metodos.buscarId(txtUsuario.getText());
                 ventana.lblId.setText(busqueda_Id);
-
+                
                 ventana.setVisible(true);
 //                frmProductos.btnReporte.setVisible(false);
 //                frmClientes.btnImprimir.setVisible(false);
-                
+
                 frmPrincipal.MnuAdministrador.setVisible(false);
                 frmPrincipal.mniEmpleado.setVisible(false);
                 frmPrincipal.mniReportes.setVisible(false);
                 frmPrincipal.jmuEmpleados.setVisible(false);
                 frmPrincipal.mnuComprobante.setVisible(false);
                 frmPrincipal.mnuCompra.setVisible(false);
-                
                 
                 this.dispose();
                 //AdministrarPerfil.jpAdmin.setVisible(false);
@@ -322,8 +364,6 @@ public class Login extends javax.swing.JFrame {
                 txtUsuario.requestFocus();
             }
         }
-        
-        //Animación
         if (!animatorLogin.isRunning()) {
             signIn = true;
             String user = txtUsuario.getText().trim();
@@ -341,12 +381,8 @@ public class Login extends javax.swing.JFrame {
                 }
                 action = false;
             }
-            if (action) {
-                animatorLogin.start();
-                enableLogin(false);
-            }
         }
-        //Fin de la Animación
+
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -364,23 +400,60 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtUsuarioActionPerformed
 
+    private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
+        // TODO add your handling code here:
+        //Pasar al siguiente campo al pulsar Enter
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            txtContraseña.requestFocus();
+            
+        }
+    }//GEN-LAST:event_txtUsuarioKeyPressed
+
+    private void txtContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseñaKeyPressed
+        // TODO add your handling code here:
+        if (evt.getKeyCode() == evt.VK_ENTER) {
+            btnIngresar.requestFocus();
+            
+        }
+    }//GEN-LAST:event_txtContraseñaKeyPressed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        //Animación
+        
+        if (!animatorLogin.isRunning()) {
+            signIn = true;
+            boolean action = true;
+            if (action = true) {
+                animatorLogin.start();
+                listar();
+                enableLogin(false);                
+            }
+            
+        }
+        //Fin de la Animación
+
+    }//GEN-LAST:event_jButton2ActionPerformed
+    
     private void enableLogin(boolean action) {
         txtUsuario.setEditable(action);
         txtContraseña.setEditable(action);
         btnIngresar.setEnabled(action);
     }
-
+    
     public void clearLogin() {
         txtUsuario.setText("");
         txtContraseña.setText("");
         txtUsuario.setHelperText("");
         txtContraseña.setHelperText("");
     }
+    
     public Icon icono(String path, int width, int heigth) {
         Icon img = new ImageIcon(new ImageIcon(getClass().getResource(path)).getImage()
                 .getScaledInstance(width, heigth, java.awt.Image.SCALE_SMOOTH));
         return img;
     }
+    
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -413,19 +486,51 @@ public class Login extends javax.swing.JFrame {
             }
         });
     }
+    
+    void cargar(String valor) {
+        String mostrar = "SELECT * FROM usuario WHERE CONCAT(Nombres, Apellidos, Dni,Usuario, Contraseña, TipoUsuario, Estado) LIKE '%" + valor + "%'";
+        String[] titulos = {"ID", "Nombres", "Apellidos", "Dni", "Email", "Usuario", "Contraseña", "Tipo Usuario", "Estado"};
+        String[] Registros = new String[9];
+        model = new DefaultTableModel(null, titulos);
+        
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(mostrar);
+            while (rs.next()) {
+                Registros[0] = rs.getString("idUsuario");
+                Registros[1] = rs.getString("Nombres");
+                Registros[2] = rs.getString("Apellidos");
+                Registros[3] = rs.getString("Dni");
+                Registros[4] = rs.getString("Email");
+                Registros[5] = rs.getString("Usuario");
+                Registros[6] = rs.getString("Contraseña");
+                Registros[7] = rs.getString("TipoUsuario");
+                Registros[8] = rs.getString("Estado");
+                model.addRow(Registros);
+            }
+            tbUsuario.setModel(model);
+        } catch (SQLException ex) {
+            Logger.getLogger(frmClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+    }
+    ConexionBD cc = new ConexionBD();
+    Connection cn = cc.conectar();
+    //-------------------------------------------------------------------------------------------------------------------------------------------
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.raven.swing.Background background1;
     private com.raven.swing.Button btnIngresar;
     private com.raven.component.Header header1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
     private com.raven.swing.PanelTransparent panelBody;
     private javax.swing.JPanel panelLogin;
+    private javax.swing.JTable tbUsuario;
     private com.raven.swing.PasswordField txtContraseña;
     private com.raven.swing.TextField txtUsuario;
     // End of variables declaration//GEN-END:variables
