@@ -82,10 +82,6 @@ ORDER BY
 	</background>
 	<title>
 		<band height="136" splitType="Stretch">
-			<image>
-				<reportElement x="0" y="0" width="164" height="126" uuid="17acc6b8-eb5e-4383-ba2d-6f9cbeac0272"/>
-				<imageExpression><![CDATA["RProd.jpg"]]></imageExpression>
-			</image>
 			<staticText>
 				<reportElement style="Title" x="270" y="0" width="263" height="62" uuid="77f663b2-5806-4079-86e9-bc01f89d65bf"/>
 				<textElement verticalAlignment="Middle">
@@ -100,10 +96,6 @@ ORDER BY
 				</textElement>
 				<text><![CDATA[Reporte]]></text>
 			</staticText>
-			<image>
-				<reportElement x="646" y="0" width="93" height="62" uuid="d8179a22-87e9-4c77-93c8-b6d6d4c0de47"/>
-				<imageExpression><![CDATA["ProR.png"]]></imageExpression>
-			</image>
 		</band>
 	</title>
 	<pageHeader>
