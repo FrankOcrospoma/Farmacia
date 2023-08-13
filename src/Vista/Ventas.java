@@ -3,6 +3,7 @@ package Vista;
 import Metodos.Metodos_Ventas;
 import Conexion.ConexionBD;
 import Metodos.Metodos_Productos;
+import static Vista.frmPrincipal.contenedor;
 import java.awt.Color;
 import java.awt.Component;
 import java.sql.Connection;
@@ -1443,6 +1444,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         BuscarComprobante Comprobante = new BuscarComprobante();
         CentrarVentana(Comprobante);
         txtCantidadProducto.setText("");
+        contenedor.setComponentZOrder(Comprobante, 0);
     }//GEN-LAST:event_btnComprobanteActionPerformed
 
     private void txtIdComprobanteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdComprobanteActionPerformed
@@ -1469,6 +1471,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         frmPrincipal.contenedor.add(Pro);
         Pro.toFront();
         Pro.setVisible(true);
+        contenedor.setComponentZOrder(Pro, 0);
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
     private void btnclientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclientesActionPerformed
@@ -1477,6 +1480,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         frmPrincipal.contenedor.add(cli);
         cli.toFront();
         cli.setVisible(true);
+        contenedor.setComponentZOrder(cli, 0);
     }//GEN-LAST:event_btnclientesActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed

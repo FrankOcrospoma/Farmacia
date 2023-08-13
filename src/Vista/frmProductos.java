@@ -3,6 +3,7 @@ package Vista;
 
 import Conexion.ConexionBD;
 import Metodos.Metodos_Productos;
+import static Vista.frmPrincipal.contenedor;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -720,6 +721,7 @@ public class frmProductos extends javax.swing.JInternalFrame {
         frmPrincipal.contenedor.add(Presentacion);
         Presentacion.toFront();
         Presentacion.setVisible(true);
+        contenedor.setComponentZOrder(Presentacion, 0);
     }//GEN-LAST:event_btnPresentacionActionPerformed
 
     private void btnLaboratorioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLaboratorioActionPerformed
@@ -727,6 +729,7 @@ public class frmProductos extends javax.swing.JInternalFrame {
         frmPrincipal.contenedor.add(Laboratorio);
         Laboratorio.toFront();
         Laboratorio.setVisible(true);
+        contenedor.setComponentZOrder(Laboratorio, 0);
     }//GEN-LAST:event_btnLaboratorioActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

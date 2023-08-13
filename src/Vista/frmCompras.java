@@ -4,6 +4,7 @@ package Vista;
 import Conexion.ConexionBD;
 import Metodos.Metodos_Compra;
 import Metodos.Metodos_Productos;
+import static Vista.frmPrincipal.contenedor;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.event.KeyEvent;
@@ -890,6 +891,7 @@ public class frmCompras extends javax.swing.JInternalFrame {
         frmPrincipal.contenedor.add(proveedor);
         proveedor.toFront();
         proveedor.setVisible(true);
+       contenedor.setComponentZOrder(proveedor, 0);
     }//GEN-LAST:event_btnBuscarProveedorActionPerformed
 
     private void txtCodigoProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCodigoProductoActionPerformed
@@ -913,6 +915,7 @@ public class frmCompras extends javax.swing.JInternalFrame {
         frmPrincipal.contenedor.add(producto);
         producto.toFront();
         producto.setVisible(true);
+        contenedor.setComponentZOrder(producto, 0);
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
     private void txtCantidadProductoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCantidadProductoKeyReleased
@@ -1068,6 +1071,7 @@ public class frmCompras extends javax.swing.JInternalFrame {
        
         BuscarComprobanteCompra Comprobante = new BuscarComprobanteCompra();
         CentrarVentana(Comprobante);
+        contenedor.setComponentZOrder(Comprobante, 0);
     }//GEN-LAST:event_btnBuscarComprobanteActionPerformed
         public void CentrarVentana(JInternalFrame internalFrame) {
         int x = (frmPrincipal.contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;

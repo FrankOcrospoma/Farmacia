@@ -2,6 +2,7 @@ package Vista;
 
 import Conexion.ConexionBD;
 import Metodos.Metodos_User;
+import static Vista.frmPrincipal.contenedor;
 import java.awt.Image;
 import java.io.BufferedReader;
 import java.io.File;
@@ -725,6 +726,7 @@ private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         frmPrincipal.contenedor.add(Presentacion);
         Presentacion.toFront();
         Presentacion.setVisible(true);
+        contenedor.setComponentZOrder(Presentacion, 0);
     }//GEN-LAST:event_btnPresentacionActionPerformed
     void open() throws IOException {
         

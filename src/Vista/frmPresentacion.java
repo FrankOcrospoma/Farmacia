@@ -116,8 +116,7 @@ public class frmPresentacion extends javax.swing.JInternalFrame {
 
         jrdDes.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jrdDes.setText("Descripción:");
-        jrdDes.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jrdDes.setOpaque(false);
+        jrdDes.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jrdDes.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jrdDesActionPerformed(evt);
@@ -138,14 +137,14 @@ public class frmPresentacion extends javax.swing.JInternalFrame {
         jchEstado.setForeground(new java.awt.Color(0, 102, 51));
         jchEstado.setText("Activo");
         jchEstado.setContentAreaFilled(false);
-        jchEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jchEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jchEstado.setFocusPainted(false);
         jPanel3.add(jchEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 110, -1, 20));
 
         jrdEstado.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jrdEstado.setText("Estado:");
         jrdEstado.setContentAreaFilled(false);
-        jrdEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jrdEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jrdEstado.setFocusPainted(false);
         jrdEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -174,7 +173,7 @@ public class frmPresentacion extends javax.swing.JInternalFrame {
 
             }
         ));
-        jtbPresentacion.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jtbPresentacion.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtbPresentacion.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtbPresentacionMouseClicked(evt);
@@ -185,7 +184,7 @@ public class frmPresentacion extends javax.swing.JInternalFrame {
         btnGReporte.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnGReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (87).png"))); // NOI18N
         btnGReporte.setContentAreaFilled(false);
-        btnGReporte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGReporte.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGReporte.setFocusPainted(false);
         btnGReporte.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (94).png"))); // NOI18N
         btnGReporte.addActionListener(new java.awt.event.ActionListener() {
@@ -197,7 +196,7 @@ public class frmPresentacion extends javax.swing.JInternalFrame {
         btnCancelar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (89).png"))); // NOI18N
         btnCancelar.setContentAreaFilled(false);
-        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnCancelar.setFocusPainted(false);
         btnCancelar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (91).png"))); // NOI18N
         btnCancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -209,7 +208,7 @@ public class frmPresentacion extends javax.swing.JInternalFrame {
         btnVolver.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnVolver.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (97).png"))); // NOI18N
         btnVolver.setContentAreaFilled(false);
-        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnVolver.setFocusPainted(false);
         btnVolver.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (95).png"))); // NOI18N
         btnVolver.addActionListener(new java.awt.event.ActionListener() {
@@ -224,7 +223,7 @@ public class frmPresentacion extends javax.swing.JInternalFrame {
         btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnGuardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (84).png"))); // NOI18N
         btnGuardar.setContentAreaFilled(false);
-        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnGuardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnGuardar.setFocusPainted(false);
         btnGuardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (90)_1.png"))); // NOI18N
         btnGuardar.addActionListener(new java.awt.event.ActionListener() {
@@ -236,7 +235,7 @@ public class frmPresentacion extends javax.swing.JInternalFrame {
         btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (86).png"))); // NOI18N
         btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminar.setFocusPainted(false);
         btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (92).png"))); // NOI18N
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -248,7 +247,7 @@ public class frmPresentacion extends javax.swing.JInternalFrame {
         btnReporte.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnReporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (88).png"))); // NOI18N
         btnReporte.setContentAreaFilled(false);
-        btnReporte.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnReporte.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnReporte.setFocusPainted(false);
         btnReporte.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (96).png"))); // NOI18N
         btnReporte.addActionListener(new java.awt.event.ActionListener() {
@@ -260,7 +259,7 @@ public class frmPresentacion extends javax.swing.JInternalFrame {
         btnNuevo.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnNuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (85).png"))); // NOI18N
         btnNuevo.setContentAreaFilled(false);
-        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnNuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnNuevo.setFocusPainted(false);
         btnNuevo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (93).png"))); // NOI18N
         btnNuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -516,16 +515,6 @@ public class frmPresentacion extends javax.swing.JInternalFrame {
         txtEstado.setVisible(false);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    private void jrdDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrdDesActionPerformed
-        jrdEstado.setSelected(false);
-        txtDescripcion.setEditable(true);
-        txtDescripcion.requestFocus();
-        txtEstado.setEditable(false);
-        txtEstado.setText("");
-        txtId.setText("");
-        txtDescripcion.setText("");
-    }//GEN-LAST:event_jrdDesActionPerformed
-
     private void jrdEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrdEstadoActionPerformed
         jrdDes.setSelected(false);
         txtDescripcion.setEditable(false);
@@ -535,6 +524,16 @@ public class frmPresentacion extends javax.swing.JInternalFrame {
         txtEstado.setEditable(true);
         txtEstado.requestFocus();
     }//GEN-LAST:event_jrdEstadoActionPerformed
+
+    private void jrdDesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jrdDesActionPerformed
+        jrdEstado.setSelected(false);
+        txtDescripcion.setEditable(true);
+        txtDescripcion.requestFocus();
+        txtEstado.setEditable(false);
+        txtEstado.setText("");
+        txtId.setText("");
+        txtDescripcion.setText("");
+    }//GEN-LAST:event_jrdDesActionPerformed
     public void CentrarVentana(JInternalFrame internalFrame) {
         int x = (frmPrincipal.contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;
         int y = (frmPrincipal.contenedor.getHeight() / 2) - internalFrame.getHeight() / 2;
