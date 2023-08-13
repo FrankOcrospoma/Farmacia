@@ -4,8 +4,7 @@ package Vista;
 import Conexion.ConexionBD;
 import Metodos.Metodos_Productos;
 import java.sql.*;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 import javax.swing.JOptionPane;
 
 public class ReportesProductos extends javax.swing.JInternalFrame {

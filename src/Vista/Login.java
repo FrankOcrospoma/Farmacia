@@ -1,27 +1,16 @@
 package Vista;
 //Diseño y Animación
-
 import Conexion.ConexionBD;
 import Metodos.Metodos_User;
 import java.awt.Color;
-import org.jdesktop.animation.timing.Animator;
-import org.jdesktop.animation.timing.TimingTarget;
-import org.jdesktop.animation.timing.TimingTargetAdapter;
+import org.jdesktop.animation.timing.*;
 //Conexión a la BD
 import Metodos.Metodos_sql;
 import static Vista.Login.*;
 //import com.sun.awt.AWTUtilities;
-import java.awt.Shape;
-import java.awt.geom.RoundRectangle2D;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JOptionPane;
+import java.sql.*;
+import java.util.logging.*;
+import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
 public class Login extends javax.swing.JFrame {

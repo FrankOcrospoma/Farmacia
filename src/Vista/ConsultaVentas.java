@@ -2,23 +2,13 @@
 package Vista;
 import Conexion.ConexionBD;
 import Metodos.Metodos_Ventas;
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
+import java.awt.*;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.text.SimpleDateFormat;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
-import javax.swing.JComponent;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JTable;
-import javax.swing.SwingConstants;
-import javax.swing.table.DefaultTableCellRenderer;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableCellRenderer;
+import java.util.*;
+import javax.swing.*;
+import javax.swing.table.*;
 
 
 public class ConsultaVentas extends javax.swing.JInternalFrame {

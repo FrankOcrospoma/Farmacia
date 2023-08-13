@@ -211,7 +211,7 @@ public class AcercaDe extends javax.swing.JInternalFrame {
         jLabel9.setForeground(new java.awt.Color(58, 159, 171));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/what.png"))); // NOI18N
-        jLabel9.setText("925 795 475");
+        jLabel9.setText("960 920 160");
         jPanel7.add(jLabel9);
         jLabel9.setBounds(392, 249, 110, 24);
 

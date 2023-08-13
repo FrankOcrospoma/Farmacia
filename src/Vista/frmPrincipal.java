@@ -1,18 +1,9 @@
 package Vista;
 
 import Metodos.Metodos_User;
-import java.awt.BorderLayout;
-import java.awt.Component;
-import java.awt.Graphics;
-import java.awt.Image;
+import java.awt.*;
 import java.util.*;
-import java.util.GregorianCalendar;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
-import javax.swing.JInternalFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
 
 public class frmPrincipal extends javax.swing.JFrame implements Runnable {
 
