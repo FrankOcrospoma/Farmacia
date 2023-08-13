@@ -1321,7 +1321,7 @@ public class Ventas extends javax.swing.JInternalFrame {
             cr.abrirReporte(ruta, con, parametros);
             con.close();
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al cargar el reporte de Ventas", "ERROR", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this,  e.getMessage());
 
         }
     } else if (Comprobante == 2) {
