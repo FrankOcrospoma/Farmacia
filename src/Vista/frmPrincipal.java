@@ -749,7 +749,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_formWindowClosing
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
-        frmLogin regresar = new frmLogin();
+        Login regresar = new Login();
         regresar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
@@ -844,34 +844,34 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         AdministrarPerfil ventana = new AdministrarPerfil();
         CentrarVentanas(ventana);
         contenedor.setComponentZOrder(ventana, 0);
-        String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
+        String busqueda_Id = metodos.buscarId(Login.txtUsuario.getText());
         ventana.txtId.setText(busqueda_Id);
 
-        String busqueda_Dni = metodos.buscarDni(frmLogin.txtUsuario.getText());
+        String busqueda_Dni = metodos.buscarDni(Login.txtUsuario.getText());
         ventana.txtDni.setText(busqueda_Dni);
 
-        String busqueda_apellidos = metodos.buscarApellidos(frmLogin.txtUsuario.getText());
+        String busqueda_apellidos = metodos.buscarApellidos(Login.txtUsuario.getText());
         ventana.txtApellidos.setText(busqueda_apellidos);
 
-        String busqueda_nombre = metodos.buscarNombre(frmLogin.txtUsuario.getText());
+        String busqueda_nombre = metodos.buscarNombre(Login.txtUsuario.getText());
         ventana.txtNombres.setText(busqueda_nombre);
 
-        String busqueda_Email = metodos.buscarEmail(frmLogin.txtUsuario.getText());
+        String busqueda_Email = metodos.buscarEmail(Login.txtUsuario.getText());
         ventana.txtEmail.setText(busqueda_Email);
 
-        String busqueda_Usuario = metodos.buscarUsuario(frmLogin.txtUsuario.getText());
+        String busqueda_Usuario = metodos.buscarUsuario(Login.txtUsuario.getText());
         ventana.txtNomUsuario.setText(busqueda_Usuario);
 
-        String busqueda_Contraseña = metodos.buscarContraseña(frmLogin.txtUsuario.getText());
+        String busqueda_Contraseña = metodos.buscarContraseña(Login.txtUsuario.getText());
         ventana.txtClave.setText(busqueda_Contraseña);
 
-        String busqueda_TipoUsuario = metodos.buscarTipoUsuario(frmLogin.txtUsuario.getText());
+        String busqueda_TipoUsuario = metodos.buscarTipoUsuario(Login.txtUsuario.getText());
         ventana.txtTipoUser.setText(busqueda_TipoUsuario);
 
-        String busqueda_Estado = metodos.buscarEstado(frmLogin.txtUsuario.getText());
+        String busqueda_Estado = metodos.buscarEstado(Login.txtUsuario.getText());
         ventana.txtEstado.setText(busqueda_Estado);
 
-        /*String busqueda_Foto = metodos.buscarFoto(frmLogin.txtUsuario.getText());
+        /*String busqueda_Foto = metodos.buscarFoto(Login.txtUsuario.getText());
         ventana.txtImagen.setText(busqueda_Foto);*/
         int x = Integer.valueOf(lblId.getText());
         if (x == 1) {
@@ -897,7 +897,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         frmEmpleados ventana = new frmEmpleados();
         CentrarVentanas(ventana);
         contenedor.setComponentZOrder(ventana, 0);
-        String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
+        String busqueda_Id = metodos.buscarId(Login.txtUsuario.getText());
         ventana.txtIdUsuario.setText(busqueda_Id);
     }//GEN-LAST:event_mniEmpleadoActionPerformed
 
@@ -905,34 +905,34 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         AdministrarPerfil ventana = new AdministrarPerfil();
         CentrarVentanas(ventana);
 
-        String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
+        String busqueda_Id = metodos.buscarId(Login.txtUsuario.getText());
         ventana.txtId.setText(busqueda_Id);
 
-        String busqueda_Dni = metodos.buscarDni(frmLogin.txtUsuario.getText());
+        String busqueda_Dni = metodos.buscarDni(Login.txtUsuario.getText());
         ventana.txtDni.setText(busqueda_Dni);
 
-        String busqueda_apellidos = metodos.buscarApellidos(frmLogin.txtUsuario.getText());
+        String busqueda_apellidos = metodos.buscarApellidos(Login.txtUsuario.getText());
         ventana.txtApellidos.setText(busqueda_apellidos);
 
-        String busqueda_nombre = metodos.buscarNombre(frmLogin.txtUsuario.getText());
+        String busqueda_nombre = metodos.buscarNombre(Login.txtUsuario.getText());
         ventana.txtNombres.setText(busqueda_nombre);
 
-        String busqueda_Email = metodos.buscarEmail(frmLogin.txtUsuario.getText());
+        String busqueda_Email = metodos.buscarEmail(Login.txtUsuario.getText());
         ventana.txtEmail.setText(busqueda_Email);
 
-        String busqueda_Usuario = metodos.buscarUsuario(frmLogin.txtUsuario.getText());
+        String busqueda_Usuario = metodos.buscarUsuario(Login.txtUsuario.getText());
         ventana.txtNomUsuario.setText(busqueda_Usuario);
 
-        String busqueda_Contraseña = metodos.buscarContraseña(frmLogin.txtUsuario.getText());
+        String busqueda_Contraseña = metodos.buscarContraseña(Login.txtUsuario.getText());
         ventana.txtClave.setText(busqueda_Contraseña);
 
-        String busqueda_TipoUsuario = metodos.buscarTipoUsuario(frmLogin.txtUsuario.getText());
+        String busqueda_TipoUsuario = metodos.buscarTipoUsuario(Login.txtUsuario.getText());
         ventana.txtTipoUser.setText(busqueda_TipoUsuario);
 
-        String busqueda_Estado = metodos.buscarEstado(frmLogin.txtUsuario.getText());
+        String busqueda_Estado = metodos.buscarEstado(Login.txtUsuario.getText());
         ventana.txtEstado.setText(busqueda_Estado);
 
-        /*String busqueda_Foto = metodos.buscarFoto(frmLogin.txtUsuario.getText());
+        /*String busqueda_Foto = metodos.buscarFoto(Login.txtUsuario.getText());
         ventana.cbxPrueva.setText(busqueda_Foto);*/
         int x = Integer.valueOf(lblId.getText());
         if (x == 1) {
@@ -957,7 +957,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         Ventas.btnNuevo.requestFocus();
         Ventas.txtCosto.setVisible(false);
         Ventas.txtIdComprobante.setVisible(false);
-        String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
+        String busqueda_Id = metodos.buscarId(Login.txtUsuario.getText());
         ventana.txtIdEmpleado.setText(busqueda_Id);
         contenedor.setComponentZOrder(ventana, 0);
 //        frmVentas.txtCant.setVisible(false);
@@ -983,7 +983,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     private void mnuCompraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mnuCompraActionPerformed
         frmCompras ventana = new frmCompras();
         CentrarVentanas(ventana);
-        String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
+        String busqueda_Id = metodos.buscarId(Login.txtUsuario.getText());
         ventana.txtIdEmpleado.setText(busqueda_Id);
         frmCompras.txtUltimoId.setVisible(false);
         frmCompras.txtIdProveedor.setVisible(false);
@@ -1049,7 +1049,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         Ventas.btnNuevo.requestFocus();
         Ventas.txtCosto.setVisible(false);
         Ventas.txtIdComprobante.setVisible(false);
-        String busqueda_Id = metodos.buscarId(frmLogin.txtUsuario.getText());
+        String busqueda_Id = metodos.buscarId(Login.txtUsuario.getText());
         ventana.txtIdEmpleado.setText(busqueda_Id);
         contenedor.setComponentZOrder(ventana, 0);
     }//GEN-LAST:event_btnVenta1ActionPerformed

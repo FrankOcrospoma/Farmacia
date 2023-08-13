@@ -9,7 +9,7 @@ import org.jdesktop.animation.timing.TimingTarget;
 import org.jdesktop.animation.timing.TimingTargetAdapter;
 //Conexión a la BD
 import Metodos.Metodos_sql;
-import static Vista.frmLogin.txtUsuario;
+import static Vista.Login.txtUsuario;
 //import com.sun.awt.AWTUtilities;
 import java.awt.Shape;
 import java.awt.geom.RoundRectangle2D;
@@ -532,6 +532,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel panelLogin;
     private javax.swing.JTable tbUsuario;
     private com.raven.swing.PasswordField txtContraseña;
-    private com.raven.swing.TextField txtUsuario;
+    public static com.raven.swing.TextField txtUsuario;
     // End of variables declaration//GEN-END:variables
 }
