@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="a0bd7948-32ad-49d8-b3ff-4e7eac8c8d87">
 	<property name="ireport.zoom" value="1.0"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="258"/>
 	<style name="Title" forecolor="#FFFFFF" fontName="Times New Roman" fontSize="50" isBold="false" pdfFontName="Times-Bold"/>
 	<style name="SubTitle" forecolor="#666666" fontName="Times New Roman" fontSize="18" isBold="false" pdfFontName="Times-Roman"/>
 	<style name="Column header" forecolor="#666666" fontName="Times New Roman" fontSize="14" isBold="true" pdfFontName="Times-Roman"/>
@@ -80,13 +80,13 @@ WHERE presentacion.`Descripcion` =$P{Categoria}]]>
 				<reportElement x="-20" y="64" width="161" height="166" uuid="dad355e6-4d7a-47c5-be2f-0aa42f794f52">
 					<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
 				</reportElement>
-				<imageExpression><![CDATA[""https://i.postimg.cc/Gh1y0ZNP/mm.png""]]></imageExpression>
+				<imageExpression><![CDATA["https://i.postimg.cc/Gh1y0ZNP/mm.png"]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="-20" y="356" width="161" height="166" uuid="e8f8ec69-e963-4644-9941-0f48443fa314">
 					<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
 				</reportElement>
-				<imageExpression><![CDATA["m1.png"]]></imageExpression>
+				<imageExpression><![CDATA["https://i.postimg.cc/DZr71YgF/m1.png"]]></imageExpression>
 			</image>
 		</band>
 	</background>

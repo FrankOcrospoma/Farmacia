@@ -57,6 +57,14 @@ FROM
 				</textElement>
 				<text><![CDATA[Reporte]]></text>
 			</staticText>
+			<image>
+				<reportElement x="53" y="17" width="158" height="55" uuid="a2025936-c997-45cf-a6b7-ae7dc762592f"/>
+				<imageExpression><![CDATA["https://i.postimg.cc/cCsyN1Nt/proveedor.png"]]></imageExpression>
+			</image>
+			<image>
+				<reportElement x="604" y="17" width="158" height="55" uuid="f056e783-ccb3-4938-a867-c30c94320a19"/>
+				<imageExpression><![CDATA["https://i.postimg.cc/cCsyN1Nt/proveedor.png"]]></imageExpression>
+			</image>
 		</band>
 	</title>
 	<pageHeader>
