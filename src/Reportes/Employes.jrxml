@@ -231,7 +231,7 @@ WHERE  empleado.`DNI` = $P{Dni}]]>
 			<textField pattern="EEEEE dd MMMMM yyyy">
 				<reportElement x="686" y="34" width="100" height="20" uuid="06374c77-7011-473f-8c23-b1b2b2a3cfdd"/>
 				<textElement>
-					<font fontName="AR CENA" size="12"/>
+					<font fontName="Comfortaa" size="12"/>
 				</textElement>
 				<textFieldExpression><![CDATA[new java.util.Date()]]></textFieldExpression>
 			</textField>
