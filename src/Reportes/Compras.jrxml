@@ -68,10 +68,10 @@ WHERE compra.`idCompra`=$P{IdCompra}]]>
 		<band height="228" splitType="Stretch">
 			<staticText>
 				<reportElement x="178" y="30" width="219" height="30" uuid="6c9aef83-2fd1-4009-8e71-eb2db731fb68"/>
-				<textElement verticalAlignment="Top">
-					<font fontName="Algerian" size="18"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Comfortaa" size="18" isBold="true"/>
 				</textElement>
-				<text><![CDATA[MI Pequeño angelito]]></text>
+				<text><![CDATA[MATERNATANAL E.I.R.L]]></text>
 			</staticText>
 			<rectangle>
 				<reportElement mode="Transparent" x="15" y="112" width="525" height="105" uuid="06551360-98b7-4de6-813d-459bf9cea8a6"/>
@@ -85,19 +85,20 @@ WHERE compra.`idCompra`=$P{IdCompra}]]>
 			</staticText>
 			<image>
 				<reportElement x="15" y="20" width="120" height="72" uuid="647edb87-6b7a-4e0a-a07a-2a10ed6465c8"/>
-				<imageExpression><![CDATA["C:\\Users\\USUARIO\\Desktop\\Franz Jensen\\Taller de Programación II\\ProyectosJava\\Proyecto_Botica\\logoo.png"]]></imageExpression>
+				<imageExpression><![CDATA["https://i.postimg.cc/L8HZMg9T/maternatal-fondo2.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="238" y="80" width="100" height="20" uuid="5d69e16f-2416-4d92-a69d-ed998f4b32db"/>
 				<text><![CDATA[Bagua - Amazonas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="178" y="60" width="269" height="20" uuid="6651bce1-70c0-49aa-9919-6d243a44eebe"/>
+				<reportElement x="178" y="60" width="219" height="20" uuid="6651bce1-70c0-49aa-9919-6d243a44eebe"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Jr. La Verdad 520   Teléfono:  948 455 693]]></text>
 			</staticText>
 			<image>
-				<reportElement x="470" y="20" width="120" height="72" uuid="42b95375-f356-4b2f-8844-afb5b62d6e3e"/>
-				<imageExpression><![CDATA["C:\\Users\\USUARIO\\Desktop\\Franz Jensen\\Taller de Programación II\\ProyectosJava\\Proyecto_Botica\\logoo.png"]]></imageExpression>
+				<reportElement x="424" y="19" width="120" height="72" uuid="42b95375-f356-4b2f-8844-afb5b62d6e3e"/>
+				<imageExpression><![CDATA["https://i.postimg.cc/L8HZMg9T/maternatal-fondo2.png"]]></imageExpression>
 			</image>
 			<staticText>
 				<reportElement x="385" y="185" width="100" height="20" forecolor="#003333" uuid="0e6c8a4e-040d-4bec-bcde-72f53410d398"/>

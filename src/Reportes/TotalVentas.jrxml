@@ -54,6 +54,12 @@
 			<fieldDescription><![CDATA[]]></fieldDescription>
 		</field>
 	</subDataset>
+	<parameter name="Inicio" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
+	<parameter name="Fin" class="java.util.Date">
+		<defaultValueExpression><![CDATA[]]></defaultValueExpression>
+	</parameter>
 	<queryString>
 		<![CDATA[SELECT v.IdVenta,CONCAT(c.Nombres, " ",c.Apellidos) AS cliente,v.Fecha,CONCAT(e.Nombres," ",e.Apellidos) AS empleado,td.Descripcion AS tipocomprobante,v.Serie,v.Numero,
 			v.Estado,v.Total  FROM ventas AS v
@@ -91,31 +97,17 @@
 			<staticText>
 				<reportElement x="0" y="0" width="802" height="39" uuid="fc0db726-b85f-45f7-95a1-59c497bde7bc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="AlternateGothic2 BT" size="30"/>
+					<font fontName="Comfortaa" size="30"/>
 				</textElement>
 				<text><![CDATA[Reporte de Ventas]]></text>
 			</staticText>
 			<image>
 				<reportElement x="179" y="0" width="89" height="39" uuid="898ad46f-56d6-4f70-a235-d44c56e90c85"/>
-				<imageExpression><![CDATA["C:\\Users\\USUARIO\\Desktop\\Franz Jensen\\Taller de Programación II\\ProyectosJava\\Proyecto_Botica\\logoo.png"]]></imageExpression>
+				<imageExpression><![CDATA["https://i.postimg.cc/L8HZMg9T/maternatal-fondo2.png"]]></imageExpression>
 			</image>
-			<staticText>
-				<reportElement x="177" y="-15" width="58" height="20" uuid="467703e1-44d1-41d7-9588-eef898e9ebf7"/>
-				<textElement verticalAlignment="Middle">
-					<font fontName="AR CENA"/>
-				</textElement>
-				<text><![CDATA[Mi Pequeño ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="184" y="38" width="58" height="20" uuid="3d5e771b-115b-4d6b-a81f-2dc01a4c49fc"/>
-				<textElement verticalAlignment="Top">
-					<font fontName="AR CENA"/>
-				</textElement>
-				<text><![CDATA[Angelito]]></text>
-			</staticText>
 			<image>
 				<reportElement x="549" y="0" width="89" height="39" uuid="a00267db-1ebe-4a16-afc8-ed5ca7f952d7"/>
-				<imageExpression><![CDATA["report.png"]]></imageExpression>
+				<imageExpression><![CDATA["https://i.postimg.cc/L8HZMg9T/maternatal-fondo2.png"]]></imageExpression>
 			</image>
 			<textField pattern="dd/MM/yyyy h.mm a">
 				<reportElement x="655" y="39" width="100" height="20" uuid="aa281ce3-2eca-4beb-864f-51f7e02a8ba9"/>

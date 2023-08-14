@@ -39,7 +39,7 @@ WHERE
 			<staticText>
 				<reportElement x="97" y="9" width="379" height="55" forecolor="#000066" uuid="14f0684f-4570-47a5-a052-e7bca6c329e3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="AR JULIAN" size="26" isBold="true" isUnderline="true"/>
+					<font fontName="Comfortaa" size="26" isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Perfil de Usuario]]></text>
 			</staticText>

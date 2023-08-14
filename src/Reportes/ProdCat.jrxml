@@ -80,7 +80,7 @@ WHERE presentacion.`Descripcion` =$P{Categoria}]]>
 				<reportElement x="-20" y="64" width="161" height="166" uuid="dad355e6-4d7a-47c5-be2f-0aa42f794f52">
 					<printWhenExpression><![CDATA[$V{PAGE_NUMBER} == 1]]></printWhenExpression>
 				</reportElement>
-				<imageExpression><![CDATA["mm.png"]]></imageExpression>
+				<imageExpression><![CDATA[""https://i.postimg.cc/Gh1y0ZNP/mm.png""]]></imageExpression>
 			</image>
 			<image>
 				<reportElement x="-20" y="356" width="161" height="166" uuid="e8f8ec69-e963-4644-9941-0f48443fa314">

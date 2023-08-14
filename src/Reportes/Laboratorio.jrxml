@@ -34,26 +34,26 @@ FROM
 	<title>
 		<band height="136" splitType="Stretch">
 			<image>
-				<reportElement x="0" y="0" width="164" height="136" uuid="b5039e5b-60d2-45f1-8a48-bd5af468842f"/>
-				<imageExpression><![CDATA["Labo.jpg"]]></imageExpression>
+				<reportElement x="12" y="28" width="118" height="85" uuid="b5039e5b-60d2-45f1-8a48-bd5af468842f"/>
+				<imageExpression><![CDATA["https://i.postimg.cc/Hk48sVQ6/LABORATORIO.jpg"]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement style="Title" x="170" y="0" width="263" height="62" uuid="16c2681d-28b2-4125-9073-6c866dbf36b3"/>
+				<reportElement style="Title" x="142" y="0" width="280" height="62" uuid="16c2681d-28b2-4125-9073-6c866dbf36b3"/>
 				<textElement verticalAlignment="Middle">
 					<font pdfFontName="Times-Roman"/>
 				</textElement>
 				<text><![CDATA[Laboratorio]]></text>
 			</staticText>
 			<staticText>
-				<reportElement style="SubTitle" x="271" y="62" width="62" height="22" uuid="7d2a1bf2-bdd0-405e-b114-5e3686ca7c38"/>
+				<reportElement style="SubTitle" x="250" y="62" width="62" height="22" uuid="7d2a1bf2-bdd0-405e-b114-5e3686ca7c38"/>
 				<textElement>
 					<font fontName="Times New Roman" pdfFontName="Times-Roman"/>
 				</textElement>
 				<text><![CDATA[Reporte]]></text>
 			</staticText>
 			<image>
-				<reportElement x="476" y="0" width="79" height="62" uuid="4715bf78-1d5b-4f2d-9348-d0752a1318c9"/>
-				<imageExpression><![CDATA["Lab.png"]]></imageExpression>
+				<reportElement x="432" y="28" width="118" height="85" uuid="e06d4edc-ee6e-4a5c-b3b8-08974daeea7c"/>
+				<imageExpression><![CDATA["https://i.postimg.cc/Hk48sVQ6/LABORATORIO.jpg"]]></imageExpression>
 			</image>
 		</band>
 	</title>

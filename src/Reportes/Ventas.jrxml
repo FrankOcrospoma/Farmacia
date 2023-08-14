@@ -85,17 +85,18 @@ WHERE
 		<band height="229" splitType="Stretch">
 			<staticText>
 				<reportElement x="135" y="50" width="269" height="20" uuid="fd0d08db-a8bc-48d7-a0ec-be1826d7c7a3"/>
+				<textElement textAlignment="Center"/>
 				<text><![CDATA[Jr. La Verdad 520   Teléfono:  948 455 693]]></text>
 			</staticText>
 			<rectangle>
 				<reportElement mode="Transparent" x="15" y="104" width="525" height="40" uuid="95f2b35d-d8a6-4bab-a2ef-42a09630b2c1"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="137" y="20" width="219" height="30" uuid="110cc8c9-9026-469a-a3ab-321c72145a6b"/>
-				<textElement verticalAlignment="Top">
-					<font fontName="Algerian" size="18"/>
+				<reportElement x="156" y="20" width="219" height="30" uuid="110cc8c9-9026-469a-a3ab-321c72145a6b"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Comfortaa" size="18" isBold="true"/>
 				</textElement>
-				<text><![CDATA[MI Pequeño angelito]]></text>
+				<text><![CDATA[MATERNATAL E.I.R.L]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="422" y="10" width="100" height="20" uuid="e2706489-695d-4ebc-b0e8-129a6f74f3f0"/>
@@ -112,7 +113,7 @@ WHERE
 				<text><![CDATA[Datos del Cliente:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="195" y="70" width="100" height="20" uuid="c13476f2-c70c-4c5f-a674-74c95b27e743"/>
+				<reportElement x="212" y="70" width="100" height="20" uuid="c13476f2-c70c-4c5f-a674-74c95b27e743"/>
 				<text><![CDATA[Bagua - Amazonas]]></text>
 			</staticText>
 			<staticText>
@@ -163,7 +164,7 @@ WHERE
 			</textField>
 			<image>
 				<reportElement x="20" y="10" width="120" height="72" uuid="4dfd5e75-120a-4223-943a-ece46a811705"/>
-				<imageExpression><![CDATA["C:\\Users\\USUARIO\\Desktop\\Franz Jensen\\Taller de Programación II\\ProyectosJava\\Proyecto_Botica\\logoo.png"]]></imageExpression>
+				<imageExpression><![CDATA["https://i.postimg.cc/L8HZMg9T/maternatal-fondo2.png"]]></imageExpression>
 			</image>
 			<textField>
 				<reportElement x="490" y="82" width="52" height="17" uuid="fa5fb8da-106d-4f10-8157-bcfd2ace6a4e"/>
@@ -221,7 +222,7 @@ WHERE
 				<textFieldExpression><![CDATA[$F{ventas_Estado}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="165" y="0" width="147" height="20" forecolor="#003333" uuid="6cb25adb-916a-4b70-bcb9-ee555d9e941a"/>
+				<reportElement x="189" y="0" width="147" height="20" forecolor="#003333" uuid="6cb25adb-916a-4b70-bcb9-ee555d9e941a"/>
 				<textElement textAlignment="Center">
 					<font size="14" isBold="true" isUnderline="true"/>
 				</textElement>
@@ -451,7 +452,7 @@ WHERE
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font isBold="true" isItalic="true"/>
 				</textElement>
-				<text><![CDATA[Mi Pequeño Angelito]]></text>
+				<text><![CDATA[MATERNATAL E.I.R.L]]></text>
 			</staticText>
 			<textField evaluationTime="Report">
 				<reportElement mode="Opaque" x="512" y="0" width="29" height="15" backcolor="#E6E6E6" uuid="a6bd3e39-95db-44c7-b033-a2d71bec9300"/>

@@ -36,7 +36,7 @@ presentacion.`Estado` =$P{Estado}]]>
 		<band height="132" splitType="Stretch">
 			<image>
 				<reportElement x="456" y="0" width="99" height="132" uuid="c6369f8b-1f4a-47a2-8a4e-2ccaea0dab22"/>
-				<imageExpression><![CDATA["Pass1.jpg"]]></imageExpression>
+				<imageExpression><![CDATA["https://i.postimg.cc/brg1JgSN/PILDORAS.jpg"]]></imageExpression>
 			</image>
 			<frame>
 				<reportElement mode="Opaque" x="0" y="0" width="451" height="95" backcolor="#000000" uuid="1b867a9c-b9fa-45dd-aef2-ea90ea4402d8"/>

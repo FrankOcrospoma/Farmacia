@@ -73,18 +73,18 @@ WHERE  ventas.`IdVenta`=$P{IdVenta}]]>
 	<pageHeader>
 		<band height="229" splitType="Stretch">
 			<staticText>
-				<reportElement x="135" y="50" width="269" height="20" uuid="fd0d08db-a8bc-48d7-a0ec-be1826d7c7a3"/>
+				<reportElement x="155" y="50" width="219" height="20" uuid="fd0d08db-a8bc-48d7-a0ec-be1826d7c7a3"/>
 				<text><![CDATA[Jr. La Verdad 520   Teléfono:  948 455 693]]></text>
 			</staticText>
 			<rectangle>
 				<reportElement mode="Transparent" x="15" y="102" width="525" height="105" uuid="95f2b35d-d8a6-4bab-a2ef-42a09630b2c1"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="135" y="10" width="219" height="30" uuid="110cc8c9-9026-469a-a3ab-321c72145a6b"/>
-				<textElement verticalAlignment="Top">
-					<font fontName="Algerian" size="18"/>
+				<reportElement x="155" y="10" width="219" height="30" uuid="110cc8c9-9026-469a-a3ab-321c72145a6b"/>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Comfortaa" size="18" isBold="true"/>
 				</textElement>
-				<text><![CDATA[MI Pequeño angelito]]></text>
+				<text><![CDATA[MATERNATANAL E.I.R.L]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="419" y="20" width="100" height="20" uuid="e2706489-695d-4ebc-b0e8-129a6f74f3f0"/>
@@ -115,7 +115,7 @@ WHERE  ventas.`IdVenta`=$P{IdVenta}]]>
 				<textFieldExpression><![CDATA["Nº:"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="195" y="70" width="100" height="20" uuid="c13476f2-c70c-4c5f-a674-74c95b27e743"/>
+				<reportElement x="212" y="70" width="100" height="20" uuid="c13476f2-c70c-4c5f-a674-74c95b27e743"/>
 				<text><![CDATA[Bagua - Amazonas]]></text>
 			</staticText>
 			<staticText>
@@ -194,8 +194,8 @@ WHERE  ventas.`IdVenta`=$P{IdVenta}]]>
 				<textFieldExpression><![CDATA[$F{cliente_Nombres}+" "+$F{cliente_Apellidos}]]></textFieldExpression>
 			</textField>
 			<image>
-				<reportElement x="20" y="10" width="120" height="72" uuid="4dfd5e75-120a-4223-943a-ece46a811705"/>
-				<imageExpression><![CDATA["C:\\Users\\USUARIO\\Desktop\\Franz Jensen\\Taller de Programación II\\ProyectosJava\\Proyecto_Botica\\logoo.png"]]></imageExpression>
+				<reportElement x="15" y="10" width="120" height="72" uuid="4dfd5e75-120a-4223-943a-ece46a811705"/>
+				<imageExpression><![CDATA["https://i.postimg.cc/L8HZMg9T/maternatal-fondo2.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageHeader>
