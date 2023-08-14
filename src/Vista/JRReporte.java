@@ -27,10 +27,33 @@ public final class JRReporte {
         try {
             JasperReport informe = JasperCompileManager.compileReport(dir);
             JasperPrint print = JasperFillManager.fillReport(informe, parametros, con);
+            //JasperViewer.MAXIMIZED_BOTH;
             JasperViewer.viewReport(print, false);
+            
         } catch (Exception jRException) {
             System.err.println(jRException.getMessage());
             JOptionPane.showMessageDialog(null, jRException.getMessage());
         }
     }
+    
+    
+    
+//    public void abrirReporte(String ruta_archivo, Connection con, Map parametros) {
+//    String dir = ruta_archivo;
+//
+//    try {
+//        JasperReport informe = JasperCompileManager.compileReport(dir);
+//        JasperPrint print = JasperFillManager.fillReport(informe, parametros, con);
+//        
+//        // Crear el visor de JasperReports y configurar el tamaño del informe para ajustar al visor
+//        JasperViewer viewer = new JasperViewer(print, false);
+//        viewer.setExtendedState(JasperViewer.MAXIMIZED_BOTH); // Maximizar el visor
+//        
+//        viewer.setVisible(true);
+//    } catch (Exception jRException) {
+//        System.err.println(jRException.getMessage());
+//        JOptionPane.showMessageDialog(null, jRException.getMessage());
+//    }
+//}
+
 }
