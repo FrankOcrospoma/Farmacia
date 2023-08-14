@@ -45,7 +45,7 @@ WHERE   empleado.`Especialidad` = $P{Especialidad}]]>
 			<staticText>
 				<reportElement x="0" y="18" width="802" height="44" forecolor="#330000" uuid="0b304196-ea6e-472e-9348-39acbb2e7122"/>
 				<textElement textAlignment="Center">
-					<font fontName="AR JULIAN" size="36" isBold="true" isUnderline="true"/>
+					<font fontName="Comfortaa" size="25" isBold="true" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Reporte del Empleado]]></text>
 			</staticText>
@@ -224,9 +224,9 @@ WHERE   empleado.`Especialidad` = $P{Especialidad}]]>
 			<staticText>
 				<reportElement x="17" y="34" width="117" height="20" uuid="d0e4e685-8316-4aeb-b657-2d838b07b07b"/>
 				<textElement>
-					<font fontName="AR CENA" size="12" isBold="false"/>
+					<font fontName="Comfortaa" size="12" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Mi Pequeño Angelito]]></text>
+				<text><![CDATA[MATERNATAL]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
 				<reportElement x="686" y="34" width="100" height="20" uuid="06374c77-7011-473f-8c23-b1b2b2a3cfdd"/>

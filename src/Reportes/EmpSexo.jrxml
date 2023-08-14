@@ -224,9 +224,9 @@ WHERE   empleado.`Sexo` = $P{Sexo}]]>
 			<staticText>
 				<reportElement x="17" y="34" width="117" height="20" uuid="d0e4e685-8316-4aeb-b657-2d838b07b07b"/>
 				<textElement>
-					<font fontName="AR CENA" size="12" isBold="false"/>
+					<font fontName="Comfortaa" size="12" isBold="false"/>
 				</textElement>
-				<text><![CDATA[Mi Pequeño Angelito]]></text>
+				<text><![CDATA[MATERNATAL]]></text>
 			</staticText>
 			<textField pattern="EEEEE dd MMMMM yyyy">
 				<reportElement x="686" y="34" width="100" height="20" uuid="06374c77-7011-473f-8c23-b1b2b2a3cfdd"/>

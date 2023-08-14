@@ -30,7 +30,7 @@ public final class JRReporte {
             JasperViewer.viewReport(print, false);
         } catch (Exception jRException) {
             System.err.println(jRException.getMessage());
-            JOptionPane.showMessageDialog(null, "Error al intentar abrir el reporte");
+            JOptionPane.showMessageDialog(null, jRException.getMessage());
         }
     }
 }
