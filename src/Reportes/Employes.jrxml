@@ -45,7 +45,7 @@ WHERE  empleado.`DNI` = $P{Dni}]]>
 			<staticText>
 				<reportElement x="0" y="18" width="802" height="44" forecolor="#330000" uuid="0b304196-ea6e-472e-9348-39acbb2e7122"/>
 				<textElement textAlignment="Center">
-					<font fontName="AR JULIAN" size="36" isBold="true" isUnderline="true"/>
+					<font fontName="Comfortaa" size="25" isBold="false" isUnderline="true"/>
 				</textElement>
 				<text><![CDATA[Reporte del Empleado]]></text>
 			</staticText>
