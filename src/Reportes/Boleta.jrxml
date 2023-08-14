@@ -80,7 +80,7 @@ WHERE  ventas.`IdVenta`=$P{IdVenta}]]>
 				<reportElement mode="Transparent" x="15" y="102" width="525" height="105" uuid="95f2b35d-d8a6-4bab-a2ef-42a09630b2c1"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="135" y="10" width="219" height="30" uuid="110cc8c9-9026-469a-a3ab-321c72145a6b"/>
+				<reportElement x="151" y="10" width="219" height="30" uuid="110cc8c9-9026-469a-a3ab-321c72145a6b"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Comfortaa" size="18" isBold="true"/>
 				</textElement>
@@ -195,7 +195,7 @@ WHERE  ventas.`IdVenta`=$P{IdVenta}]]>
 			</textField>
 			<image>
 				<reportElement x="15" y="10" width="100" height="69" uuid="b56dec8f-9f52-413a-84c2-e4209cc7d2ee"/>
-				<imageExpression><![CDATA["C:\\Users\\asus\\OneDrive\\Documentos\\NetBeansProjects\\Farmacia\\src\\Imagenes\\maternatal-fondo2.png"]]></imageExpression>
+				<imageExpression><![CDATA["https://i.postimg.cc/L8HZMg9T/maternatal-fondo2.png"]]></imageExpression>
 			</image>
 		</band>
 	</pageHeader>
