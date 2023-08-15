@@ -126,7 +126,7 @@ public class Ventas extends javax.swing.JInternalFrame {
             }
         }
         return "C00001";
-
+        
     }
 
     void limpiarCampos() {
