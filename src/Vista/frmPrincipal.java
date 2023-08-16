@@ -1,5 +1,6 @@
 package Vista;
 
+import Alertas.Alerta;
 import Metodos.Metodos_User;
 import java.awt.*;
 import java.util.*;
@@ -23,19 +24,20 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         }
     }
 
-    public frmPrincipal() { 
+    public frmPrincipal() {
 
         initComponents();
         FondoPanel fondo = new FondoPanel();
         this.setContentPane(contenedor);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-     
+
         hilo = new Thread(this);
         hilo.start();
 
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         this.setLocationRelativeTo(null);
+        Alerta alert = new Alerta("Mensaje", "Inicio de Sesión Exitoso");
+        alert.setVisible(true);
     }
     Metodos_User metodos = new Metodos_User();
 
