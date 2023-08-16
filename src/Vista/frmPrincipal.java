@@ -3,6 +3,8 @@ package Vista;
 import Metodos.Metodos_User;
 import java.awt.*;
 import java.util.*;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 
 public class frmPrincipal extends javax.swing.JFrame implements Runnable {
@@ -23,14 +25,13 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         }
     }
 
-    public frmPrincipal() { 
+    public frmPrincipal() {
 
         initComponents();
         FondoPanel fondo = new FondoPanel();
         this.setContentPane(contenedor);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
-        
-     
+
         hilo = new Thread(this);
         hilo.start();
 
@@ -86,6 +87,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         btnNuevo = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
+        btnCampana = new javax.swing.JButton();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
@@ -191,7 +193,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
                 .addComponent(jLabel3)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblId, javax.swing.GroupLayout.PREFERRED_SIZE, 106, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(275, Short.MAX_VALUE))
+                .addContainerGap(291, Short.MAX_VALUE))
         );
         kGradientPanel1Layout.setVerticalGroup(
             kGradientPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -318,11 +320,19 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
             }
         });
 
+        btnCampana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/camapana_off (3).jpg"))); // NOI18N
+        btnCampana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCampanaActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout contenedorLayout = new javax.swing.GroupLayout(contenedor);
         contenedor.setLayout(contenedorLayout);
         contenedorLayout.setHorizontalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(contenedorLayout.createSequentialGroup()
+            .addComponent(kGradientPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(contenedorLayout.createSequentialGroup()
@@ -335,15 +345,15 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
                         .addComponent(btnVenta1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(lblHora)
-                        .addGap(12, 12, 12))
+                        .addGap(18, 18, 18))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, contenedorLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
-                        .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING))))
-                .addContainerGap())
-            .addComponent(kGradientPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(btnCampana, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                        .addGap(11, 11, 11))))
         );
         contenedorLayout.setVerticalGroup(
             contenedorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -358,11 +368,13 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
                     .addGroup(contenedorLayout.createSequentialGroup()
                         .addComponent(lblHora)
                         .addGap(9, 9, 9)))
-                .addGap(209, 209, 209)
+                .addGap(195, 195, 195)
                 .addComponent(jButton1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnCampana, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 135, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 420, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(96, 96, 96)
                 .addComponent(kGradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -707,7 +719,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 984, Short.MAX_VALUE)
+            .addGap(0, 1000, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addGap(0, 0, Short.MAX_VALUE)
@@ -716,7 +728,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 636, Short.MAX_VALUE)
+            .addGap(0, 956, Short.MAX_VALUE)
             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(layout.createSequentialGroup()
                     .addContainerGap()
@@ -1074,6 +1086,18 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         CentrarVentanas(ventana);
         contenedor.setComponentZOrder(ventana, 0);
     }//GEN-LAST:event_mnuComprobanteActionPerformed
+
+    private void btnCampanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCampanaActionPerformed
+        frmCampana ventana;
+        try {
+            ventana = new frmCampana();
+            CentrarVentanas(ventana);
+            contenedor.setComponentZOrder(ventana, 0);
+        } catch (Exception ex) {
+            Logger.getLogger(frmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }//GEN-LAST:event_btnCampanaActionPerformed
     public void CentrarVentanas(JInternalFrame internalFrame) {
         int x = (contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;
         int y = (contenedor.getHeight() / 2) - internalFrame.getHeight() / 2;
@@ -1127,6 +1151,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     public static javax.swing.JMenu MnuAdministrador;
     private javax.swing.JButton btnCaja;
+    private javax.swing.JButton btnCampana;
     private javax.swing.JButton btnCliente;
     private javax.swing.JButton btnNuevo;
     private javax.swing.JButton btnVenta1;
