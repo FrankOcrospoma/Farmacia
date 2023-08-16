@@ -20,7 +20,11 @@ public class ConexionBD {
             //JOptionPane.showMessageDialog(null, "CONEXION EXITOSA");
         } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e);
-        }
+        }   
         return conexion;
+        
+    }
+        public Connection getConexion() {
+        return conectar();
     }
 }

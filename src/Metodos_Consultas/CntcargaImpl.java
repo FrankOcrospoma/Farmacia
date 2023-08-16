@@ -5,11 +5,10 @@
  */
 package Metodos_Consultas;
 
-import compac.clases.interfas.Int_Cntcarga;
-import compac.clases.modelo.ObCntcarga;
-import compac.clases.principales.Conectar;
-import compac.clases.principales.ConfigGeneral;
-import compac.clases.principales.SQL;
+import Conexion.ConexionBD;
+import Gestion.*;
+import Metodos.Metodos_sql;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -21,18 +20,19 @@ import java.util.List;
  *
  * @author LuisT
  */
-public class CntcargaImpl extends SQL implements  Int_Cntcarga<ObCntcarga> {
+public class CntcargaImpl extends Metodos_sql implements  Int_Cntcarga<ObCntcarga> {
 
     private ObCntcarga cntcarga;
-    ConfigGeneral config = new ConfigGeneral();
+
 
     @Override
     public List<ObCntcarga> listar() {
         Connection con = null;
         PreparedStatement pst = null;
-        Conectar conectar = new Conectar();
+        ConexionBD conectar = new ConexionBD();
         ArrayList<ObCntcarga> listaCnt_carga = new ArrayList<ObCntcarga>();
         try {
+            
             con = conectar.getConexion();
             pst = con.prepareStatement("select * from cntcarga where estado='1' order by cantidad ");
 
@@ -65,7 +65,7 @@ public class CntcargaImpl extends SQL implements  Int_Cntcarga<ObCntcarga> {
     public List<ObCntcarga> listarCnt(int cntcarga) {
         Connection con = null;
         PreparedStatement pst = null;
-        Conectar conectar = new Conectar();
+        ConexionBD conectar = new ConexionBD();
         ArrayList<ObCntcarga> listaCnt_carga = new ArrayList<ObCntcarga>();
         try {
             con = conectar.getConexion();
@@ -122,7 +122,7 @@ public class CntcargaImpl extends SQL implements  Int_Cntcarga<ObCntcarga> {
     public ObCntcarga buscar_por_id(Integer id) {
         Connection con = null;
         PreparedStatement pst = null;
-        Conectar conectar = new Conectar();
+        ConexionBD conectar = new ConexionBD();
         try {
             con = conectar.getConexion();
             pst = con.prepareStatement("select * from cntcarga where id_cntcarga='" + id + "' ");

@@ -227,12 +227,12 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        Ventas.txtNombre.setText("");
-        Ventas.txtRuc.setText("");
+        Ventas.txtNombreCliente.setText("");
+        Ventas.txtDocumentoCliente.setText("");
         Ventas.txtDni.setText("");
         Ventas.txtIdCliente.setText("");
-        Ventas.txtDireccion.setText("");
-        Ventas.txtNombre.requestFocus();
+        Ventas.txtDireccionCliente.setText("");
+        Ventas.txtNombreCliente.requestFocus();
     }//GEN-LAST:event_btnCancelarActionPerformed
     public void CentrarVentana(JInternalFrame internalFrame) {
         int x = (frmPrincipal.contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;

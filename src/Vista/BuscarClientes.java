@@ -206,11 +206,11 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     private void tbclientesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbclientesMouseClicked
         int row = tbclientes.getSelectedRow();
-        Ventas.txtNombre.setText(tbclientes.getValueAt(row, 1).toString());
+        Ventas.txtNombreCliente.setText(tbclientes.getValueAt(row, 1).toString());
         Ventas.txtDni.setText(tbclientes.getValueAt(row, 3).toString());
-        Ventas.txtRuc.setText(tbclientes.getValueAt(row, 4).toString());;
+        Ventas.txtDocumentoCliente.setText(tbclientes.getValueAt(row, 4).toString());;
         Ventas.txtIdCliente.setText(tbclientes.getValueAt(row, 0).toString());
-        Ventas.txtDireccion.setText(tbclientes.getValueAt(row, 5).toString());
+        Ventas.txtDireccionCliente.setText(tbclientes.getValueAt(row, 5).toString());
     }//GEN-LAST:event_tbclientesMouseClicked
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
@@ -227,12 +227,12 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_btnRegresarActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        Ventas.txtNombre.setText("");
-        Ventas.txtRuc.setText("");
+        Ventas.txtNombreCliente.setText("");
+        Ventas.txtDocumentoCliente.setText("");
         Ventas.txtDni.setText("");
         Ventas.txtIdCliente.setText("");
-        Ventas.txtDireccion.setText("");
-        Ventas.txtNombre.requestFocus();
+        Ventas.txtDireccionCliente.setText("");
+        Ventas.txtNombreCliente.requestFocus();
     }//GEN-LAST:event_btnCancelarActionPerformed
     public void CentrarVentana(JInternalFrame internalFrame) {
         int x = (frmPrincipal.contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;

@@ -1,9 +1,10 @@
 package Vista;
 
-import Alertas.AlertaError;
+import Alertas.*;
 import Metodos.Metodos_Ventas;
 import Conexion.ConexionBD;
 import Conexion.ConsultaWebService;
+import Gestion.ObCliente;
 import Metodos.Metodos_Productos;
 import static Vista.frmPrincipal.contenedor;
 import java.awt.Color;
@@ -30,7 +31,7 @@ import javax.swing.table.TableCellRenderer;
 public class Ventas extends javax.swing.JInternalFrame {
 
     public String estado = "EMITIDO";
-    
+
     private Connection connection = new ConexionBD().conectar();
     String Total;
     String strCodigo;
@@ -40,9 +41,10 @@ public class Ventas extends javax.swing.JInternalFrame {
     int registros;
     String id[] = new String[50];
     int num = 0;
-    
+
     static int intContador;
-    public String IdEmpleado, NombreEmpleado;
+    public int IdEmpleado;
+    public String NombreEmpleado;
     int idventa, nidventa;
     String idventa_print;
 
@@ -54,25 +56,138 @@ public class Ventas extends javax.swing.JInternalFrame {
     DefaultTableModel dtmDetalle = new DefaultTableModel();
 
     String criterio, busqueda;
-
     
-    //CONSULTA API
+
+     //CONSULTA API
         ConsultaWebService webService = new ConsultaWebService();
-     public int ConsultaReSun() {
+
+    public Ventas() {
+        initComponents();
+        txtComprobante.setText("Factura");
+        txtFechas.setDisabledTextColor(Color.blue);
+        txtFechas.setText(fecha());
+        txtFechas.setVisible(false);
+
+        txtFecha.setEnabled(false);
+        txtFecha.setDisabledTextColor(Color.blue);
+        txtFecha.setText(fechaactual());
+
+        numVenta = generarNumFactura();
+        txtNumFactura.setText(numVenta);
+
+        numVenta = generaNumVenta();
+        txtNumero.setText(numVenta);
+
+        numVenta = generaIdVenta();
+        txtUltimoId.setText(numVenta);
+
+        this.setSize(860, 723);
+
+        mirar();
+        txtIdEmpleado.setVisible(false);
+        btnNuevo.requestFocus();
+        btnEliminarProducto.setEnabled(false);
+        btnLimpiarTabla.setEnabled(false);
+
+        jpnImporte.setVisible(false);
+
+        txtUltimoId.setVisible(false);
+        txtCategoria.setVisible(false);
+
+        String titulos[] = {"ID", "ID", "PRODUCTO", "DESCRIPCIÓN", "CATEGORÍA.", "CANTIDAD", "PRECIO", "TOTAL", "COSTO"};
+        dtmDetalle.setColumnIdentifiers(titulos);
+        tblDetalleProducto.setModel(dtmDetalle);
+        CrearTablaDetalleProducto();
+        /////////////
+
+        txtNombreCliente.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+                String tipoComprobante = txtComprobante.getText();
+                if (tipoComprobante.equalsIgnoreCase("Boleta Electronica")) {
+
+                    int ctnTexto = txtDocumentoCliente.getText().length();
+                    if (ctnTexto == 8) {
+
+                        int pregunta = JOptionPane.showConfirmDialog(null, "¿Desea realizar la Búsqueda del Cliente Ingresado?\n"
+                                + "El número de Documento es: " + txtDocumentoCliente.getText(), "Mensaje", JOptionPane.OK_CANCEL_OPTION);
+                        if (pregunta == JOptionPane.OK_OPTION) {
+                            if (ConsultaReSun() == 1) {
+
+                                ObCliente cliente = new ObCliente(0, "DNI", txtDocumentoCliente.getText(), "-", "", "", 1,
+                                        txtNombreCliente.getText().toUpperCase(), IdEmpleado, "", 1);
+                                //controladorCliente.registrar(cliente);
+
+                                AlertaBien alert = new AlertaBien("Mensaje", "Registro Exitoso");
+                                alert.setVisible(true);
+                            } else {
+
+                                AlertaError alert = new AlertaError("Mensaje", "Operación Cancelada");
+                                alert.setVisible(true);
+                            }
+
+                        }
+
+                    } else {
+                        txtNombreCliente.setText("");
+                        // txtCorreoCliente.setText("");
+                        txtDireccionCliente.setText("");
+                        //lblIdCliente.setText("");
+
+                        AlertaError alert = new AlertaError("Mensaje", "El Documento ingresado no Cumple el valor necesario");
+                        alert.setVisible(true);
+                    }
+
+                } else if (tipoComprobante.equalsIgnoreCase("Factura")) {
+                    int ctnTexto = txtDocumentoCliente.getText().length();
+                    if (ctnTexto == 11) {
+                        int pregunta = JOptionPane.showConfirmDialog(null, "¿Desea realizar la Búsqueda del Cliente Ingresado?\n"
+                                + "El número de Documento es: " + txtDocumentoCliente.getText(), "Mensaje", JOptionPane.OK_CANCEL_OPTION);
+                        if (pregunta == JOptionPane.OK_OPTION) {
+                            if (ConsultaReSun() == 1) {
+                                ObCliente cliente = new ObCliente(0, "RUC", txtDocumentoCliente.getText(), txtDireccionCliente.getText().toUpperCase(),
+                                        "", "", 1, txtNombreCliente.getText().toUpperCase(), IdEmpleado, "", 2);
+                                // controladorCliente.registrar(cliente);
+
+                                AlertaBien alert = new AlertaBien("Mensaje", "Registro Exitoso");
+                                alert.setVisible(true);
+                            }
+                        } else {
+
+                            AlertaError alert = new AlertaError("Mensaje", "Operación Cancelada");
+                            alert.setVisible(true);
+                        }
+
+                    } else {
+                        txtNombreCliente.setText("");
+                        // txtCorreoCliente.setText("");
+                        txtDireccionCliente.setText("");
+                        //lblIdCliente.setText("");
+
+                        AlertaError alert = new AlertaError("Mensaje", "El Documento ingresado no Cumple el valor necesario");
+                        alert.setVisible(true);
+                    }
+                }
+            }
+        });
+
+    }
+    public int ConsultaReSun() {
 
         int valorRpta = 0;
 
         String tipoComprobante = txtComprobante.getText();
-        if (tipoComprobante.equalsIgnoreCase("FACTURA ELECTRÓNICA")) {
+        if (tipoComprobante.equalsIgnoreCase("Factura")) {
             int longiDoc = 11;
 
-            int longitud = txtRuc.getText().length();
+            int longitud = txtDocumentoCliente.getText().length();
             if (longitud > longiDoc) {
                 JOptionPane.showMessageDialog(null, "El número de Ruc ingresado no es válido. Vuelva a intentarlo.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 String rpt = "";
                 try {
-                    rpt = webService.consultarSunatruc(txtRuc.getText(), txtNombre, txtDireccion);
+                    rpt = webService.consultarSunatruc(txtDocumentoCliente.getText(), txtNombreCliente, txtDireccionCliente);
                 } catch (Exception ex) {
                     Logger.getLogger(frmClientes.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -83,16 +198,16 @@ public class Ventas extends javax.swing.JInternalFrame {
                     valorRpta = 1;
                 }
             }
-        } else if (tipoComprobante.equalsIgnoreCase("BOLETA DE VENTA ELECTRÓNICA")) {
+        } else if (tipoComprobante.equalsIgnoreCase("Boleta Electronica")) {
             int longiDoc = 8;
 
-            int longitud = txtRuc.getText().length();
+            int longitud = txtDocumentoCliente.getText().length();
             if (longitud > longiDoc) {
                 JOptionPane.showMessageDialog(null, "El número de Ruc ingresado no es válido. Vuelva a intentarlo.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
             } else {
                 String rpt = "";
                 try {
-                    rpt = webService.consultarReniecDni(txtRuc.getText(), txtNombre);
+                    rpt = webService.consultarReniecDni(txtDocumentoCliente.getText(), txtNombreCliente);
                 } catch (Exception ex) {
                     Logger.getLogger(frmClientes.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -105,123 +220,6 @@ public class Ventas extends javax.swing.JInternalFrame {
             }
         }
         return valorRpta;
-    }
-    
-    public Ventas() {
-        initComponents();
-        txtFechas.setDisabledTextColor(Color.blue);
-        txtFechas.setText(fecha());
-        txtFechas.setVisible(false);
-        
-        
-        txtFecha.setEnabled(false);
-        txtFecha.setDisabledTextColor(Color.blue);
-        txtFecha.setText(fechaactual());
-
-        numVenta = generarNumFactura();
-        txtNumFactura.setText(numVenta);
-        
-        numVenta = generaNumVenta();
-        txtNumero.setText(numVenta);
-
-        numVenta = generaIdVenta();
-        txtUltimoId.setText(numVenta);
-        
-        this.setSize(860, 723);
-
-        mirar();
-        txtIdEmpleado.setVisible(false);
-        btnNuevo.requestFocus();
-        btnEliminarProducto.setEnabled(false);
-        btnLimpiarTabla.setEnabled(false);
-        
-        jpnImporte.setVisible(false);
-        
-        txtUltimoId.setVisible(false);
-        txtCategoria.setVisible(false);
-        
-        String titulos[] = {"ID", "ID", "PRODUCTO", "DESCRIPCIÓN", "CATEGORÍA.", "CANTIDAD","PRECIO", "TOTAL","COSTO"};
-        dtmDetalle.setColumnIdentifiers(titulos);
-        tblDetalleProducto.setModel(dtmDetalle);
-        CrearTablaDetalleProducto();
-        /////////////
-//        txtNombre.addActionListener(new ActionListener() {
-//            @Override
-//            public void actionPerformed(ActionEvent e) {
-//
-//                String tipoComprobante = txtRuc.getText();
-//                if (tipoComprobante.equalsIgnoreCase("BOLETA DE VENTA ELECTRÓNICA")) {
-//
-//                    int ctnTexto = txtRuc.getText().length();
-//                    if (ctnTexto == 8) {
-//
-//                        int pregunta = JOptionPane.showConfirmDialog(null, "¿Desea realizar la Búsqueda del Cliente Ingresado?\n"
-//                                + "El número de Documento es: " + txtRuc.getText(), "Mensaje", JOptionPane.OK_CANCEL_OPTION);
-//                        if (pregunta == JOptionPane.OK_OPTION) {
-//                            if (ConsultaReSun() == 1) {
-//
-//                                ObCliente cliente = new ObCliente(0, "DNI", txtDocumentoCliente.getText(), "-", "", "", 1,
-//                                        txtNombreCliente.getText().toUpperCase(), id_usuario, id_sede, "", 1);
-//                                controladorCliente.registrar(cliente);
-//
-//                                AlertaBien alert = new AlertaBien("Mensaje", "Registro Exitoso");
-//                                alert.setVisible(true);
-//                            } else {
-//
-//                                AlertaError alert = new AlertaError("Mensaje", "Operación Cancelada");
-//                                alert.setVisible(true);
-//                            }
-//
-//                        }
-//
-//                    } else {
-//                        txtNombreCliente.setText("");
-//                        txtCorreoCliente.setText("");
-//                        txtDireccionCliente.setText("");
-//                        lblIdCliente.setText("");
-//
-//                        AlertaError alert = new AlertaError("Mensaje", "El Documento ingresado no Cumple el valor necesario");
-//                        alert.setVisible(true);
-//                    }
-//
-//                } else if (tipoComprobante.equalsIgnoreCase("FACTURA ELECTRÓNICA")) {
-//                    int ctnTexto = txtDocumentoCliente.getText().length();
-//                    if (ctnTexto == 11) {
-//                        int pregunta = JOptionPane.showConfirmDialog(null, "¿Desea realizar la Búsqueda del Cliente Ingresado?\n"
-//                                + "El número de Documento es: " + txtDocumentoCliente.getText(), "Mensaje", JOptionPane.OK_CANCEL_OPTION);
-//                        if (pregunta == JOptionPane.OK_OPTION) {
-//                            if (ConsultaReSun() == 1) {
-//                                ObCliente cliente = new ObCliente(0, "RUC", txtDocumentoCliente.getText(), txtDireccionCliente.getText().toUpperCase(),
-//                                        "", "", 1, txtNombreCliente.getText().toUpperCase(), id_usuario, id_sede, "", 2);
-//                                controladorCliente.registrar(cliente);
-//
-//                                AlertaBien alert = new AlertaBien("Mensaje", "Registro Exitoso");
-//                                alert.setVisible(true);
-//                            }
-//                        } else {
-//
-//                            AlertaError alert = new AlertaError("Mensaje", "Operación Cancelada");
-//                            alert.setVisible(true);
-//                        }
-//
-//                    } else {
-//                        txtNombreCliente.setText("");
-//                        txtCorreoCliente.setText("");
-//                        txtDireccionCliente.setText("");
-//                        lblIdCliente.setText("");
-//
-//                        AlertaError alert = new AlertaError("Mensaje", "El Documento ingresado no Cumple el valor necesario");
-//                        alert.setVisible(true);
-//                    }
-//                }
-//            }
-//        });
-        
-        
-        
-        
-        
-        
     }
 
     public String generaNumVenta() {
@@ -262,7 +260,7 @@ public class Ventas extends javax.swing.JInternalFrame {
             }
         }
         return "C00001";
-        
+
     }
 
     void limpiarCampos() {
@@ -298,8 +296,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         txtFecha.setEnabled(false);
         txtNumero.setEnabled(false);
         txtNumFactura.setEnabled(false);
-        
-        
+
         btnclientes.setEnabled(false);
         btnBuscarProducto.setEnabled(false);
         btnAgregarProducto.setEnabled(false);
@@ -320,12 +317,12 @@ public class Ventas extends javax.swing.JInternalFrame {
         txtPrecioProducto.setText("");
         txtCantidadProducto.setText("");
         txtTotalProducto.setText("");
-        txtNombre.setText("");
+        txtNombreCliente.setText("");
         txtDni.setText("");
-        txtDireccion.setText("");
-        txtRuc.setText("");
+        txtDireccionCliente.setText("");
+        txtDocumentoCliente.setText("");
         txtIdCliente.setText("");
-        txtComprobante.setText("");
+        //txtComprobante.setText("");
         txtCategoria.setText("");
         txtDescripcionProducto.setText("");
         btnNuevo.requestFocus();
@@ -403,11 +400,11 @@ public class Ventas extends javax.swing.JInternalFrame {
         jPanel10 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         btnclientes = new javax.swing.JButton();
-        txtRuc = new javax.swing.JTextField();
+        txtDocumentoCliente = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
-        txtNombre = new javax.swing.JTextField();
+        txtNombreCliente = new javax.swing.JTextField();
         jLabel29 = new javax.swing.JLabel();
-        txtDireccion = new javax.swing.JTextField();
+        txtDireccionCliente = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
         btnBuscarProducto = new javax.swing.JButton();
         txtPrecioProducto = new javax.swing.JTextField();
@@ -791,42 +788,41 @@ public class Ventas extends javax.swing.JInternalFrame {
             }
         });
 
-        txtRuc.setEditable(false);
+        txtDocumentoCliente.setEditable(false);
 
         jLabel32.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(0, 102, 102));
         jLabel32.setText("RUC:");
 
-        txtNombre.setEditable(false);
+        txtNombreCliente.setEditable(false);
 
         jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel29.setForeground(new java.awt.Color(0, 102, 102));
         jLabel29.setText("D:irección:");
 
-        txtDireccion.setEditable(false);
+        txtDireccionCliente.setEditable(false);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtDireccion))
+                        .addComponent(txtDireccionCliente))
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel28)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(btnclientes, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel32)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtDocumentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
@@ -835,15 +831,15 @@ public class Ventas extends javax.swing.JInternalFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGap(11, 11, 11)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombreCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnclientes, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel28)
                     .addComponent(jLabel32)
-                    .addComponent(txtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDocumentoCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(22, 22, 22)
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel29)
-                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtDireccionCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23))
         );
 
@@ -1215,14 +1211,14 @@ public class Ventas extends javax.swing.JInternalFrame {
         return formatofecha.format(fecha);
 
     }
-    
+
     public static String fecha() {
         Date fecha = new Date();
         SimpleDateFormat formatofecha = new SimpleDateFormat("yyy-MM-dd");
         return formatofecha.format(fecha);
 
     }
-    
+
     void CalcularTotal() {
         DecimalFormatSymbols simbolos = new DecimalFormatSymbols();
         simbolos.setDecimalSeparator('.');
@@ -1322,74 +1318,73 @@ public class Ventas extends javax.swing.JInternalFrame {
 
     private void btnAgregarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarProductoActionPerformed
         double stock, cant;
-        if (txtStockProducto.getText().isEmpty() || txtNombre.getText().isEmpty()) {
-        JOptionPane.showMessageDialog(this, "Por favor agregue un cliente y un artículo");
-        btnBuscarProducto.requestFocus();
-    } else {
-        if (!txtCantidadProducto.getText().equals("")) {
-            if (txtCantidadProducto.getText().equals("")) {
-                txtCantidadProducto.setText("0");
-                cant = Double.parseDouble(txtCantidadProducto.getText());
-            } else {
-                cant = Double.parseDouble(txtCantidadProducto.getText());
-            }
+        if (txtStockProducto.getText().isEmpty() || txtNombreCliente.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Por favor agregue un cliente y un artículo");
+            btnBuscarProducto.requestFocus();
+        } else {
+            if (!txtCantidadProducto.getText().equals("")) {
+                if (txtCantidadProducto.getText().equals("")) {
+                    txtCantidadProducto.setText("0");
+                    cant = Double.parseDouble(txtCantidadProducto.getText());
+                } else {
+                    cant = Double.parseDouble(txtCantidadProducto.getText());
+                }
 
-            if (cant > 0) {
-                stock = Double.parseDouble(txtStockProducto.getText());
-                cant = Double.parseDouble(txtCantidadProducto.getText());
-                if (cant <= stock) {
-                    int d1 = Integer.parseInt(txtCodigoProducto.getText());
-                    String d2 = txtCodigoProducto.getText();
-                    String d3 = txtNombreProducto.getText();
-                    String d4 = txtDescripcionProducto.getText();
-                    String d5 = txtCategoria.getText();
-                    double d6 = Double.parseDouble(txtCantidadProducto.getText());
-                    double d7 = Double.parseDouble(txtPrecioProducto.getText());
-                    double d8 = Double.parseDouble(txtTotalProducto.getText());
-                    double d9 = Double.parseDouble(txtCosto.getText());
-                    agregardatos(d1, d2, d3, d4, d5, d6, d7,d8, d9);
+                if (cant > 0) {
+                    stock = Double.parseDouble(txtStockProducto.getText());
+                    cant = Double.parseDouble(txtCantidadProducto.getText());
+                    if (cant <= stock) {
+                        int d1 = Integer.parseInt(txtCodigoProducto.getText());
+                        String d2 = txtCodigoProducto.getText();
+                        String d3 = txtNombreProducto.getText();
+                        String d4 = txtDescripcionProducto.getText();
+                        String d5 = txtCategoria.getText();
+                        double d6 = Double.parseDouble(txtCantidadProducto.getText());
+                        double d7 = Double.parseDouble(txtPrecioProducto.getText());
+                        double d8 = Double.parseDouble(txtTotalProducto.getText());
+                        double d9 = Double.parseDouble(txtCosto.getText());
+                        agregardatos(d1, d2, d3, d4, d5, d6, d7, d8, d9);
 
-                    CalcularValor_Venta();
-                    CalcularTotal_Pagar();
-                    CalcularSubTotal();
-                    CalcularIGV();
-                    
-                    
-                    txtCantidadProducto.setText("");
-                    txtTotalProducto.setText("");
-                    txtImporte.setText("");
-                    txtCambio.setText("");
+                        CalcularValor_Venta();
+                        CalcularTotal_Pagar();
+                        CalcularSubTotal();
+                        CalcularIGV();
+
+                        txtCantidadProducto.setText("");
+                        txtTotalProducto.setText("");
+                        txtImporte.setText("");
+                        txtCambio.setText("");
 //
 //                    txtCodigoProducto.setText("");
 //                    txtNombreProducto.setText("");
 //                    txtStockProducto.setText("");
 //                    txtPrecioProducto.setText("");
-                
+
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Stock Insuficiente");
+                        txtCantidadProducto.setText("");
+                        txtTotalProducto.setText("");
+                    }
+
                 } else {
-                    JOptionPane.showMessageDialog(null, "Stock Insuficiente");
+                    JOptionPane.showMessageDialog(null, "Ingrese Cantidad mayor a 0");
                     txtCantidadProducto.setText("");
                     txtTotalProducto.setText("");
+                    txtCantidadProducto.requestFocus();
                 }
 
             } else {
-                JOptionPane.showMessageDialog(null, "Ingrese Cantidad mayor a 0");
-                txtCantidadProducto.setText("");
-                txtTotalProducto.setText("");
+                JOptionPane.showMessageDialog(null, "Ingrese cantidad");
                 txtCantidadProducto.requestFocus();
             }
 
-        } else {
-            JOptionPane.showMessageDialog(null, "Ingrese cantidad");
-            txtCantidadProducto.requestFocus();
-        }
-        
-        btnGuardar.setEnabled(true);
-        btnEliminarProducto.setEnabled(true);
-        btnLimpiarTabla.setEnabled(true);
-        btnImporte.setEnabled(true);
+            btnGuardar.setEnabled(true);
+            btnEliminarProducto.setEnabled(true);
+            btnLimpiarTabla.setEnabled(true);
+            btnImporte.setEnabled(true);
         }
     }//GEN-LAST:event_btnAgregarProductoActionPerformed
-        private static boolean band() {
+    private static boolean band() {
         if (Math.random() > .5) {
             return true;
         } else {
@@ -1403,26 +1398,26 @@ public class Ventas extends javax.swing.JInternalFrame {
     private void btnEliminarProductoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarProductoActionPerformed
         int fila = tblDetalleProducto.getSelectedRow();
         if (fila == -1) {
-        JOptionPane.showMessageDialog(null, "Por favor seleccione una fila", "ERROR", JOptionPane.ERROR_MESSAGE);
-    } else{
-        if (fila > 0) {
-            dtmDetalle.removeRow(fila);
-            CalcularValor_Venta();
-            CalcularSubTotal();
-            CalcularIGV();
-        } else if (fila == 0) {
-            dtmDetalle.removeRow(fila);
+            JOptionPane.showMessageDialog(null, "Por favor seleccione una fila", "ERROR", JOptionPane.ERROR_MESSAGE);
+        } else {
+            if (fila > 0) {
+                dtmDetalle.removeRow(fila);
+                CalcularValor_Venta();
+                CalcularSubTotal();
+                CalcularIGV();
+            } else if (fila == 0) {
+                dtmDetalle.removeRow(fila);
 
-            txtTotalVenta.setText("0.0");
-            txtDescuento.setText("0.0");
-            txtSubTotal.setText("0.0");
-            txtIGV.setText("0.0");
-            txtTotalPagar.setText("0.0");
-            CalcularValor_Venta();
-            CalcularTotal_Pagar();
-            CalcularSubTotal();
-            CalcularIGV();
-        }
+                txtTotalVenta.setText("0.0");
+                txtDescuento.setText("0.0");
+                txtSubTotal.setText("0.0");
+                txtIGV.setText("0.0");
+                txtTotalPagar.setText("0.0");
+                CalcularValor_Venta();
+                CalcularTotal_Pagar();
+                CalcularSubTotal();
+                CalcularIGV();
+            }
         }
         CalcularValor_Venta();
         CalcularTotal_Pagar();
@@ -1453,42 +1448,42 @@ public class Ventas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-         JRReporte cr = new JRReporte();
-    Connection con = null;
-    int Comprobante = Integer.valueOf(txtIdComprobante.getText());
+        JRReporte cr = new JRReporte();
+        Connection con = null;
+        int Comprobante = Integer.valueOf(txtIdComprobante.getText());
 //         String fac = String.valueOf(txtIdComprobante.getText());
-    if (Comprobante == 1) {
-        try {
-            con = ConexionBD.conectar();
-            Map parametros = new HashMap();
-            parametros.put("IdVenta", txtUltimoId.getText());
-            parametros.put("NumVenta", txtNumFactura.getText());
-            String ruta = System.getProperty("user.dir") + "\\src\\Reportes\\Boleta.jrxml";
-            cr.abrirReporte(ruta, con, parametros);
-            con.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,  e.getMessage());
+        if (Comprobante == 1) {
+            try {
+                con = ConexionBD.conectar();
+                Map parametros = new HashMap();
+                parametros.put("IdVenta", txtUltimoId.getText());
+                parametros.put("NumVenta", txtNumFactura.getText());
+                String ruta = System.getProperty("user.dir") + "\\src\\Reportes\\Boleta.jrxml";
+                cr.abrirReporte(ruta, con, parametros);
+                con.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage());
+
+            }
+        } else if (Comprobante == 2) {
+            try {
+                con = ConexionBD.conectar();
+                Map parametros = new HashMap();
+                parametros.put("IdVenta", txtUltimoId.getText());
+                parametros.put("NumVenta", txtNumFactura.getText());
+                String ruta = System.getProperty("user.dir") + "\\src\\Reportes\\Factura.jrxml";
+                cr.abrirReporte(ruta, con, parametros);
+                con.close();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Error al cargar el reporte de Ventas", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Tipo de Comprobante no encontrado", "ERROR", JOptionPane.ERROR_MESSAGE);
 
         }
-    } else if (Comprobante == 2) {
-        try {
-            con = ConexionBD.conectar();
-            Map parametros = new HashMap();
-            parametros.put("IdVenta", txtUltimoId.getText());
-            parametros.put("NumVenta", txtNumFactura.getText());
-            String ruta = System.getProperty("user.dir") + "\\src\\Reportes\\Factura.jrxml";
-            cr.abrirReporte(ruta, con, parametros);
-            con.close();
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(null, "Error al cargar el reporte de Ventas", "ERROR", JOptionPane.ERROR_MESSAGE);
-
-        }
-    } else {
-        JOptionPane.showMessageDialog(null, "Tipo de Comprobante no encontrado", "ERROR", JOptionPane.ERROR_MESSAGE);
-
-    }
-    btnImprimir.setEnabled(false);
-    btnGuardar.setEnabled(false);
+        btnImprimir.setEnabled(false);
+        btnGuardar.setEnabled(false);
 //    
 //    numVenta = generaIdVenta();
 //    txtUltimoId.setText(numVenta);
@@ -1513,44 +1508,44 @@ public class Ventas extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Por favor rellene todos los campos");
             //--------------------------------------------------
         } else {
-        
-        int result = JOptionPane.showConfirmDialog(this, "¿Desea Generar la venta?", "Mensaje del Sistema", JOptionPane.YES_NO_OPTION);
-        if (result == JOptionPane.YES_OPTION) {
-                Metodos_Ventas ventas=new Metodos_Ventas();
-                
-        String Serie = txtSerie.getText();        
-        String Numero = txtNumero.getText();
-        String Fecha = txtFechas.getText();
-        String VentaTotal = txtTotalVenta.getText();
-        String Descuento = txtDescuento.getText();
-        String SubTotal = txtSubTotal.getText();
-        String Igv = txtIGV.getText();
-        String Total = txtTotalPagar.getText();
-        String Estado = estado;
-        String IdCliente = txtIdCliente.getText();
-        String IdEmpleado = txtIdEmpleado.getText();
-        String IdTipoComprobante = txtIdComprobante.getText();
-        //+++++++++++++++++++++++
-        if (num == 0) {
-            ventas.GuardarVentas(Serie, Numero, Fecha, VentaTotal, Descuento, SubTotal, Igv, Total, Estado, IdCliente, IdEmpleado, IdTipoComprobante);
-            guardarDetalle();
+
+            int result = JOptionPane.showConfirmDialog(this, "¿Desea Generar la venta?", "Mensaje del Sistema", JOptionPane.YES_NO_OPTION);
+            if (result == JOptionPane.YES_OPTION) {
+                Metodos_Ventas ventas = new Metodos_Ventas();
+
+                String Serie = txtSerie.getText();
+                String Numero = txtNumero.getText();
+                String Fecha = txtFechas.getText();
+                String VentaTotal = txtTotalVenta.getText();
+                String Descuento = txtDescuento.getText();
+                String SubTotal = txtSubTotal.getText();
+                String Igv = txtIGV.getText();
+                String Total = txtTotalPagar.getText();
+                String Estado = estado;
+                String IdCliente = txtIdCliente.getText();
+                String IdEmpleado = txtIdEmpleado.getText();
+                String IdTipoComprobante = txtIdComprobante.getText();
+                //+++++++++++++++++++++++
+                if (num == 0) {
+                    ventas.GuardarVentas(Serie, Numero, Fecha, VentaTotal, Descuento, SubTotal, Igv, Total, Estado, IdCliente, IdEmpleado, IdTipoComprobante);
+                    guardarDetalle();
+                }
+                numVenta = generaNumVenta();
+                txtNumero.setText(numVenta);
+
+                numVenta = generarNumFactura();
+                txtNumFactura.setText(numVenta);
+
+            }
+            if (result == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Venta Anulada!");
+            }
+
         }
-            numVenta=generaNumVenta();
-            txtNumero.setText(numVenta);
-            
-            numVenta = generarNumFactura();
-            txtNumFactura.setText(numVenta);
-        
-        }
-        if (result == JOptionPane.NO_OPTION) {
-            JOptionPane.showMessageDialog(null, "Venta Anulada!");
-        }
-        
-        }
-        
-    btnImprimir.setEnabled(true);
-    btnNuevo.setEnabled(true);
-    btnCancelar.setEnabled(false);
+
+        btnImprimir.setEnabled(true);
+        btnNuevo.setEnabled(true);
+        btnCancelar.setEnabled(false);
     }//GEN-LAST:event_btnGuardarActionPerformed
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
@@ -1630,7 +1625,7 @@ public class Ventas extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btnclientesActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-       this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
     public void CentrarVentana(JInternalFrame internalFrame) {
         int x = (frmPrincipal.contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;
@@ -1643,7 +1638,8 @@ public class Ventas extends javax.swing.JInternalFrame {
             internalFrame.show();
         }
     }
-        void obtenerUltimoIdVenta() {
+
+    void obtenerUltimoIdVenta() {
         try {
             Metodos_Ventas oVenta = new Metodos_Ventas();
             rs = oVenta.obtenerUltimoIdVenta();
@@ -1655,56 +1651,56 @@ public class Ventas extends javax.swing.JInternalFrame {
             System.out.println(ex.getMessage());
         }
     }
-void guardarDetalle(){
+
+    void guardarDetalle() {
         obtenerUltimoIdVenta();
-        Metodos_Ventas DetalleVentas=new Metodos_Ventas();
-        
+        Metodos_Ventas DetalleVentas = new Metodos_Ventas();
+
         String strId;
-        int fila=0;
-        double cant = 0,ncant,stock;   
-        fila =tblDetalleProducto.getRowCount();
-        for (int f=0; f<fila; f++){
+        int fila = 0;
+        double cant = 0, ncant, stock;
+        fila = tblDetalleProducto.getRowCount();
+        for (int f = 0; f < fila; f++) {
             String IdVentas = String.valueOf(idventa);
-            String IdProducto = String.valueOf(tblDetalleProducto.getModel().getValueAt(f, 1));   
+            String IdProducto = String.valueOf(tblDetalleProducto.getModel().getValueAt(f, 1));
             String Costo = String.valueOf(tblDetalleProducto.getModel().getValueAt(f, 8));
             String Cantidad = String.valueOf(tblDetalleProducto.getModel().getValueAt(f, 5));
             String precio = String.valueOf(tblDetalleProducto.getModel().getValueAt(f, 6));
             String Total = String.valueOf(tblDetalleProducto.getModel().getValueAt(f, 7));
-            
-           if (num == 0) {
-            DetalleVentas.GuardarDetalleVentas(IdVentas, IdProducto,Cantidad, Costo, precio, Total);
-            
-            try{
-                Metodos_Productos oProducto=new Metodos_Productos();
-                
-                rs= oProducto.listarProductoActivoPorParametro("id",((String) tblDetalleProducto.getValueAt(f, 0)));
-                while (rs.next()) {
-                            cant=Double.parseDouble(rs.getString(4));
+
+            if (num == 0) {
+                DetalleVentas.GuardarDetalleVentas(IdVentas, IdProducto, Cantidad, Costo, precio, Total);
+
+                try {
+                    Metodos_Productos oProducto = new Metodos_Productos();
+
+                    rs = oProducto.listarProductoActivoPorParametro("id", ((String) tblDetalleProducto.getValueAt(f, 0)));
+                    while (rs.next()) {
+                        cant = Double.parseDouble(rs.getString(4));
+                    }
+
+                } catch (Exception ex) {
+                    JOptionPane.showMessageDialog(this, ex.getMessage());
+                    System.out.println(ex.getMessage());
                 }
-                
 
-            } catch (Exception ex) {
-                JOptionPane.showMessageDialog(this,ex.getMessage());
-                System.out.println(ex.getMessage());
-            }        
+                Metodos_Productos oProducto = new Metodos_Productos();
 
-            
-            Metodos_Productos oProducto=new Metodos_Productos();
-            
-        strId =  ((String) tblDetalleProducto.getValueAt(f, 0));
+                strId = ((String) tblDetalleProducto.getValueAt(f, 0));
 
-        ncant=Double.parseDouble(String.valueOf(tblDetalleProducto.getModel().getValueAt(f, 5)));
+                ncant = Double.parseDouble(String.valueOf(tblDetalleProducto.getModel().getValueAt(f, 5)));
 
-        stock=cant-ncant;
-        String Producto = String.valueOf(stock);
-        if (num == 0) {
-        oProducto.actualizarProductoStock(strId, Producto);
-        }
-            
+                stock = cant - ncant;
+                String Producto = String.valueOf(stock);
+                if (num == 0) {
+                    oProducto.actualizarProductoStock(strId, Producto);
+                }
+
+            }
         }
     }
-}
-     void CrearTablaDetalleProducto() {
+
+    void CrearTablaDetalleProducto() {
 
         TableCellRenderer render = new DefaultTableCellRenderer() {
 
@@ -1739,15 +1735,16 @@ void guardarDetalle(){
 
         tblDetalleProducto.setAutoResizeMode(tblDetalleProducto.AUTO_RESIZE_OFF);
 
-        int[] anchos = {50, 70, 170, 170, 170,80, 80, 80, 80};
+        int[] anchos = {50, 70, 170, 170, 170, 80, 80, 80, 80};
         for (int i = 0; i < tblDetalleProducto.getColumnCount(); i++) {
             tblDetalleProducto.getColumnModel().getColumn(i).setPreferredWidth(anchos[i]);
         }
 
-        setOcultarColumnasJTable(tblDetalleProducto, new int[]{0,8});
+        setOcultarColumnasJTable(tblDetalleProducto, new int[]{0, 8});
 
     }
-     public String generarNumFactura() {
+
+    public String generarNumFactura() {
 
         Metodos_Ventas oVenta = new Metodos_Ventas();
         try {
@@ -1787,7 +1784,8 @@ void guardarDetalle(){
         return "000001";
 
     }
-     public String generaIdVenta() {
+
+    public String generaIdVenta() {
 
         Metodos_Ventas oVenta = new Metodos_Ventas();
         try {
@@ -1883,8 +1881,9 @@ void guardarDetalle(){
     public static javax.swing.JTextField txtCosto;
     public static javax.swing.JTextField txtDescripcionProducto;
     private javax.swing.JTextField txtDescuento;
-    public static javax.swing.JTextField txtDireccion;
+    public static javax.swing.JTextField txtDireccionCliente;
     public static javax.swing.JTextField txtDni;
+    public static javax.swing.JTextField txtDocumentoCliente;
     private javax.swing.JTextField txtFecha;
     public static javax.swing.JTextField txtFechas;
     private javax.swing.JTextField txtIGV;
@@ -1892,12 +1891,11 @@ void guardarDetalle(){
     public static javax.swing.JTextField txtIdComprobante;
     public static javax.swing.JTextField txtIdEmpleado;
     private javax.swing.JTextField txtImporte;
-    public static javax.swing.JTextField txtNombre;
+    public static javax.swing.JTextField txtNombreCliente;
     public static javax.swing.JTextField txtNombreProducto;
     private javax.swing.JTextField txtNumFactura;
     public static javax.swing.JTextField txtNumero;
     public static javax.swing.JTextField txtPrecioProducto;
-    public static javax.swing.JTextField txtRuc;
     private javax.swing.JTextField txtSerie;
     public static javax.swing.JTextField txtStockProducto;
     private javax.swing.JTextField txtSubTotal;
