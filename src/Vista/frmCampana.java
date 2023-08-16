@@ -114,7 +114,7 @@ public class frmCampana extends javax.swing.JInternalFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable tblCampana;
+    public static javax.swing.JTable tblCampana;
     // End of variables declaration//GEN-END:variables
 ConexionBD cc= new ConexionBD();
 Connection cn = cc.conectar();

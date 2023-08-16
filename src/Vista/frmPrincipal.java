@@ -1,8 +1,13 @@
 package Vista;
 
 import Alertas.Alerta;
+import Conexion.ConexionBD;
 import Metodos.Metodos_User;
 import java.awt.*;
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.*;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -29,6 +34,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     public frmPrincipal() {
 
         initComponents();
+        BuscarNotificaciones();
         FondoPanel fondo = new FondoPanel();
         this.setContentPane(contenedor);
         this.setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -59,6 +65,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         while (current == hilo) {
             hora();
             lblHora.setText(hora + ":" + minutos + ":" + segundos);
+            BuscarNotificaciones();
         }
     }
 
@@ -146,6 +153,16 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("GestFarm");
         setExtendedState(6);
+        addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
+            public void mouseMoved(java.awt.event.MouseEvent evt) {
+                formMouseMoved(evt);
+            }
+        });
+        addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                formFocusGained(evt);
+            }
+        });
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowClosing(java.awt.event.WindowEvent evt) {
                 formWindowClosing(evt);
@@ -324,6 +341,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         });
 
         btnCampana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/camapana_off (3).jpg"))); // NOI18N
+        btnCampana.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/camapana_on.jpg"))); // NOI18N
         btnCampana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCampanaActionPerformed(evt);
@@ -759,6 +777,35 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         regresar.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
+    public void BuscarNotificaciones() {
+        String consulta = "SELECT * FROM producto WHERE fechavencimiento >= CURDATE() AND fechavencimiento <= DATE_ADD(CURDATE(), INTERVAL 6 MONTH)";
+        try {
+            Statement st = cn.createStatement();
+            ResultSet rs = st.executeQuery(consulta);
+            Image imagen, imagen2, imagen3, imagen4;
+            if (rs.next()) {
+
+                imagen = new ImageIcon(getClass().getResource("/Iconos/camapana_noti.jpg")).getImage();
+                imagen2 = new ImageIcon(getClass().getResource("/Iconos/camapana_on_noti.jpg")).getImage();
+
+                ImageIcon icon = new ImageIcon(imagen);
+                ImageIcon icon2 = new ImageIcon(imagen2);
+                btnCampana.setIcon(icon);
+                btnCampana.setRolloverIcon(icon2);
+            } else {
+                imagen3 = new ImageIcon(getClass().getResource("/Iconos/camapana_off (3).jpg")).getImage();
+                imagen4 = new ImageIcon(getClass().getResource("/Iconos/camapana_on.jpg")).getImage();
+                ImageIcon icon = new ImageIcon(imagen3);
+                ImageIcon icon2 = new ImageIcon(imagen4);
+                btnCampana.setIcon(icon);
+                btnCampana.setRolloverIcon(icon2);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(ConsultasProductos.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+
     public void CentrarVentana(JInternalFrame internalFrame) {
         int x = (contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;
         int y = (contenedor.getHeight() / 2) - internalFrame.getHeight() / 2;
@@ -1101,6 +1148,14 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         }
 
     }//GEN-LAST:event_btnCampanaActionPerformed
+
+    private void formFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_formFocusGained
+
+    }//GEN-LAST:event_formFocusGained
+
+    private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
+
+    }//GEN-LAST:event_formMouseMoved
     public void CentrarVentanas(JInternalFrame internalFrame) {
         int x = (contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;
         int y = (contenedor.getHeight() / 2) - internalFrame.getHeight() / 2;
@@ -1205,7 +1260,10 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     public static javax.swing.JMenuItem mnuComprobante;
     public static javax.swing.JMenu mnuPerfil;
     // End of variables declaration//GEN-END:variables
-class FondoPanel extends JPanel {
+    ConexionBD cc = new ConexionBD();
+    Connection cn = cc.conectar();
+
+    class FondoPanel extends JPanel {
 
         private Image imagen;
 
