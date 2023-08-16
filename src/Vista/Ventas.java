@@ -57,55 +57,55 @@ public class Ventas extends javax.swing.JInternalFrame {
 
     
     //CONSULTA API
-        ConsultaWebService webService = new ConsultaWebService();
-     public int ConsultaReSun() {
-
-        int valorRpta = 0;
-
-        String tipoComprobante = txtComprobante.getText();
-        if (tipoComprobante.equalsIgnoreCase("FACTURA ELECTRÓNICA")) {
-            int longiDoc = 11;
-
-            int longitud = txtRuc.getText().length();
-            if (longitud > longiDoc) {
-                JOptionPane.showMessageDialog(null, "El número de Ruc ingresado no es válido. Vuelva a intentarlo.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                String rpt = "";
-                try {
-                    rpt = webService.consultarSunatruc(txtRuc.getText(), txtNombre, txtDireccion);
-                } catch (Exception ex) {
-                    Logger.getLogger(frmClientes.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                if (!rpt.equalsIgnoreCase("SI")) {
-                    AlertaError alert = new AlertaError("Mensaje", "Intente nuevamente");
-                    alert.setVisible(true);
-                } else {
-                    valorRpta = 1;
-                }
-            }
-        } else if (tipoComprobante.equalsIgnoreCase("BOLETA DE VENTA ELECTRÓNICA")) {
-            int longiDoc = 8;
-
-            int longitud = txtRuc.getText().length();
-            if (longitud > longiDoc) {
-                JOptionPane.showMessageDialog(null, "El número de Ruc ingresado no es válido. Vuelva a intentarlo.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
-            } else {
-                String rpt = "";
-                try {
-                    rpt = webService.consultarReniecDni(txtRuc.getText(), txtNombre);
-                } catch (Exception ex) {
-                    Logger.getLogger(frmClientes.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                if (!rpt.equalsIgnoreCase("SI")) {
-                    AlertaError alert = new AlertaError("Mensaje", "Intente nuevamente");
-                    alert.setVisible(true);
-                } else {
-                    valorRpta = 1;
-                }
-            }
-        }
-        return valorRpta;
-    }
+//        ConsultaWebService webService = new ConsultaWebService();
+//     public int ConsultaReSun() {
+//
+//        int valorRpta = 0;
+//
+//        String tipoComprobante = txtComprobante.getText();
+//        if (tipoComprobante.equalsIgnoreCase("FACTURA ELECTRÓNICA")) {
+//            int longiDoc = 11;
+//
+//            int longitud = txtRuc.getText().length();
+//            if (longitud > longiDoc) {
+//                JOptionPane.showMessageDialog(null, "El número de Ruc ingresado no es válido. Vuelva a intentarlo.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+//            } else {
+//                String rpt = "";
+//                try {
+//                    rpt = webService.consultarSunatruc(txtRuc.getText(), txtNombre, txtDireccion);
+//                } catch (Exception ex) {
+//                    Logger.getLogger(frmClientes.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//                if (!rpt.equalsIgnoreCase("SI")) {
+//                    AlertaError alert = new AlertaError("Mensaje", "Intente nuevamente");
+//                    alert.setVisible(true);
+//                } else {
+//                    valorRpta = 1;
+//                }
+//            }
+//        } else if (tipoComprobante.equalsIgnoreCase("BOLETA DE VENTA ELECTRÓNICA")) {
+//            int longiDoc = 8;
+//
+//            int longitud = txtRuc.getText().length();
+//            if (longitud > longiDoc) {
+//                JOptionPane.showMessageDialog(null, "El número de Ruc ingresado no es válido. Vuelva a intentarlo.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+//            } else {
+//                String rpt = "";
+//                try {
+//                    rpt = webService.consultarReniecDni(txtRuc.getText(), txtNombre);
+//                } catch (Exception ex) {
+//                    Logger.getLogger(frmClientes.class.getName()).log(Level.SEVERE, null, ex);
+//                }
+//                if (!rpt.equalsIgnoreCase("SI")) {
+//                    AlertaError alert = new AlertaError("Mensaje", "Intente nuevamente");
+//                    alert.setVisible(true);
+//                } else {
+//                    valorRpta = 1;
+//                }
+//            }
+//        }
+//        return valorRpta;
+//    }
     
     public Ventas() {
         initComponents();
