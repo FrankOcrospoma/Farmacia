@@ -1,11 +1,15 @@
 package Vista;
 
+import Alertas.AlertaError;
 import Metodos.Metodos_Ventas;
 import Conexion.ConexionBD;
+import Conexion.ConsultaWebService;
 import Metodos.Metodos_Productos;
 import static Vista.frmPrincipal.contenedor;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,6 +20,8 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.*;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
@@ -49,6 +55,58 @@ public class Ventas extends javax.swing.JInternalFrame {
 
     String criterio, busqueda;
 
+    
+    //CONSULTA API
+        ConsultaWebService webService = new ConsultaWebService();
+     public int ConsultaReSun() {
+
+        int valorRpta = 0;
+
+        String tipoComprobante = txtComprobante.getText();
+        if (tipoComprobante.equalsIgnoreCase("FACTURA ELECTRÓNICA")) {
+            int longiDoc = 11;
+
+            int longitud = txtRuc.getText().length();
+            if (longitud > longiDoc) {
+                JOptionPane.showMessageDialog(null, "El número de Ruc ingresado no es válido. Vuelva a intentarlo.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                String rpt = "";
+                try {
+                    rpt = webService.consultarSunatruc(txtRuc.getText(), txtNombre, txtDireccion);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmClientes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (!rpt.equalsIgnoreCase("SI")) {
+                    AlertaError alert = new AlertaError("Mensaje", "Intente nuevamente");
+                    alert.setVisible(true);
+                } else {
+                    valorRpta = 1;
+                }
+            }
+        } else if (tipoComprobante.equalsIgnoreCase("BOLETA DE VENTA ELECTRÓNICA")) {
+            int longiDoc = 8;
+
+            int longitud = txtRuc.getText().length();
+            if (longitud > longiDoc) {
+                JOptionPane.showMessageDialog(null, "El número de Ruc ingresado no es válido. Vuelva a intentarlo.", "Mensaje", JOptionPane.INFORMATION_MESSAGE);
+            } else {
+                String rpt = "";
+                try {
+                    rpt = webService.consultarReniecDni(txtRuc.getText(), txtNombre);
+                } catch (Exception ex) {
+                    Logger.getLogger(frmClientes.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                if (!rpt.equalsIgnoreCase("SI")) {
+                    AlertaError alert = new AlertaError("Mensaje", "Intente nuevamente");
+                    alert.setVisible(true);
+                } else {
+                    valorRpta = 1;
+                }
+            }
+        }
+        return valorRpta;
+    }
+    
     public Ventas() {
         initComponents();
         txtFechas.setDisabledTextColor(Color.blue);
@@ -86,6 +144,84 @@ public class Ventas extends javax.swing.JInternalFrame {
         dtmDetalle.setColumnIdentifiers(titulos);
         tblDetalleProducto.setModel(dtmDetalle);
         CrearTablaDetalleProducto();
+        /////////////
+//        txtNombre.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//
+//                String tipoComprobante = txtRuc.getText();
+//                if (tipoComprobante.equalsIgnoreCase("BOLETA DE VENTA ELECTRÓNICA")) {
+//
+//                    int ctnTexto = txtRuc.getText().length();
+//                    if (ctnTexto == 8) {
+//
+//                        int pregunta = JOptionPane.showConfirmDialog(null, "¿Desea realizar la Búsqueda del Cliente Ingresado?\n"
+//                                + "El número de Documento es: " + txtRuc.getText(), "Mensaje", JOptionPane.OK_CANCEL_OPTION);
+//                        if (pregunta == JOptionPane.OK_OPTION) {
+//                            if (ConsultaReSun() == 1) {
+//
+//                                ObCliente cliente = new ObCliente(0, "DNI", txtDocumentoCliente.getText(), "-", "", "", 1,
+//                                        txtNombreCliente.getText().toUpperCase(), id_usuario, id_sede, "", 1);
+//                                controladorCliente.registrar(cliente);
+//
+//                                AlertaBien alert = new AlertaBien("Mensaje", "Registro Exitoso");
+//                                alert.setVisible(true);
+//                            } else {
+//
+//                                AlertaError alert = new AlertaError("Mensaje", "Operación Cancelada");
+//                                alert.setVisible(true);
+//                            }
+//
+//                        }
+//
+//                    } else {
+//                        txtNombreCliente.setText("");
+//                        txtCorreoCliente.setText("");
+//                        txtDireccionCliente.setText("");
+//                        lblIdCliente.setText("");
+//
+//                        AlertaError alert = new AlertaError("Mensaje", "El Documento ingresado no Cumple el valor necesario");
+//                        alert.setVisible(true);
+//                    }
+//
+//                } else if (tipoComprobante.equalsIgnoreCase("FACTURA ELECTRÓNICA")) {
+//                    int ctnTexto = txtDocumentoCliente.getText().length();
+//                    if (ctnTexto == 11) {
+//                        int pregunta = JOptionPane.showConfirmDialog(null, "¿Desea realizar la Búsqueda del Cliente Ingresado?\n"
+//                                + "El número de Documento es: " + txtDocumentoCliente.getText(), "Mensaje", JOptionPane.OK_CANCEL_OPTION);
+//                        if (pregunta == JOptionPane.OK_OPTION) {
+//                            if (ConsultaReSun() == 1) {
+//                                ObCliente cliente = new ObCliente(0, "RUC", txtDocumentoCliente.getText(), txtDireccionCliente.getText().toUpperCase(),
+//                                        "", "", 1, txtNombreCliente.getText().toUpperCase(), id_usuario, id_sede, "", 2);
+//                                controladorCliente.registrar(cliente);
+//
+//                                AlertaBien alert = new AlertaBien("Mensaje", "Registro Exitoso");
+//                                alert.setVisible(true);
+//                            }
+//                        } else {
+//
+//                            AlertaError alert = new AlertaError("Mensaje", "Operación Cancelada");
+//                            alert.setVisible(true);
+//                        }
+//
+//                    } else {
+//                        txtNombreCliente.setText("");
+//                        txtCorreoCliente.setText("");
+//                        txtDireccionCliente.setText("");
+//                        lblIdCliente.setText("");
+//
+//                        AlertaError alert = new AlertaError("Mensaje", "El Documento ingresado no Cumple el valor necesario");
+//                        alert.setVisible(true);
+//                    }
+//                }
+//            }
+//        });
+        
+        
+        
+        
+        
+        
     }
 
     public String generaNumVenta() {
@@ -268,9 +404,10 @@ public class Ventas extends javax.swing.JInternalFrame {
         jLabel28 = new javax.swing.JLabel();
         btnclientes = new javax.swing.JButton();
         txtRuc = new javax.swing.JTextField();
-        txtDireccion = new javax.swing.JTextField();
         jLabel32 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
+        jLabel29 = new javax.swing.JLabel();
+        txtDireccion = new javax.swing.JTextField();
         jPanel11 = new javax.swing.JPanel();
         btnBuscarProducto = new javax.swing.JButton();
         txtPrecioProducto = new javax.swing.JTextField();
@@ -334,7 +471,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         jScrollPane3.setViewportView(tblDetalleProducto);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(10, 440, 822, 165);
+        jScrollPane3.setBounds(10, 470, 822, 165);
 
         jPanel4.setBackground(new java.awt.Color(251, 248, 248));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Opciones:", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 3, 11), new java.awt.Color(0, 102, 102))); // NOI18N
@@ -421,7 +558,7 @@ public class Ventas extends javax.swing.JInternalFrame {
                 .addComponent(btnCancelar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnImprimir)
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(17, Short.MAX_VALUE))
         );
 
         getContentPane().add(jPanel4);
@@ -497,7 +634,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         jPanel6.add(txtDescuento, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 25, 90, 30));
 
         getContentPane().add(jPanel6);
-        jPanel6.setBounds(237, 616, 595, 65);
+        jPanel6.setBounds(240, 650, 595, 65);
 
         jpnImporte.setBackground(new java.awt.Color(251, 248, 248));
         jpnImporte.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -534,7 +671,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         jpnImporte.add(txtCambio, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 25, 80, 30));
 
         getContentPane().add(jpnImporte);
-        jpnImporte.setBounds(10, 616, 190, 65);
+        jpnImporte.setBounds(10, 650, 190, 65);
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
 
@@ -577,12 +714,12 @@ public class Ventas extends javax.swing.JInternalFrame {
                 .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtTotalProducto, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(15, Short.MAX_VALUE))
+                .addContainerGap(11, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(21, Short.MAX_VALUE)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel24, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -594,7 +731,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel3);
-        jPanel3.setBounds(87, 356, 290, 66);
+        jPanel3.setBounds(90, 390, 290, 66);
 
         btnImporte.setForeground(new java.awt.Color(0, 102, 102));
         btnImporte.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/vuelto.png"))); // NOI18N
@@ -608,7 +745,7 @@ public class Ventas extends javax.swing.JInternalFrame {
             }
         });
         getContentPane().add(btnImporte);
-        btnImporte.setBounds(10, 356, 72, 66);
+        btnImporte.setBounds(10, 390, 72, 66);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setForeground(new java.awt.Color(0, 102, 102));
@@ -656,14 +793,17 @@ public class Ventas extends javax.swing.JInternalFrame {
 
         txtRuc.setEditable(false);
 
-        txtDireccion.setEditable(false);
-        txtDireccion.setBorder(null);
-
         jLabel32.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel32.setForeground(new java.awt.Color(0, 102, 102));
         jLabel32.setText("RUC:");
 
         txtNombre.setEditable(false);
+
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel29.setText("D:irección:");
+
+        txtDireccion.setEditable(false);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -672,8 +812,10 @@ public class Ventas extends javax.swing.JInternalFrame {
             .addGroup(jPanel10Layout.createSequentialGroup()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addGap(83, 83, 83)
-                        .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap()
+                        .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtDireccion))
                     .addGroup(jPanel10Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel28)
@@ -684,8 +826,9 @@ public class Ventas extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jLabel32)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(txtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -697,12 +840,15 @@ public class Ventas extends javax.swing.JInternalFrame {
                     .addComponent(jLabel28)
                     .addComponent(jLabel32)
                     .addComponent(txtRuc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(51, 51, 51)
-                .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(22, 22, 22)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel29)
+                    .addComponent(txtDireccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(23, 23, 23))
         );
 
         getContentPane().add(jPanel10);
-        jPanel10.setBounds(10, 65, 530, 78);
+        jPanel10.setBounds(10, 65, 530, 110);
 
         jPanel11.setBackground(new java.awt.Color(251, 248, 248));
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Producto:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 3, 11), new java.awt.Color(0, 102, 102))); // NOI18N
@@ -849,7 +995,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel11);
-        jPanel11.setBounds(10, 154, 530, 100);
+        jPanel11.setBounds(10, 190, 530, 100);
 
         txtIdCliente.setEditable(false);
         txtIdCliente.setBorder(null);
@@ -898,7 +1044,7 @@ public class Ventas extends javax.swing.JInternalFrame {
                 .addComponent(txtComprobante, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(btnComprobante)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 42, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
                 .addComponent(jLabel36)
                 .addGap(3, 3, 3)
                 .addComponent(txtNumFactura, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -924,7 +1070,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(10, 265, 530, 85);
+        jPanel2.setBounds(10, 300, 530, 85);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -1010,7 +1156,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel5);
-        jPanel5.setBounds(380, 360, 450, 56);
+        jPanel5.setBounds(380, 390, 450, 56);
 
         txtFecha.setEditable(false);
         txtFecha.setForeground(new java.awt.Color(51, 0, 0));
@@ -1705,6 +1851,7 @@ void guardarDetalle(){
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
