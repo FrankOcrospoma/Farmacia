@@ -29,6 +29,7 @@ public class Login extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //
+      
         initComponents();
         getContentPane().setBackground(new Color(245, 245, 245));
         TimingTarget targetLogin = new TimingTargetAdapter() {
@@ -112,6 +113,11 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         background1.setLayout(new java.awt.CardLayout());
 
@@ -442,6 +448,10 @@ public class Login extends javax.swing.JFrame {
         signIn = false;
         animatorBody.start();
     }//GEN-LAST:event_tbUsuarioMouseClicked
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        txtUsuario.requestFocus();
+    }//GEN-LAST:event_formWindowOpened
 
     private void enableLogin(boolean action) {
         txtUsuario.setEditable(action);
