@@ -59,11 +59,11 @@ public class Ventas extends javax.swing.JInternalFrame {
     
 
      //CONSULTA API
-        ConsultaWebService webService = new ConsultaWebService();
+   ConsultaWebService webService = new ConsultaWebService();
 
     public Ventas() {
         initComponents();
-        txtComprobante.setText("Factura");
+
         txtFechas.setDisabledTextColor(Color.blue);
         txtFechas.setText(fecha());
         txtFechas.setVisible(false);
@@ -100,7 +100,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         CrearTablaDetalleProducto();
         /////////////
 
-        txtNombreCliente.addActionListener(new ActionListener() {
+        txtDocumentoCliente.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
 
@@ -349,6 +349,8 @@ public class Ventas extends javax.swing.JInternalFrame {
         btnEliminarProducto.setEnabled(false);
         btnLimpiarTabla.setEnabled(false);
         chkCambiarSerie.setEnabled(true);
+        txtNombreCliente.setEditable(true);
+        txtDocumentoCliente.setEditable(true);
 
         txtCodigoProducto.requestFocus();
     }
