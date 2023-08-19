@@ -231,6 +231,8 @@ private void mnenviarproActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         Ventas.txtDescripcionProducto.setText(tbProductos.getValueAt(row, 3).toString());
         Ventas.txtStockProducto.setText(tbProductos.getValueAt(row, 4).toString());
         Ventas.txtPrecioProducto.setText(tbProductos.getValueAt(row, 6).toString());
+        dispose();
+        
     }//GEN-LAST:event_tbProductosMouseClicked
 
     private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed

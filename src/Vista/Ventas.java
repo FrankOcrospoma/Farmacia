@@ -1192,6 +1192,9 @@ public class Ventas extends javax.swing.JInternalFrame {
                 stock = Double.parseDouble(txtStockProducto.getText());
                 cant = Double.parseDouble(txtCantidadProducto.getText());
                 if (cant <= stock) {
+                    double cantidad = Double.parseDouble(txtCantidadProducto.getText());
+                    double precio = Double.parseDouble(txtPrecioProducto.getText());
+                    double t = cantidad * precio;
                     int d1 = Integer.parseInt(txtCodigoProducto.getText());
                     String d2 = txtCodigoProducto.getText();
                     String d3 = txtNombreProducto.getText();
@@ -1199,7 +1202,7 @@ public class Ventas extends javax.swing.JInternalFrame {
                     String d5 = txtCategoria.getText();
                     double d6 = Double.parseDouble(txtCantidadProducto.getText());
                     double d7 = Double.parseDouble(txtPrecioProducto.getText());
-                    double d8 = Double.parseDouble(txtTotalProducto.getText());
+                    double d8 = t;
                     double d9 = Double.parseDouble(txtCosto.getText());
                     agregardatos(d1, d2, d3, d4, d5, d6, d7,d8, d9);
 
@@ -1299,6 +1302,9 @@ public class Ventas extends javax.swing.JInternalFrame {
         txtIGV.setText("0.0");
         txtTotalPagar.setText("0.0");
         txtCodigoProducto.requestFocus();
+        btnGuardar.setEnabled(false);
+        btnCancelar.setEnabled(false);
+        btnImprimir.setEnabled(false);
     }//GEN-LAST:event_btnLimpiarTablaActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
@@ -1472,6 +1478,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         Pro.toFront();
         Pro.setVisible(true);
         contenedor.setComponentZOrder(Pro, 0);
+        
     }//GEN-LAST:event_btnBuscarProductoActionPerformed
 
     private void btnclientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnclientesActionPerformed

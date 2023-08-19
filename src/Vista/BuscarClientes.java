@@ -211,6 +211,7 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         Ventas.txtRuc.setText(tbclientes.getValueAt(row, 4).toString());;
         Ventas.txtIdCliente.setText(tbclientes.getValueAt(row, 0).toString());
         Ventas.txtDireccion.setText(tbclientes.getValueAt(row, 5).toString());
+        dispose();
     }//GEN-LAST:event_tbclientesMouseClicked
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased

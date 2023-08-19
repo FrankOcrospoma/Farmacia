@@ -207,6 +207,7 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     private void tbEmpleadosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEmpleadosMouseClicked
         int row = tbEmpleados.getSelectedRow();
+        frmUsuarios.txtID.setText(tbEmpleados.getValueAt(row, 0).toString());
         frmUsuarios.txtDni.setText(tbEmpleados.getValueAt(row, 3).toString());;
         frmUsuarios.txtApellidos.setText(tbEmpleados.getValueAt(row, 2).toString());
         frmUsuarios.txtNombres.setText(tbEmpleados.getValueAt(row, 1).toString());
