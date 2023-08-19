@@ -131,13 +131,14 @@ public class Metodos_Ventas {
             GP.setString(5, Precio);
             GP.setString(6, Total);
             resultado = GP.executeUpdate();
-            if (resultado > 0) {
-                JOptionPane.showMessageDialog(null, "Venta realizada con Éxito");
-            }
+            
+                
+            
             conexion.close();
         } catch (Exception e) {
             System.out.println(e);
         }
+        
         return resultado;
     }
     //************************************************************************************

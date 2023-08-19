@@ -212,6 +212,7 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         frmUsuarios.txtApellidos.setText(tbEmpleados.getValueAt(row, 2).toString());
         frmUsuarios.txtNombres.setText(tbEmpleados.getValueAt(row, 1).toString());
         frmUsuarios.txtEmail.setText(tbEmpleados.getValueAt(row, 4).toString());
+        dispose();
     }//GEN-LAST:event_tbEmpleadosMouseClicked
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased

@@ -1405,7 +1405,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         if (result == JOptionPane.NO_OPTION) {
             JOptionPane.showMessageDialog(null, "Venta Anulada!");
         }
-        
+        JOptionPane.showMessageDialog(null, "Venta realizada con Éxito");
         }
         
     btnImprimir.setEnabled(true);
