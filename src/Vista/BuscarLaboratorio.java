@@ -234,7 +234,7 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
          int row = tbLaboratorio.getSelectedRow();
         frmProductos.txtIdLaboratorio.setText(tbLaboratorio.getValueAt(row, 0).toString());
         frmProductos.txtLaboratorio.setText(tbLaboratorio.getValueAt(row, 1).toString());
-
+        dispose();
     }//GEN-LAST:event_tbLaboratorioMouseClicked
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
