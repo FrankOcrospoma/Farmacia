@@ -471,7 +471,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         jScrollPane3.setViewportView(tblDetalleProducto);
 
         getContentPane().add(jScrollPane3);
-        jScrollPane3.setBounds(10, 470, 822, 165);
+        jScrollPane3.setBounds(10, 465, 822, 170);
 
         jPanel4.setBackground(new java.awt.Color(251, 248, 248));
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Opciones:", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 3, 11), new java.awt.Color(0, 102, 102))); // NOI18N
@@ -810,14 +810,13 @@ public class Ventas extends javax.swing.JInternalFrame {
         jPanel10Layout.setHorizontalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
                 .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel29, javax.swing.GroupLayout.PREFERRED_SIZE, 66, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtDireccion))
                     .addGroup(jPanel10Layout.createSequentialGroup()
-                        .addContainerGap()
                         .addComponent(jLabel28)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 220, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -848,7 +847,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel10);
-        jPanel10.setBounds(10, 65, 530, 110);
+        jPanel10.setBounds(10, 140, 530, 110);
 
         jPanel11.setBackground(new java.awt.Color(251, 248, 248));
         jPanel11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Producto:", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 3, 11), new java.awt.Color(0, 102, 102))); // NOI18N
@@ -995,7 +994,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel11);
-        jPanel11.setBounds(10, 190, 530, 100);
+        jPanel11.setBounds(10, 260, 530, 100);
 
         txtIdCliente.setEditable(false);
         txtIdCliente.setBorder(null);
@@ -1070,7 +1069,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel2);
-        jPanel2.setBounds(10, 300, 530, 85);
+        jPanel2.setBounds(10, 50, 530, 85);
 
         jPanel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
