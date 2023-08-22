@@ -3,7 +3,7 @@ package Vista;
 import Conexion.ConexionBD;
 import Metodos.Metodos_User;
 import java.awt.Color;
-import org.jdesktop.animation.timing.*;
+import org.jdesktop.animation.timing.Animator;
 //Conexión a la BD
 import Metodos.Metodos_sql;
 import static Vista.Login.*;
@@ -12,6 +12,8 @@ import java.sql.*;
 import java.util.logging.*;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
+import org.jdesktop.animation.timing.TimingTarget;
+import org.jdesktop.animation.timing.TimingTargetAdapter;
 
 public class Login extends javax.swing.JFrame {
 

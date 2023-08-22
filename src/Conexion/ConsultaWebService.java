@@ -17,15 +17,23 @@ import org.json.simple.parser.JSONParser;
  * @author jc_26
  */
 public class ConsultaWebService {
-     //Declara el tipo de medio de solicitud HTTP, Formato:JSON, codificacion: UTF8
+    //Declara el tipo de medio de solicitud HTTP, Formato:JSON, codificacion: UTF8
+
     MediaType mediaType = MediaType.get("application/json; charset=utf-8");
     //////////////////////////////////////////////////////////////////
     OkHttpClient client = new OkHttpClient();
 
-    public String consultarReniecDni(String nrodni, JTextField txtNombre) throws Exception {
+    public String consultarReniecDni(
+            String nrodni,
+            JTextField txtNombreCliente,
+            JTextField txtNombres,
+            JTextField txtApellidoPat,
+            JTextField txtApellidoMat,
+            JTextField txtfechaNac,
+            JTextField txtSexo) throws Exception {
         //Dato para determinar si la consulta fue exitosa
         String valor = "";
-        
+
         try {
             //Se declara la respuesta y se ejecuta el metodo post con parametro de entrada la API de consulta + el nDni
             String response = post("https://apiperu.dev/api/dni/" + nrodni);
@@ -35,7 +43,7 @@ public class ConsultaWebService {
             } else {
                 //Se declara un metodo JSONParser para deserializar los datos obtenido en la consulta
                 JSONParser parser = new JSONParser();
-                
+
                 Object obj = parser.parse(response);
                 try {
                     //Se intenta convertir el objeto analizado en un JSONObject y se extrae el objeto "data" de ese JSON
@@ -44,7 +52,18 @@ public class ConsultaWebService {
                     //
                     //Se hace una busqueda del nombre completo en la data extraida
                     String nombre_completo = (String) data.get("nombre_completo");
-                    txtNombre.setText(nombre_completo.replace(",", ""));
+                    String nombres = (String) data.get("nombres");
+                    String ape_pat = (String) data.get("apellido_paterno");
+                    String ape_mat = (String) data.get("apellido_materno");
+                    String ubig_sunat = (String) data.get("ubigeo_sunat");
+                    String fechaNac = (String) data.get("fecha_nacimiento");
+                    String sexo = (String) data.get("sexo");
+                    txtNombreCliente.setText(nombre_completo.replace(",", ""));
+                    txtNombres.setText(nombres);
+                    txtApellidoPat.setText(ape_pat);
+                    txtApellidoMat.setText(ape_mat);
+                    txtfechaNac.setText(fechaNac);
+                    txtSexo.setText(sexo);
                     //Operación de consulta Exitosa
                     valor = "SI";
 
@@ -115,7 +134,7 @@ public class ConsultaWebService {
                 .url(url)//URL de la API 
                 .addHeader("Authorization", "Bearer bde393ec7a70c1e67f8711c7455ddf2f2ebf74df030d2fa543ba69d25300041e")//Token de autenticacion
                 .build();//Se contruye el objeto de la solicitud
-        
+
         // envía la solicitud al servidor y devuelve una instancia de la clase Response, que contiene la respuesta del servidor.
         try (Response response = client.newCall(request).execute()) {
             return response.body().string();

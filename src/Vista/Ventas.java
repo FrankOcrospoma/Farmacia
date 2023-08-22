@@ -2,6 +2,7 @@ package Vista;
 
 import Alertas.*;
 import Metodos.Metodos_Ventas;
+import Metodos.Metodos_Clientes;
 import Conexion.ConexionBD;
 import Conexion.ConsultaWebService;
 import Gestion.ObCliente;
@@ -56,10 +57,9 @@ public class Ventas extends javax.swing.JInternalFrame {
     DefaultTableModel dtmDetalle = new DefaultTableModel();
 
     String criterio, busqueda;
-    
 
-     //CONSULTA API
-   ConsultaWebService webService = new ConsultaWebService();
+    //CONSULTA API
+    ConsultaWebService webService = new ConsultaWebService();
 
     public Ventas() {
         initComponents();
@@ -81,7 +81,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         numVenta = generaIdVenta();
         txtUltimoId.setText(numVenta);
 
-        this.setSize(860, 723);
+        this.setSize(860, 753);
 
         mirar();
         txtIdEmpleado.setVisible(false);
@@ -173,6 +173,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         });
 
     }
+
     public int ConsultaReSun() {
 
         int valorRpta = 0;
@@ -207,7 +208,7 @@ public class Ventas extends javax.swing.JInternalFrame {
             } else {
                 String rpt = "";
                 try {
-                    rpt = webService.consultarReniecDni(txtDocumentoCliente.getText(), txtNombreCliente);
+                    rpt = webService.consultarReniecDni(txtDocumentoCliente.getText(), txtNombreCliente, txtNombres, txtApellidoMat, txtApellidoPat, txtfechaNac, txtSexo);
                 } catch (Exception ex) {
                     Logger.getLogger(frmClientes.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -349,7 +350,7 @@ public class Ventas extends javax.swing.JInternalFrame {
         btnEliminarProducto.setEnabled(false);
         btnLimpiarTabla.setEnabled(false);
         chkCambiarSerie.setEnabled(true);
-        txtNombreCliente.setEditable(true);
+
         txtDocumentoCliente.setEditable(true);
 
         txtCodigoProducto.requestFocus();
@@ -368,6 +369,15 @@ public class Ventas extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        txtApellidoPat = new javax.swing.JTextField();
+        txtApellidoMat = new javax.swing.JTextField();
+        txtSexo = new javax.swing.JTextField();
+        txtfechaNac = new javax.swing.JTextField();
+        txtNombres = new javax.swing.JTextField();
+        txtTelefono = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
+        txtDni = new javax.swing.JTextField();
+        txtIdCliente = new javax.swing.JTextField();
         jScrollPane3 = new javax.swing.JScrollPane();
         tblDetalleProducto = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
@@ -423,8 +433,6 @@ public class Ventas extends javax.swing.JInternalFrame {
         txtCosto = new javax.swing.JTextField();
         txtDescripcionProducto = new javax.swing.JTextField();
         jLabel35 = new javax.swing.JLabel();
-        txtIdCliente = new javax.swing.JTextField();
-        txtDni = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel40 = new javax.swing.JLabel();
         txtComprobante = new javax.swing.JTextField();
@@ -445,6 +453,31 @@ public class Ventas extends javax.swing.JInternalFrame {
         jLabel27 = new javax.swing.JLabel();
         txtSerie = new javax.swing.JTextField();
         chkCambiarSerie = new javax.swing.JCheckBox();
+
+        txtApellidoPat.setText("-");
+
+        txtApellidoMat.setText("-");
+
+        txtSexo.setText("-");
+
+        txtfechaNac.setText("-");
+
+        txtNombres.setText("-");
+
+        txtTelefono.setText("-");
+
+        txtEmail.setText("-");
+
+        txtDni.setEditable(false);
+        txtDni.setBorder(null);
+
+        txtIdCliente.setEditable(false);
+        txtIdCliente.setBorder(null);
+        txtIdCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdClienteActionPerformed(evt);
+            }
+        });
 
         setClosable(true);
         setIconifiable(true);
@@ -625,6 +658,11 @@ public class Ventas extends javax.swing.JInternalFrame {
         txtDescuento.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
         txtDescuento.setForeground(new java.awt.Color(204, 0, 0));
         txtDescuento.setHorizontalAlignment(javax.swing.JTextField.RIGHT);
+        txtDescuento.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDescuentoActionPerformed(evt);
+            }
+        });
         txtDescuento.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtDescuentoKeyReleased(evt);
@@ -908,6 +946,11 @@ public class Ventas extends javax.swing.JInternalFrame {
 
         txtIdEmpleado.setEditable(false);
         txtIdEmpleado.setBorder(null);
+        txtIdEmpleado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtIdEmpleadoActionPerformed(evt);
+            }
+        });
 
         txtCosto.setEditable(false);
         txtCosto.setBorder(null);
@@ -994,16 +1037,6 @@ public class Ventas extends javax.swing.JInternalFrame {
 
         getContentPane().add(jPanel11);
         jPanel11.setBounds(10, 190, 530, 100);
-
-        txtIdCliente.setEditable(false);
-        txtIdCliente.setBorder(null);
-        getContentPane().add(txtIdCliente);
-        txtIdCliente.setBounds(848, 65, 64, 70);
-
-        txtDni.setEditable(false);
-        txtDni.setBorder(null);
-        getContentPane().add(txtDni);
-        txtDni.setBounds(854, 103, 35, 16);
 
         jPanel2.setBackground(new java.awt.Color(251, 248, 248));
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createEtchedBorder(), "Comprobante", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 3, 11), new java.awt.Color(0, 102, 102))); // NOI18N
@@ -1513,6 +1546,41 @@ public class Ventas extends javax.swing.JInternalFrame {
 
             int result = JOptionPane.showConfirmDialog(this, "¿Desea Generar la venta?", "Mensaje del Sistema", JOptionPane.YES_NO_OPTION);
             if (result == JOptionPane.YES_OPTION) {
+
+                //Enviar datos a la base de datos del sistema usando la api
+//Extrayedo los datos de los campos rellenados usando la api de reniec
+                //                String Id = txtCodigo.getText();
+                Metodos_Clientes metodosClientes = new Metodos_Clientes();
+                String Nombres = txtNombres.getText();
+                String ApellidoMat = txtApellidoMat.getText();
+                String ApellidoPat = txtApellidoPat.getText();
+                String Apellidos = ApellidoPat + " " + ApellidoMat;               
+                // Obtener el valor del sexo desde la API
+                String sexoDesdeAPI = txtSexo.getText();
+
+                // Realizar la conversión
+                String Sexo = null; // Esto almacenará el valor a insertar en la base de datos
+
+                if ("MASCULINO".equals(sexoDesdeAPI)) {
+                    Sexo = "M";
+                } else if ("FEMENINO".equals(sexoDesdeAPI)) {
+                    Sexo = "F";
+                } else {
+                    Sexo="-";
+                    // Manejo de un valor no válido o desconocido
+                    // Puedes mostrar un mensaje de error o tomar otra acción apropiada.
+                }
+
+// Ahora puedes usar el valor 'sexo' para insertarlo en tu base de datos.
+                String DNI = txtDni.getText();
+                String Telefono = txtTelefono.getText();
+                String Ruc = txtDocumentoCliente.getText();
+                String Email = txtEmail.getText();
+                String Direccion = txtDireccionCliente.getText();
+
+//Enviar datos
+                int respuesta = metodosClientes.guardarClientes(Nombres, Apellidos, Sexo, DNI, Telefono, Ruc, Email, Direccion);
+
                 Metodos_Ventas ventas = new Metodos_Ventas();
 
                 String Serie = txtSerie.getText();
@@ -1629,6 +1697,18 @@ public class Ventas extends javax.swing.JInternalFrame {
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed
+
+    private void txtDescuentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDescuentoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDescuentoActionPerformed
+
+    private void txtIdEmpleadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdEmpleadoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdEmpleadoActionPerformed
+
+    private void txtIdClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtIdClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtIdClienteActionPerformed
     public void CentrarVentana(JInternalFrame internalFrame) {
         int x = (frmPrincipal.contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;
         int y = (frmPrincipal.contenedor.getHeight() / 2) - internalFrame.getHeight() / 2;
@@ -1875,6 +1955,8 @@ public class Ventas extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JPanel jpnImporte;
     private javax.swing.JTable tblDetalleProducto;
+    private javax.swing.JTextField txtApellidoMat;
+    private javax.swing.JTextField txtApellidoPat;
     private javax.swing.JTextField txtCambio;
     private javax.swing.JTextField txtCantidadProducto;
     public static javax.swing.JTextField txtCategoria;
@@ -1886,6 +1968,7 @@ public class Ventas extends javax.swing.JInternalFrame {
     public static javax.swing.JTextField txtDireccionCliente;
     public static javax.swing.JTextField txtDni;
     public static javax.swing.JTextField txtDocumentoCliente;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtFecha;
     public static javax.swing.JTextField txtFechas;
     private javax.swing.JTextField txtIGV;
@@ -1895,15 +1978,19 @@ public class Ventas extends javax.swing.JInternalFrame {
     private javax.swing.JTextField txtImporte;
     public static javax.swing.JTextField txtNombreCliente;
     public static javax.swing.JTextField txtNombreProducto;
+    private javax.swing.JTextField txtNombres;
     private javax.swing.JTextField txtNumFactura;
     public static javax.swing.JTextField txtNumero;
     public static javax.swing.JTextField txtPrecioProducto;
     private javax.swing.JTextField txtSerie;
+    private javax.swing.JTextField txtSexo;
     public static javax.swing.JTextField txtStockProducto;
     private javax.swing.JTextField txtSubTotal;
+    private javax.swing.JTextField txtTelefono;
     private javax.swing.JTextField txtTotalPagar;
     private javax.swing.JTextField txtTotalProducto;
     private javax.swing.JTextField txtTotalVenta;
     public static javax.swing.JTextField txtUltimoId;
+    private javax.swing.JTextField txtfechaNac;
     // End of variables declaration//GEN-END:variables
 }
