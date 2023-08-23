@@ -779,11 +779,14 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
     public void BuscarNotificaciones() {
         String consulta = "SELECT * FROM producto WHERE fechavencimiento >= CURDATE() AND fechavencimiento <= DATE_ADD(CURDATE(), INTERVAL 6 MONTH)";
+        String consulta1 = "SELECT * FROM producto WHERE stock<=10";
         try {
             Statement st = cn.createStatement();
             ResultSet rs = st.executeQuery(consulta);
+            Statement st1 = cn.createStatement();
+            ResultSet rs1 = st1.executeQuery(consulta1);
             Image imagen, imagen2, imagen3, imagen4;
-            if (rs.next()) {
+            if (rs.next()||rs1.next()) {
 
                 imagen = new ImageIcon(getClass().getResource("/Iconos/camapana_noti.jpg")).getImage();
                 imagen2 = new ImageIcon(getClass().getResource("/Iconos/camapana_on_noti.jpg")).getImage();
