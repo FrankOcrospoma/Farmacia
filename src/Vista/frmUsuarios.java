@@ -22,9 +22,9 @@ import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.*;
 
-
 public class frmUsuarios extends javax.swing.JInternalFrame {
-    String path="";
+
+    String path = "";
     String Id = "";
     private final Metodos_User CP = new Metodos_User();
     int nums = 0;
@@ -54,8 +54,6 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
         txtContraseña.setText("");
         txtDni.requestFocus();
     }
-
-    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -459,45 +457,45 @@ public class frmUsuarios extends javax.swing.JInternalFrame {
 
 private void btnregistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnregistrarActionPerformed
     //VALIDAR CAMPOS PARA QUE TODOS ESTEN LLENOS
-        if (txtDni.getText().isEmpty()
-                || txtApellidos.getText().isEmpty() || txtNombres.getText().isEmpty()
-                || txtEmail.getText().isEmpty() || txtUsuario.getText().isEmpty()
-                || txtContraseña.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "POR FAVOR RELLENE TODOS LOS CAMPOS");
+    if (txtDni.getText().isEmpty()
+            || txtApellidos.getText().isEmpty() || txtNombres.getText().isEmpty()
+            || txtEmail.getText().isEmpty() || txtUsuario.getText().isEmpty()
+            || txtContraseña.getText().isEmpty()) {
+        JOptionPane.showMessageDialog(this, "POR FAVOR RELLENE TODOS LOS CAMPOS");
 
-        } else {
+    } else {
 
-            String ID = txtID.getText();
-            String Nombres = txtNombres.getText();
-            String Apellidos = txtApellidos.getText();
-            String Dni = txtDni.getText();
-            String Email = txtEmail.getText();
-            String Usuario = txtUsuario.getText();
-            String Contraseña = txtContraseña.getText();
-            String TipoUsuario = cboTipo.getSelectedItem().toString();
+        String ID = txtID.getText();
+        String Nombres = txtNombres.getText();
+        String Apellidos = txtApellidos.getText();
+        String Dni = txtDni.getText();
+        String Email = txtEmail.getText();
+        String Usuario = txtUsuario.getText();
+        String Contraseña = txtContraseña.getText();
+        String TipoUsuario = cboTipo.getSelectedItem().toString();
 //            String Foto = txtImagen.getText();
-            String Estado;
-            if (chbEstado.isSelected()) {
-                Estado = "Activo";
-            } else {
-                Estado = "Inactivo";
+        String Estado;
+        if (chbEstado.isSelected()) {
+            Estado = "Activo";
+        } else {
+            Estado = "Inactivo";
+        }
+
+        if (nums == 0) {
+            int respuesta = metodos.guardarUsuarios(ID, Nombres, Apellidos, Dni, Email, Usuario, Contraseña, TipoUsuario, Estado);
+            if (respuesta > 0) {
+                listar();
+
+                limpiar();
             }
-
-            if (nums == 0) {
-                int respuesta = metodos.guardarUsuarios(Nombres, Apellidos, Dni, Email, Usuario, Contraseña, TipoUsuario, Estado);
-                if (respuesta > 0) {
-                    listar();
-
-                    limpiar();
-                }
-            } else {
-                int respuesta = metodos.ActualizarUsuarios(ID, Nombres, Apellidos, Dni, Email, Usuario, Contraseña, TipoUsuario, Estado);
-                if (respuesta > 0) {
-                    listar();
-                    nums = 0;
-                }
+        } else {
+            int respuesta = metodos.ActualizarUsuarios(ID, Nombres, Apellidos, Dni, Email, Usuario, Contraseña, TipoUsuario, Estado);
+            if (respuesta > 0) {
+                listar();
+                nums = 0;
             }
         }
+    }
 }//GEN-LAST:event_btnregistrarActionPerformed
 
 private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaceptarActionPerformed
@@ -535,7 +533,7 @@ private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 //            ImageIcon newIcon= new ImageIcon(newimg);
 //            lblfoto.setIcon(newIcon);
 //            lblfoto.setSize(lblfoto.getWidth(), lblfoto.getHeight());
-            
+
         nums = 1;
     }//GEN-LAST:event_tbUsuarioMouseClicked
 
@@ -547,33 +545,33 @@ private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         int fila = tbUsuario.getSelectedRowCount();
         if (fila < 1) {
             JOptionPane.showMessageDialog(null, "SELECCIONE UN REGISTRO DE LA TABLA");
-        } else if(fila==1){
-        int result = JOptionPane.showConfirmDialog(this, "¿Desea eliminar el registro?", "Mensaje del Sistema", JOptionPane.YES_NO_OPTION);
-        if (result == JOptionPane.YES_OPTION) {
-            
-            if (CP.EliminarUsuario(tbUsuario.getValueAt(tbUsuario.getSelectedRow(), 0).toString()) > 0) {
-                limpiar();
-                listar();
+        } else if (fila == 1) {
+            int result = JOptionPane.showConfirmDialog(this, "¿Desea eliminar el registro?", "Mensaje del Sistema", JOptionPane.YES_NO_OPTION);
+            if (result == JOptionPane.YES_OPTION) {
+
+                if (CP.EliminarUsuario(tbUsuario.getValueAt(tbUsuario.getSelectedRow(), 0).toString()) > 0) {
+                    limpiar();
+                    listar();
+                }
             }
-        }
-        if (result == JOptionPane.NO_OPTION) {
-            JOptionPane.showMessageDialog(null, "Registro no Eliminado!");
-        }
+            if (result == JOptionPane.NO_OPTION) {
+                JOptionPane.showMessageDialog(null, "Registro no Eliminado!");
+            }
         }
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-         JRReporte cr = new JRReporte();
+        JRReporte cr = new JRReporte();
         Connection con = null;
         try {
             con = ConexionBD.conectar();
-            String ruta = System.getProperty("user.dir") + "\\src\\Reportes\\Usuarios.jrxml"; 
+            String ruta = System.getProperty("user.dir") + "\\src\\Reportes\\Usuarios.jrxml";
             cr.abrirReporte(ruta, con);
             con.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void cboTipoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cboTipoKeyPressed
@@ -610,7 +608,7 @@ private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
             }
 
             if (nums == 0) {
-                int respuesta = metodos.guardarUsuarios(Nombres, Apellidos, Dni, Email, Usuario, Contraseña, TipoUsuario, Estado);
+                int respuesta = metodos.guardarUsuarios(ID, Nombres, Apellidos, Dni, Email, Usuario, Contraseña, TipoUsuario, Estado);
                 if (respuesta > 0) {
                     listar();
 
@@ -636,29 +634,29 @@ private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }//GEN-LAST:event_btnImagenActionPerformed
 
     private void btnImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImprimirActionPerformed
-    this.dispose();
+        this.dispose();
     }//GEN-LAST:event_btnImprimirActionPerformed
 
     private void txtBuscarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBuscarKeyReleased
-       cargar(txtBuscar.getText());
+        cargar(txtBuscar.getText());
     }//GEN-LAST:event_txtBuscarKeyReleased
 
     private void txtIDKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtIDKeyPressed
-     if (evt.getKeyCode() == evt.VK_ENTER) {
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             txtDni.requestFocus();
 
         }
     }//GEN-LAST:event_txtIDKeyPressed
 
     private void txtDniKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyPressed
-       if (evt.getKeyCode() == evt.VK_ENTER) {
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             txtApellidos.requestFocus();
 
         }
     }//GEN-LAST:event_txtDniKeyPressed
 
     private void txtDniKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDniKeyTyped
-       char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (Character.isLetter(c)) {
             getToolkit().beep();
             evt.consume();
@@ -668,7 +666,7 @@ private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }//GEN-LAST:event_txtDniKeyTyped
 
     private void txtApellidosKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosKeyTyped
-       char c = evt.getKeyChar();
+        char c = evt.getKeyChar();
         if (Character.isDigit(c)) {
             evt.consume();
 
@@ -677,7 +675,7 @@ private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }//GEN-LAST:event_txtApellidosKeyTyped
 
     private void txtApellidosKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidosKeyPressed
-       if (evt.getKeyCode() == evt.VK_ENTER) {
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             txtNombres.requestFocus();
 
         }
@@ -700,21 +698,21 @@ private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
     }//GEN-LAST:event_txtNombresKeyPressed
 
     private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
-       if (evt.getKeyCode() == evt.VK_ENTER) {
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             txtUsuario.requestFocus();
 
         }
     }//GEN-LAST:event_txtEmailKeyPressed
 
     private void txtUsuarioKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUsuarioKeyPressed
-      if (evt.getKeyCode() == evt.VK_ENTER) {
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             txtContraseña.requestFocus();
 
         }
     }//GEN-LAST:event_txtUsuarioKeyPressed
 
     private void txtContraseñaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtContraseñaKeyPressed
-      if (evt.getKeyCode() == evt.VK_ENTER) {
+        if (evt.getKeyCode() == evt.VK_ENTER) {
             cboTipo.requestFocus();
 
         }
@@ -729,11 +727,11 @@ private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         contenedor.setComponentZOrder(Presentacion, 0);
     }//GEN-LAST:event_btnPresentacionActionPerformed
     void open() throws IOException {
-        
+
         JFileChooser JFC = new JFileChooser();
-        
-        JFC.setFileFilter(new FileNameExtensionFilter("todos los archivos *.jpg", "png","JPG"));
-        
+
+        JFC.setFileFilter(new FileNameExtensionFilter("todos los archivos *.jpg", "png", "JPG"));
+
         int abrir = JFC.showDialog(null, "Abrir");
         if (abrir == JFileChooser.APPROVE_OPTION) {
             FileReader FR = null;
@@ -741,42 +739,41 @@ private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
             try {
                 File archivo = JFC.getSelectedFile();
-                
+
                 String PATH = JFC.getSelectedFile().getAbsolutePath();
-                if(PATH.endsWith(".jpg")||PATH.endsWith(".png")){
-                    
+                if (PATH.endsWith(".jpg") || PATH.endsWith(".png")) {
+
                     FR = new FileReader(archivo);
                     BR = new BufferedReader(FR);
-                    
-                    
+
                     String linea;
-                    if(path.compareTo(archivo.getAbsolutePath())==0){
-                        System.out.println( "Archivo Abierto"+"Oops! Error"+ JOptionPane.ERROR_MESSAGE);
-                    }else{
+                    if (path.compareTo(archivo.getAbsolutePath()) == 0) {
+                        System.out.println("Archivo Abierto" + "Oops! Error" + JOptionPane.ERROR_MESSAGE);
+                    } else {
                         path = archivo.getAbsolutePath();
-                        while((linea=BR.readLine())!=null){ 
-                          
+                        while ((linea = BR.readLine()) != null) {
+
                         }
                     }
                     lblfoto.setIcon(new ImageIcon(path));
-            ImageIcon icon=new ImageIcon(path);
-            Image img=icon.getImage();
-            Image newimg = img.getScaledInstance(lblfoto.getWidth(),lblfoto.getHeight(),java.awt.Image.SCALE_SMOOTH);
-            ImageIcon newIcon= new ImageIcon(newimg);
-            lblfoto.setIcon(newIcon);
-            lblfoto.setSize(lblfoto.getWidth(), lblfoto.getHeight());
-                    
-                }else{
-                    System.out.println( "Archivo no soportado"+"Oops! Error"+ JOptionPane.ERROR_MESSAGE);
+                    ImageIcon icon = new ImageIcon(path);
+                    Image img = icon.getImage();
+                    Image newimg = img.getScaledInstance(lblfoto.getWidth(), lblfoto.getHeight(), java.awt.Image.SCALE_SMOOTH);
+                    ImageIcon newIcon = new ImageIcon(newimg);
+                    lblfoto.setIcon(newIcon);
+                    lblfoto.setSize(lblfoto.getWidth(), lblfoto.getHeight());
+
+                } else {
+                    System.out.println("Archivo no soportado" + "Oops! Error" + JOptionPane.ERROR_MESSAGE);
                     open();
                 }
 
             } catch (FileNotFoundException ex) {
                 ex.printStackTrace();
-                
+
             } finally {
                 try {
-                    if(null!= FR){
+                    if (null != FR) {
                         FR.close();
                     }
 
@@ -787,64 +784,61 @@ private void btnaceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
         }
     }
 
-    private void save(){
+    private void save() {
 
         try {
-                             String file = new String("/imgproductos/" + Id + ".jpg"); 
-     String master = System.getProperty("user.dir") + file;
-    
-                 File source = new File(path);
+            String file = new String("/imgproductos/" + Id + ".jpg");
+            String master = System.getProperty("user.dir") + file;
 
-        File dest = new File(master);
+            File source = new File(path);
 
-            System.out.println("origen :"+path+ "destino: "+master);
- 
+            File dest = new File(master);
 
-       
+            System.out.println("origen :" + path + "destino: " + master);
 
-        long start = System.nanoTime();
+            long start = System.nanoTime();
 
-        long end;
-      
-                copyFileUsingFileStreams(source, dest);
+            long end;
+
+            copyFileUsingFileStreams(source, dest);
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
 
     }
+
     private static void copyFileUsingFileStreams(File source, File dest)
+            throws IOException {
 
-        throws IOException {
+        InputStream input = null;
 
-    InputStream input = null;
+        OutputStream output = null;
 
-    OutputStream output = null;
+        try {
 
-    try {
+            input = new FileInputStream(source);
 
-        input = new FileInputStream(source);
+            output = new FileOutputStream(dest);
 
-        output = new FileOutputStream(dest);
+            byte[] buf = new byte[1024];
 
-        byte[] buf = new byte[1024];
+            int bytesRead;
 
-        int bytesRead;
+            while ((bytesRead = input.read(buf)) > 0) {
 
-        while ((bytesRead = input.read(buf)) > 0) {
+                output.write(buf, 0, bytesRead);
 
-            output.write(buf, 0, bytesRead);
+            }
+
+        } finally {
+
+            input.close();
+
+            output.close();
 
         }
-
-    } finally {
-
-        input.close();
-
-        output.close();
-
     }
-}
-    
+
     //METODO PARA BUSCAR REGISTROS
     //-------------------------------------------------------------------------------------------------------------------------------------------
     void cargar(String valor) {

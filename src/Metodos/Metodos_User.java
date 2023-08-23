@@ -85,24 +85,24 @@ public class Metodos_User {
 
     //INSERTAR DATOS EN LA TABLA DE LA BASE DE DATOS
     //********************************************************************************************
-    public int guardarUsuarios(String Nombres, String Apellidos, String Dni, String Email, String Usuario, String Contraseña, String TipoUsuario, String Estado) {
+    public int guardarUsuarios(String idUsuario, String Nombres, String Apellidos, String Dni, String Email, String Usuario, String Contraseña, String TipoUsuario, String Estado) {
         int resultado = 0;
         Connection conexion = null;
 
-        String sentencia_guardar = "INSERT INTO usuario (Nombres, Apellidos, Dni, Email, Usuario, Contraseña, TipoUsuario, Estado) VALUES (?,?,?,?,?,?,?,?)";
+        String sentencia_guardar = "INSERT INTO usuario (idUsuario, Nombres, Apellidos, Dni, Email, Usuario, Contraseña, TipoUsuario, Estado) VALUES (?,?,?,?,?,?,?,?,?)";
         System.out.println(sentencia_guardar);
         try {
             conexion = ConexionBD.conectar();
             GP = conexion.prepareStatement(sentencia_guardar);
-
-            GP.setString(1, Nombres);
-            GP.setString(2, Apellidos);
-            GP.setString(3, Dni);
-            GP.setString(4, Email);
-            GP.setString(5, Usuario);
-            GP.setString(6, Contraseña);
-            GP.setString(7, TipoUsuario);
-            GP.setString(8, Estado);
+            GP.setString(1, idUsuario);
+            GP.setString(2, Nombres);
+            GP.setString(3, Apellidos);
+            GP.setString(4, Dni);
+            GP.setString(5, Email);
+            GP.setString(6, Usuario);
+            GP.setString(7, Contraseña);
+            GP.setString(8, TipoUsuario);
+            GP.setString(9, Estado);
             resultado = GP.executeUpdate();
             if (resultado > 0) {
                 JOptionPane.showMessageDialog(null, "Registro Guardado");
@@ -210,6 +210,28 @@ public static String buscarId(String nusuario) {
             resultado = sentencia_preparada.executeQuery();
             if (resultado.next()) {
                 String Id = resultado.getString("idUsuario");
+                busqueda_Id = (Id);
+            }
+            conexion.close();
+
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return busqueda_Id;
+    }
+
+public static String generarId() {
+
+        String busqueda_Id = null;
+        Connection conexion = null;
+
+        try {
+            conexion = ConexionBD.conectar();
+            String sentencia_buscar = ("select COALESCE(max(idUsuario),0)+1 as idUsu from usuario");
+            sentencia_preparada = conexion.prepareStatement(sentencia_buscar);
+            resultado = sentencia_preparada.executeQuery();
+            if (resultado.next()) {
+                String Id = resultado.getString("idUsu");
                 busqueda_Id = (Id);
             }
             conexion.close();

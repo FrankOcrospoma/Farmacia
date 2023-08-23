@@ -213,7 +213,7 @@ public class frmEmpleados extends javax.swing.JInternalFrame {
         jLabel5.setBounds(39, 156, 34, 15);
 
         jcb_Sexo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "⠀", "M", "F" }));
-        jcb_Sexo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jcb_Sexo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jcb_Sexo.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jcb_SexoKeyPressed(evt);
@@ -272,7 +272,7 @@ public class frmEmpleados extends javax.swing.JInternalFrame {
         jLabel16.setForeground(new java.awt.Color(0, 102, 102));
         jLabel16.setText("*");
         jPanel1.add(jLabel16);
-        jLabel16.setBounds(590, 110, 20, 14);
+        jLabel16.setBounds(590, 110, 20, 16);
 
         jLabel17.setForeground(new java.awt.Color(0, 102, 102));
         jLabel17.setText("*");
@@ -282,7 +282,7 @@ public class frmEmpleados extends javax.swing.JInternalFrame {
         jLabel18.setForeground(new java.awt.Color(0, 102, 102));
         jLabel18.setText("*");
         jPanel1.add(jLabel18);
-        jLabel18.setBounds(590, 70, 10, 14);
+        jLabel18.setBounds(590, 70, 10, 16);
 
         jLabel19.setForeground(new java.awt.Color(0, 102, 102));
         jLabel19.setText("*");
@@ -297,17 +297,17 @@ public class frmEmpleados extends javax.swing.JInternalFrame {
         jLabel21.setForeground(new java.awt.Color(0, 102, 102));
         jLabel21.setText("*");
         jPanel1.add(jLabel21);
-        jLabel21.setBounds(910, 70, 16, 14);
+        jLabel21.setBounds(910, 70, 16, 16);
 
         jLabel22.setForeground(new java.awt.Color(0, 102, 102));
         jLabel22.setText("*");
         jPanel1.add(jLabel22);
-        jLabel22.setBounds(560, 202, 23, 14);
+        jLabel22.setBounds(560, 202, 23, 16);
 
         jLabel23.setForeground(new java.awt.Color(0, 102, 102));
         jLabel23.setText("*");
         jPanel1.add(jLabel23);
-        jLabel23.setBounds(911, 111, 28, 14);
+        jLabel23.setBounds(911, 111, 28, 16);
 
         jLabel24.setFont(new java.awt.Font("Tahoma", 3, 11)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(0, 102, 102));
@@ -318,13 +318,13 @@ public class frmEmpleados extends javax.swing.JInternalFrame {
         jLabel27.setForeground(new java.awt.Color(0, 102, 102));
         jLabel27.setText("*");
         jPanel1.add(jLabel27);
-        jLabel27.setBounds(163, 152, 6, 25);
+        jLabel27.setBounds(163, 152, 5, 25);
 
         chbEstado.setForeground(new java.awt.Color(0, 102, 102));
         chbEstado.setText("Activo");
-        chbEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        chbEstado.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel1.add(chbEstado);
-        chbEstado.setBounds(793, 204, 55, 23);
+        chbEstado.setBounds(793, 204, 57, 20);
 
         jLabel25.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(0, 102, 102));
@@ -335,7 +335,7 @@ public class frmEmpleados extends javax.swing.JInternalFrame {
         jLabel26.setForeground(new java.awt.Color(0, 102, 102));
         jLabel26.setText("*");
         jPanel1.add(jLabel26);
-        jLabel26.setBounds(910, 150, 28, 14);
+        jLabel26.setBounds(910, 150, 28, 16);
 
         txtId.setEditable(false);
         txtId.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -456,7 +456,7 @@ public class frmEmpleados extends javax.swing.JInternalFrame {
         btnnuevo.setForeground(new java.awt.Color(0, 102, 102));
         btnnuevo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (38).png"))); // NOI18N
         btnnuevo.setContentAreaFilled(false);
-        btnnuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnnuevo.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnnuevo.setFocusPainted(false);
         btnnuevo.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (47).png"))); // NOI18N
         btnnuevo.addActionListener(new java.awt.event.ActionListener() {
@@ -470,7 +470,7 @@ public class frmEmpleados extends javax.swing.JInternalFrame {
         btnguardar.setForeground(new java.awt.Color(0, 102, 102));
         btnguardar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (37).png"))); // NOI18N
         btnguardar.setContentAreaFilled(false);
-        btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnguardar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnguardar.setFocusPainted(false);
         btnguardar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (46).png"))); // NOI18N
         btnguardar.addActionListener(new java.awt.event.ActionListener() {
@@ -489,7 +489,7 @@ public class frmEmpleados extends javax.swing.JInternalFrame {
         btnEliminar.setForeground(new java.awt.Color(0, 102, 102));
         btnEliminar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (39).png"))); // NOI18N
         btnEliminar.setContentAreaFilled(false);
-        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnEliminar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnEliminar.setFocusPainted(false);
         btnEliminar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (45).png"))); // NOI18N
         btnEliminar.addActionListener(new java.awt.event.ActionListener() {
@@ -503,7 +503,7 @@ public class frmEmpleados extends javax.swing.JInternalFrame {
         btncancelar.setForeground(new java.awt.Color(0, 102, 102));
         btncancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (41).png"))); // NOI18N
         btncancelar.setContentAreaFilled(false);
-        btncancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btncancelar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btncancelar.setFocusPainted(false);
         btncancelar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (44).png"))); // NOI18N
         btncancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -517,7 +517,7 @@ public class frmEmpleados extends javax.swing.JInternalFrame {
         btnRegresar.setForeground(new java.awt.Color(0, 102, 102));
         btnRegresar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (42).png"))); // NOI18N
         btnRegresar.setContentAreaFilled(false);
-        btnRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnRegresar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnRegresar.setFocusPainted(false);
         btnRegresar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (43).png"))); // NOI18N
         btnRegresar.addActionListener(new java.awt.event.ActionListener() {
@@ -556,7 +556,7 @@ public class frmEmpleados extends javax.swing.JInternalFrame {
             }
         ));
         jtb_Empleados.setComponentPopupMenu(jPopupMenu1);
-        jtb_Empleados.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jtb_Empleados.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jtb_Empleados.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jtb_EmpleadosMouseClicked(evt);
@@ -597,13 +597,13 @@ public class frmEmpleados extends javax.swing.JInternalFrame {
         );
 
         getContentPane().add(jPanel3);
-        jPanel3.setBounds(0, 0, 983, 51);
+        jPanel3.setBounds(0, 0, 983, 41);
 
         btnbuscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         btnbuscar.setForeground(new java.awt.Color(0, 102, 102));
         btnbuscar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (36).png"))); // NOI18N
         btnbuscar.setContentAreaFilled(false);
-        btnbuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnbuscar.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnbuscar.setFocusPainted(false);
         btnbuscar.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (50).png"))); // NOI18N
         btnbuscar.addActionListener(new java.awt.event.ActionListener() {
@@ -618,7 +618,7 @@ public class frmEmpleados extends javax.swing.JInternalFrame {
         btnImprimir.setForeground(new java.awt.Color(0, 102, 102));
         btnImprimir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (40).png"))); // NOI18N
         btnImprimir.setContentAreaFilled(false);
-        btnImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnImprimir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         btnImprimir.setFocusPainted(false);
         btnImprimir.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/Iconos/button (51).png"))); // NOI18N
         btnImprimir.addActionListener(new java.awt.event.ActionListener() {

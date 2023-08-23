@@ -953,7 +953,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         frmEmpleados ventana = new frmEmpleados();
         CentrarVentanas(ventana);
         contenedor.setComponentZOrder(ventana, 0);
-        String busqueda_Id = metodos.buscarId(Login.txtUsuario.getText());
+        String busqueda_Id = metodos.generarId();
         ventana.txtIdUsuario.setText(busqueda_Id);
     }//GEN-LAST:event_mniEmpleadoActionPerformed
 
