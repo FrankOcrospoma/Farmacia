@@ -155,7 +155,7 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
       int row = tbComprobante.getSelectedRow();
         Ventas.txtComprobante.setText(tbComprobante.getValueAt(row, 1).toString());
         Ventas.txtIdComprobante.setText(tbComprobante.getValueAt(row, 0).toString());
-        
+        dispose();
     }//GEN-LAST:event_tbComprobanteMouseClicked
 
     private void btnRegresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegresarActionPerformed

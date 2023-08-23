@@ -241,6 +241,7 @@ private void mnenviarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         int row = tbPresentacion.getSelectedRow();
         frmProductos.txtIdPresentacion.setText(tbPresentacion.getValueAt(row, 0).toString());
         frmProductos.txtPresentacion.setText(tbPresentacion.getValueAt(row, 1).toString());
+        dispose();
     }//GEN-LAST:event_tbPresentacionMouseClicked
        public void CentrarVentana(JInternalFrame internalFrame) {
         int x = (frmPrincipal.contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;

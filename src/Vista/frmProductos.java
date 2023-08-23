@@ -7,13 +7,16 @@ import static Vista.frmPrincipal.contenedor;
 import javax.swing.JOptionPane;
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JInternalFrame;
 
 public class frmProductos extends javax.swing.JInternalFrame {
 
-    
+    DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
     private final Metodos_Productos CP = new Metodos_Productos();
     int num = 0;
 
@@ -548,12 +551,21 @@ public class frmProductos extends javax.swing.JInternalFrame {
                    
         //        Date fec = jtb_datos.getValueAt(row, 7).toString();
         txtId.setText(jtb_datos.getValueAt(row, 0).toString());
+        txtPresentacion.setText(jtb_datos.getValueAt(row, 1).toString());
         txtDescripcion.setText(jtb_datos.getValueAt(row, 2).toString());
         txtConcentracion.setText(jtb_datos.getValueAt(row, 3).toString());
         txtStock.setText(jtb_datos.getValueAt(row, 4).toString());
         txtCosto.setText(jtb_datos.getValueAt(row, 5).toString());
         txtPrecio.setText(jtb_datos.getValueAt(row, 6).toString());
+        txtLaboratorio.setText(jtb_datos.getValueAt(row, 9).toString());
         txtSanitario.setText(jtb_datos.getValueAt(row, 8).toString());
+        
+        
+        String fechaString = (String) jtb_datos.getValueAt(row, 7);
+        LocalDate localDate = LocalDate.parse(fechaString, formatter);
+    // Si necesitas un objeto Date, puedes convertir el LocalDate a Date
+        Date fecha = Date.from(localDate.atStartOfDay(ZoneId.systemDefault()).toInstant());
+        jdtFecha.setDate(fecha);
         //        jdtFecha.setDate(fec);
 
         //        jdtFecha.setText(7,((JTextField)frmProductos.jdtFecha.getDateEditor().getUiComponent()).getText());
@@ -730,6 +742,7 @@ public class frmProductos extends javax.swing.JInternalFrame {
         Laboratorio.toFront();
         Laboratorio.setVisible(true);
         contenedor.setComponentZOrder(Laboratorio, 0);
+        
     }//GEN-LAST:event_btnLaboratorioActionPerformed
 
     private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed

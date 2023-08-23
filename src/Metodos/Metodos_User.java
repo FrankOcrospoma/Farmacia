@@ -90,7 +90,7 @@ public class Metodos_User {
         Connection conexion = null;
 
         String sentencia_guardar = "INSERT INTO usuario (Nombres, Apellidos, Dni, Email, Usuario, Contraseña, TipoUsuario, Estado) VALUES (?,?,?,?,?,?,?,?)";
-
+        System.out.println(sentencia_guardar);
         try {
             conexion = ConexionBD.conectar();
             GP = conexion.prepareStatement(sentencia_guardar);
