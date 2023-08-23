@@ -105,7 +105,7 @@ public class Ventas extends javax.swing.JInternalFrame {
             public void actionPerformed(ActionEvent e) {
 
                 String tipoComprobante = txtComprobante.getText();
-                if (tipoComprobante.equalsIgnoreCase("Boleta Electronica")) {
+                if (tipoComprobante.equalsIgnoreCase("Boleta")) {
 
                     int ctnTexto = txtDocumentoCliente.getText().length();
                     if (ctnTexto == 8) {
@@ -115,7 +115,7 @@ public class Ventas extends javax.swing.JInternalFrame {
                         if (pregunta == JOptionPane.OK_OPTION) {
                             if (ConsultaReSun() == 1) {
 
-                                ObCliente cliente = new ObCliente(0, "DNI", txtDocumentoCliente.getText(), "-", "", "", 1,
+                                ObCliente cliente = new ObCliente(0, "DNI", txtDocumentoCliente.getText(), txtDireccionCliente.getText(), txtTelefono.getText(), txtEmail.getText(), 1,
                                         txtNombreCliente.getText().toUpperCase(), IdEmpleado, "", 1);
                                 //controladorCliente.registrar(cliente);
 
@@ -199,7 +199,7 @@ public class Ventas extends javax.swing.JInternalFrame {
                     valorRpta = 1;
                 }
             }
-        } else if (tipoComprobante.equalsIgnoreCase("Boleta Electronica")) {
+        } else if (tipoComprobante.equalsIgnoreCase("Boleta")) {
             int longiDoc = 8;
 
             int longitud = txtDocumentoCliente.getText().length();
