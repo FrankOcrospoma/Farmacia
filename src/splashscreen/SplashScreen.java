@@ -133,7 +133,7 @@ public class SplashScreen extends javax.swing.JDialog {
 
     private void doTask(String taskName, int progress) throws Exception {
         lbStatus.setText(taskName);
-        Thread.sleep(300); //  For Test
+        Thread.sleep(200); //  For Test
         pro.setValue(progress);
     }
 

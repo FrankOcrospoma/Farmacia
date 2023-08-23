@@ -7,6 +7,7 @@ import org.jdesktop.animation.timing.*;
 //Conexión a la BD
 import Metodos.Metodos_sql;
 import static Vista.Login.*;
+import com.formdev.flatlaf.FlatDarkLaf;
 //import com.sun.awt.AWTUtilities;
 import java.sql.*;
 import java.util.logging.*;
@@ -473,6 +474,7 @@ public class Login extends javax.swing.JFrame {
     }
 
     public static void main(String args[]) {
+        //FlatDarkLaf.setup();
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
@@ -496,7 +498,7 @@ public class Login extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+       
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
