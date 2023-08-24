@@ -26,9 +26,8 @@ public class frmCompras extends javax.swing.JInternalFrame {
     String numCompra;
     int registros;
     String id[]=new String[50];
-  
     int num = 0;
-
+     
     static int intContador;
     public int IdEmpleado =0,NombreEmpleado;
     int idventa,nidventa;
@@ -1043,6 +1042,10 @@ public class frmCompras extends javax.swing.JInternalFrame {
         if (num == 0) {
             compras.GuardarCompras(Numero, Fecha, TipoPago, SubTotal, Total, Igv, Estado, IdProveedor, IdEmpleados, IdTipoComprobante);
             guardarDetalle();
+            frmPrincipal parentFrame = findFrmPrincipalAncestor(this);
+        if (parentFrame != null) {
+            parentFrame.BuscarNotificaciones();
+        }
         }
             mirar();
             limpiarTabla();
@@ -1061,7 +1064,9 @@ public class frmCompras extends javax.swing.JInternalFrame {
         mirar();
         limpiarTabla();
     }//GEN-LAST:event_btnCancelarActionPerformed
-
+ private frmPrincipal findFrmPrincipalAncestor(JInternalFrame internalFrame) {
+        return (frmPrincipal) SwingUtilities.getAncestorOfClass(frmPrincipal.class, internalFrame);
+    }
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
         this.dispose();
     }//GEN-LAST:event_btnSalirActionPerformed

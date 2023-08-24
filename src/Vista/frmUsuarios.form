@@ -249,9 +249,6 @@
           </Constraints>
         </Component>
         <Component class="jtextfieldround.JTextFieldRound" name="txtID">
-          <Properties>
-            <Property name="editable" type="boolean" value="false"/>
-          </Properties>
           <Events>
             <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="txtIDKeyPressed"/>
           </Events>

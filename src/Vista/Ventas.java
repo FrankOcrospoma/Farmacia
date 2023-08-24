@@ -36,7 +36,7 @@ public class Ventas extends javax.swing.JInternalFrame {
     String strCodigo;
     String accion;
     String numVenta, tipoDocumento;
-
+    private frmPrincipal parentFrame;
     int registros;
     String id[] = new String[50];
     int num = 0;
@@ -1539,6 +1539,11 @@ public class Ventas extends javax.swing.JInternalFrame {
         if (num == 0) {
             ventas.GuardarVentas(Serie, Numero, Fecha, VentaTotal, Descuento, SubTotal, Igv, Total, Estado, IdCliente, IdEmpleado, IdTipoComprobante);
             guardarDetalle();
+            frmPrincipal parentFrame = findFrmPrincipalAncestor(this);
+        if (parentFrame != null) {
+            parentFrame.BuscarNotificaciones();
+        }
+        
         }
             numVenta=generaNumVenta();
             txtNumero.setText(numVenta);
@@ -1550,14 +1555,18 @@ public class Ventas extends javax.swing.JInternalFrame {
         if (result == JOptionPane.NO_OPTION) {
             JOptionPane.showMessageDialog(null, "Venta Anulada!");
         }
+        
         JOptionPane.showMessageDialog(null, "Venta realizada con Éxito");
+        
         }
         
     btnImprimir.setEnabled(true);
     btnNuevo.setEnabled(true);
     btnCancelar.setEnabled(false);
     }//GEN-LAST:event_btnGuardarActionPerformed
-
+    private frmPrincipal findFrmPrincipalAncestor(JInternalFrame internalFrame) {
+        return (frmPrincipal) SwingUtilities.getAncestorOfClass(frmPrincipal.class, internalFrame);
+    }
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         accion = "Nuevo";
         modificar();

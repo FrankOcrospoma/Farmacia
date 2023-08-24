@@ -288,4 +288,5 @@ public DefaultTableModel CargarDatosBusquedaCompra() {
         return DT;
     }
 
+
 }

@@ -7,7 +7,7 @@ import org.jdesktop.animation.timing.*;
 //Conexión a la BD
 import Metodos.Metodos_sql;
 import static Vista.Login.*;
-import com.formdev.flatlaf.FlatDarkLaf;
+//import com.formdev.flatlaf.FlatDarkLaf;
 //import com.sun.awt.AWTUtilities;
 import java.sql.*;
 import java.util.logging.*;

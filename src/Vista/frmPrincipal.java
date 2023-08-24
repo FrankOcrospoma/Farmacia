@@ -65,7 +65,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         while (current == hilo) {
             hora();
             lblHora.setText(hora + ":" + minutos + ":" + segundos);
-            BuscarNotificaciones();
+            
         }
     }
 
@@ -1157,7 +1157,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
     }//GEN-LAST:event_formFocusGained
 
     private void formMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseMoved
-
+        
     }//GEN-LAST:event_formMouseMoved
     public void CentrarVentanas(JInternalFrame internalFrame) {
         int x = (contenedor.getWidth() / 2) - internalFrame.getWidth() / 2;
@@ -1205,6 +1205,7 @@ public class frmPrincipal extends javax.swing.JFrame implements Runnable {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new frmPrincipal().setVisible(true);
+                
             }
         });
     }
